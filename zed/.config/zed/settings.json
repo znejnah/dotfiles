@@ -1,0 +1,211 @@
+{
+  // =========================================================================
+  // WINDOW & WORKSPACE BEHAVIOR
+  // =========================================================================
+
+  // Displays git diffs side-by-side instead of inline/unified view
+  "diff_view_style": "split",
+
+  // When opening a file/directory from the terminal (e.g. `zed .`), open a new window
+  "cli_default_open_behavior": "new_window",
+
+  // Adopts JetBrains IDE keybindings (IntelliJ, WebStorm, etc.)
+  "base_keymap": "JetBrains",
+
+  // =========================================================================
+  // FONTS & TYPOGRAPHY
+  // =========================================================================
+
+  // Primary coding font with Nerd Font icons support (for glyphs, symbols)
+  "buffer_font_family": "GeistMono Nerd Font",
+
+  // Font size inside the editor buffer (in points)
+  "buffer_font_size": 14,
+
+  // Font size for UI elements (file tree, tabs, status bar)
+  "ui_font_size": 15,
+
+  // UI Theme switching based on OS appearance (Light / Dark mode)
+  "theme": {
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "One Dark",
+  },
+
+  // File tree and tab icon themes
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)",
+  },
+
+  // =========================================================================
+  // EDITOR & FORMATTING PIPELINE
+  // =========================================================================
+
+  // Automatically saves modified buffers when the editor loses focus
+  "autosave": "on_focus_change",
+
+  // Automatically trigger configured formatters whenever a file is saved
+  "format_on_save": "on",
+
+  // Number of spaces per indentation level
+  "tab_size": 2,
+
+  // Wrap long lines at the visible edge of the editor window
+  "soft_wrap": "editor_width",
+
+  // Visual column indicator guide for max line length discipline
+  "preferred_line_length": 100,
+
+  // Show autocompletion suggestions pop-up while typing
+  "show_completions_on_input": true,
+
+  // Disable inline AI/ghost predictive completions (keeps typing lag-free)
+  "show_edit_predictions": false,
+
+  // Position the file tree/project panel on the right side of the screen
+  "project_panel": {
+    "dock": "right",
+  },
+
+  // Allow Prettier execution for projects with a local prettier installation
+  "prettier": {
+    "allowed": true,
+  },
+
+  // =========================================================================
+  // VERSION CONTROL (GIT)
+  // =========================================================================
+
+  "git": {
+    // Show diff indicators in the editor gutter for git-tracked files
+    "git_gutter": "tracked_files",
+
+    // Display author and commit info directly on the active line (Git Blame)
+    "inline_blame": {
+      "enabled": true,
+      // Debounce delay before fetching git history (prevents slowdowns)
+      "delay_ms": 500,
+    },
+  },
+
+  // =========================================================================
+  // LANGUAGE SPECIFIC OVERRIDES & LANGUAGE SERVERS
+  // =========================================================================
+
+  "languages": {
+    "TypeScript": {
+      // Servers loaded in order; '!vtsls' explicitly disables VTSLS to avoid LSP conflicts
+      "language_servers": [
+        "angular-language-server",
+        "typescript-language-server",
+        "eslint",
+        "!vtsls",
+      ],
+      // Sort and clean unused imports automatically on save
+      "code_actions_on_format": {
+        "source.organizeImports": true,
+      },
+      "format_on_save": "on",
+      "formatter": "prettier",
+    },
+
+    "HTML": {
+      // Language servers for Angular templates, plain HTML and TailwindCSS class completion
+      "language_servers": [
+        "angular-language-server",
+        "html-language-server",
+        "tailwindcss-language-server",
+      ],
+    },
+
+    "TSX": {
+      "language_servers": ["typescript-language-server", "eslint", "!vtsls"],
+      "code_actions_on_format": {
+        "source.organizeImports": true,
+      },
+      "format_on_save": "on",
+      "formatter": "prettier",
+    },
+
+    "Rust": {
+      // Format with rustfmt automatically on save
+      "format_on_save": "on",
+    },
+  },
+
+  // =========================================================================
+  // LSP INITIALIZATION SETTINGS
+  // =========================================================================
+
+  "lsp": {
+    "typescript-language-server": {
+      "initialization_options": {
+        "preferences": {
+          // Include auto-import completions from installed node_modules
+          "includeCompletionsForModuleExports": true,
+          // Insert full snippet/import statement when selecting a completion
+          "includeCompletionsWithInsertText": true,
+        },
+      },
+    },
+
+    "rust-analyzer": {
+      "initialization_options": {
+        "check": {
+          // Use `cargo clippy` instead of `cargo check` on file save for stricter linting
+          "command": "clippy",
+        },
+      },
+    },
+  },
+
+  // =========================================================================
+  // INLAY HINTS (INLINE CODE ANNOTATIONS)
+  // =========================================================================
+
+  "inlay_hints": {
+    // Show inferred types and parameter names inline without altering file text
+    "enabled": true,
+    "show_type_hints": true,
+    "show_parameter_hints": true,
+  },
+
+  // =========================================================================
+  // INTEGRATED TERMINAL
+  // =========================================================================
+
+  "terminal": {
+    // Launch default user shell ($SHELL: zsh on macOS, bash on Fedora)
+    "shell": "system",
+
+    // Copy highlighted terminal text automatically to clipboard
+    "copy_on_select": true,
+
+    // Match code editor font for terminal glyph consistency
+    "font_family": "GeistMono Nerd Font",
+
+    "env": {
+      // Environment PATH fallback: includes macOS Homebrew and standard Linux paths
+      "PATH": "$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+      // Instructs Git to open commit editor sessions directly inside a Zed buffer
+      "GIT_EDITOR": "zed --wait",
+    },
+  },
+
+  // =========================================================================
+  // FILE TYPE ASSOCIATIONS
+  // =========================================================================
+
+  "file_types": {
+    // Map git configuration patterns to correct syntax highlighters
+    "Git Attributes": ["**/{git,.git,.git/info}/attributes"],
+    "Git Config": ["*.gitconfig", "**/{git,.git,.git/modules,.git/modules/*}/config"],
+    "Git Ignore": ["**/{git,.git}/ignore", "**/.git/info/exclude"],
+
+    // Ensure Docker Compose syntax highlighting is applied to all compose variants
+    "Docker Compose": ["docker-compose*.yml", "docker-compose*.yaml"],
+  },
+}
+

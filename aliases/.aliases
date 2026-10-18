@@ -1,0 +1,154 @@
+# ==========================
+# NAVIGATION & DISPLAY
+# ==========================
+alias ..="cd .."                                           # Go up one directory
+alias ...="cd ../.."                                       # Go up two directories
+alias ls="eza --icons --group-directories-first"           # List files with icons
+alias ll="eza -la --icons --group-directories-first"       # List files with details & hidden
+alias tree="eza --tree --icons=always"                     # Display directory tree
+alias cat="bat --paging=never"                             # Print file content with syntax highlighting
+
+# ==========================
+# DEVELOPMENT TOOLS
+# ==========================
+
+# --- Development ---
+# Smart dev server launcher: detects package manager and framework context
+dev() {
+  local pkg_manager="npm"
+
+  # 1. Detect package manager based on lock files
+  if [ -f "pnpm-lock.yaml" ]; then
+    pkg_manager="pnpm"
+  elif [ -f "yarn.lock" ]; then
+    pkg_manager="yarn"
+  elif [ -f "bun.lockb" ]; then
+    pkg_manager="bun"
+  fi
+
+  # 2. Detect framework and launch appropriate command
+  if [ -f "angular.json" ]; then
+    echo " Angular project detected. Starting server with ${pkg_manager}..."
+    $pkg_manager start
+  elif [ -f "nest-cli.json" ]; then
+    echo "󰄛 NestJS project detected. Starting watch mode with ${pkg_manager}..."
+    $pkg_manager run start:dev
+  elif [ -f "package.json" ]; then
+    echo " Generic Node project detected. Starting with ${pkg_manager}..."
+    $pkg_manager run dev
+  else
+    echo "󰅙 No recognized project found in this directory."
+  fi
+}
+
+alias nk="npx npkill -d ~/dev"                              # Track and destroy old node_modules
+alias npmclean="npm cache clean --force && rm -rf ~/.npm/*" # Full npm cache purge
+alias pnpmclean="pnpm store prune"                          # Prune orphaned pnpm packages
+
+# --- Rust ---
+alias cr="cargo run"                                        # Run Rust project
+alias cc="cargo clean"                                      # Clean target/ directory
+alias rustclean="rm -rf ~/.cargo/registry ~/.cargo/git ~/.rustup/downloads" # Purge Rust caches
+
+# ==========================
+# DOCKER & ORBSTACK
+# ==========================
+alias d="docker"                                           # Docker CLI
+alias dco="docker compose"                                 # Docker Compose CLI
+alias dps="docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'" # List containers cleanly
+
+# --- Cleanup ---
+alias dprune="docker system prune -f"                      # Routine cleanup (silent)
+alias dclean="docker system prune -a -f"                   # Remove unused images (silent)
+alias dnuke="docker system prune -a --volumes"             # Nuke everything including volumes (requires confirmation)
+
+# --- OrbStack ---
+alias orbon="orbctl start"                                 # Start OrbStack
+alias orboff="orbctl stop"                                 # Stop OrbStack
+alias vm="orb"                                             # OrbStack CLI
+
+# ==========================
+# GLOBAL INFRASTRUCTURE
+# ==========================
+alias opsup="docker compose -f $INFRA_FILE up -d"          # Start global infra
+alias opsdown="docker compose -f $INFRA_FILE down"         # Stop global infra
+alias opslog="docker compose -f $INFRA_FILE logs -f"       # Watch global infra logs
+
+# ==========================
+# GIT ESSENTIALS
+# ==========================
+
+# --- Functions ---
+# Delete local branches that have been merged and removed from remote
+gbclean() {
+  git fetch -p
+  git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -D 2>/dev/null
+  echo "✨ Local obsolete branches cleaned!"
+}
+
+# --- Basics ---
+alias gs="git status"                                      # Show working tree status
+alias ga="git add"                                         # Add specific files to index
+alias gaa="git add ."                                      # Stage all changes
+alias gc="git commit -m"                                   # Commit with message
+
+# --- Pull & Push ---
+alias gl="git pull"                                        # Pull changes
+alias gup="git pull --rebase"                              # Pull with rebase (prevents merge commits)
+alias gp="git push"                                        # Push changes
+alias gpsup="git push -u origin HEAD"                      # Push and track new local branch
+alias gpf="git push --force-with-lease"                    # Safely force push
+
+# --- Branches & Checkout ---
+alias gb="git branch"                                      # List local branches
+alias gco="git checkout"                                   # Switch branch
+alias gcb="git checkout -b"                                # Create and switch to new branch
+
+# --- Diff ---
+alias gd="git diff"                                        # Show unstaged changes
+alias gds="git diff --staged"                              # Show staged changes
+
+# --- Stash ---
+alias gsta="git stash"                                     # Stash local changes
+alias gstp="git stash pop"                                 # Apply and remove last stash
+alias gstl="git stash list"                                # List all stashes
+
+# --- Undo & Fix ---
+alias gcamend="git commit --amend --no-edit"               # Add changes to last commit silently
+alias grh="git reset --hard"                               # ⚠️ DANGER: Discard all uncommitted changes
+
+# --- Logs ---
+alias glog="git log --oneline --graph --decorate"          # Show beautiful git commit tree
+
+# ==========================
+# SYSTEM OPTIMIZATION
+# ==========================
+alias reload="source ~/.zshrc"                             # Reload zshrc config
+alias brewup="brew update && brew upgrade && brew cleanup" # Update and clean Homebrew
+alias port="lsof -i -P -n | grep LISTEN | grep"            # Find process listening on a specific port
+alias cls="clear && printf '\e[3J'"                        # Clear terminal and scrollback buffer completely
+# alias cleandown="fd --type f --change-older-than 30d . ~/Downloads --exec rm" # Delete downloads older than 30 days
+alias cleandown-test="fd --type f --change-older-than 30d . ~/Downloads"      # Preview what will be deleted
+alias cleandown="fd --type f --change-older-than 30d . ~/Downloads --exec rm" # Actually delete them
+
+# ==========================
+# TMUX
+# ==========================
+alias t="tmux"                                             # Tmux CLI
+alias ta="tmux attach -t"                                  # Attach to Tmux session
+alias tl="tmux ls"                                         # List running Tmux sessions
+alias tk="tmux kill-server"                                # Kill all Tmux sessions globally
+alias td="~/.local/bin/tmux-dev"                           # Start/Attach Dev Tmux session
+alias tdk="tmux kill-session -t dev"                       # Kill Dev Tmux session completely
+
+# ==========================
+# HELPERS
+# ==========================
+# Interactive shortcut viewer (Shortcut | Command | Description)
+ahelp() {
+  grep '^alias' ~/.aliases \
+    | sed -E 's/^alias ([^=]+)="([^"]+)"([ \t]*#[ \t]*(.*))?/\1\t\2\t\4/' \
+    | awk -F'\t' '{ printf "\033[32m%-12s\033[0m \033[90m%-40s\033[0m \033[36m%s\033[0m\n", $1, $2, $3 }' \
+    | fzf --ansi --height 50% --reverse --prompt='💡 Shortcuts: '
+}
+
