@@ -5,7 +5,7 @@
 
   // Displays git diffs side-by-side instead of inline/unified view
   "git_panel": {
-    "tree_view": true
+    "tree_view": true,
   },
   "diff_view_style": "split",
 
@@ -20,7 +20,7 @@
   // =========================================================================
 
   // Primary coding font with Nerd Font icons support (for glyphs, symbols)
-  "buffer_font_family": "GeistMono Nerd Font",
+  "buffer_font_family": "JetBrainsMono Nerd Font",
 
   // Font size inside the editor buffer (in points)
   "buffer_font_size": 14,
@@ -187,7 +187,7 @@
     "copy_on_select": true,
 
     // Match code editor font for terminal glyph consistency
-    "font_family": "GeistMono Nerd Font",
+    "font_family": "JetBrainsMono Nerd Font",
 
     "env": {
       // Environment PATH fallback: includes macOS Homebrew and standard Linux paths
@@ -211,4 +211,3 @@
     "Docker Compose": ["docker-compose*.yml", "docker-compose*.yaml"],
   },
 }
-

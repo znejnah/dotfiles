@@ -50,6 +50,9 @@ alias cr="cargo run"                                        # Run Rust project
 alias cc="cargo clean"                                      # Clean target/ directory
 alias rustclean="rm -rf ~/.cargo/registry ~/.cargo/git ~/.rustup/downloads" # Purge Rust caches
 
+# --- Zed Editor ---
+alias zed="zeditor"
+
 # ==========================
 # DOCKER & ORBSTACK
 # ==========================
@@ -151,4 +154,3 @@ ahelp() {
     | awk -F'\t' '{ printf "\033[32m%-12s\033[0m \033[90m%-40s\033[0m \033[36m%s\033[0m\n", $1, $2, $3 }' \
     | fzf --ansi --height 50% --reverse --prompt='💡 Shortcuts: '
 }
-

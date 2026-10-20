@@ -12,7 +12,7 @@
 # ==============================================================================
 # Source global definitions from the Arch base system
 if [ -f /etc/bash.bashrc ]; then
-    . /etc/bash.bashrc
+  . /etc/bash.bashrc
 fi
 
 
@@ -21,7 +21,7 @@ fi
 # ==============================================================================
 # Safely prepend local bin directories to PATH without duplication
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
-    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+  PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
 export PATH
 
