@@ -1,0 +1,123 @@
+add_newline = true
+palette = "catppuccin_mocha"
+
+format = """\
+[╭╴](fg:overlay0)\
+$os\
+$username\
+$directory\
+$git_branch\
+$git_status\
+$python\
+$nodejs\
+$rust\
+$cmd_duration\
+$time
+[╰─](fg:overlay0)$character\
+"""
+
+# Official Catppuccin Mocha Palette
+[palettes.catppuccin_mocha]
+rosewater = "#f5e0dc"
+flamingo = "#f2cdcd"
+pink = "#f5c2e7"
+mauve = "#cba6f7"
+red = "#f38ba8"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+sapphire = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+text = "#cdd6f4"
+overlay0 = "#6c7086"
+base = "#1e1e2e"
+
+# -----------------------------------------------------------------------------
+# OS & USER (Merged into the same Mauve pill)
+# -----------------------------------------------------------------------------
+[os]
+disabled = false
+style = "bg:mauve fg:base"
+format = "[](fg:mauve)[$symbol]($style)"
+
+[username]
+style_user = "bg:mauve fg:base"
+style_root = "bg:red fg:base"
+format = "[$user ]($style)[](fg:mauve) "
+show_always = true
+
+[os.symbols]
+Arch = " "
+
+# -----------------------------------------------------------------------------
+# DIRECTORY (Blue pill)
+# -----------------------------------------------------------------------------
+[directory]
+style = "bg:blue fg:base"
+format = "[](fg:blue)[  $path ]($style)[](fg:blue) "
+truncation_length = 3
+truncate_to_repo = true
+truncation_symbol = "…/"
+read_only = "  "
+
+# -----------------------------------------------------------------------------
+# GIT (Green Branch, Peach Status)
+# -----------------------------------------------------------------------------
+[git_branch]
+style = "bg:green fg:base"
+format = "[](fg:green)[ $branch ]($style)[](fg:green) "
+
+[git_status]
+style = "bg:peach fg:base"
+format = "[](fg:peach)[$all_status$ahead_behind ]($style)[](fg:peach) "
+# Explicit Nerd Font Icons
+modified = " "
+staged = " "
+untracked = " "
+deleted = " "
+renamed = "󰑕 "
+stashed = " "
+conflicted = " "
+ahead = " "
+behind = " "
+diverged = " "
+
+# -----------------------------------------------------------------------------
+# LANGUAGES (Sky Blue pills)
+# -----------------------------------------------------------------------------
+[python]
+style = "bg:sky fg:base"
+format = '[](fg:sky)[ ${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)[](fg:sky) '
+
+[nodejs]
+style = "bg:sky fg:base"
+format = "[](fg:sky)[ $version ]($style)[](fg:sky) "
+
+[rust]
+style = "bg:sky fg:base"
+format = "[](fg:sky)[ $version ]($style)[](fg:sky) "
+
+# -----------------------------------------------------------------------------
+# TOOLS & TIMER (Yellow and Teal pills)
+# -----------------------------------------------------------------------------
+[cmd_duration]
+style = "bg:yellow fg:base"
+format = "[](fg:yellow)[ $duration ]($style)[](fg:yellow) "
+min_time = 500
+
+[time]
+disabled = false
+time_format = "%H:%M"
+style = "bg:teal fg:base"
+format = "[](fg:teal)[ $time ]($style)[](fg:teal) "
+
+# -----------------------------------------------------------------------------
+# FINAL CHARACTER
+# -----------------------------------------------------------------------------
+[character]
+success_symbol = "[❯](fg:green)"
+error_symbol = "[❯](fg:red)"
