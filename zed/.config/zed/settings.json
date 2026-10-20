@@ -4,6 +4,9 @@
   // =========================================================================
 
   // Displays git diffs side-by-side instead of inline/unified view
+  "git_panel": {
+    "tree_view": true
+  },
   "diff_view_style": "split",
 
   // When opening a file/directory from the terminal (e.g. `zed .`), open a new window

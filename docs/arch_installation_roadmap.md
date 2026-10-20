@@ -1,0 +1,169 @@
+# Feuille de route : Installation Arch Linux (Hyprland / Wayland)
+
+Ce guide détaille l'installation d'une base Arch Linux pure avec un environnement en tuiles (Hyprland), optimisée pour le développement et le jeu.
+
+## 0. Résumé du Système
+*   **Socle :** Arch Linux (Dual boot UEFI avec Windows)
+*   **GPU :** RTX 5070 (pilotes `nvidia-open`)
+*   **Audio :** PipeWire (`pipewire-pulse`, `pipewire-jack`)
+*   **Interface :** Hyprland (Wayland), configuré via `hyprland.lua`
+*   **Composants de base :** Kitty (Terminal), Rofi (Lanceur), Waybar (Barre d'état), Yazi (Fichiers), Polkit-KDE (Authentification), Yay (AUR).
+
+> **💡 Spécificités pour une installation sur PC Portable :**
+> *   Remplacer `amd-ucode` par `intel-ucode` (si processeur Intel).
+> *   Remplacer `nvidia-open` par `mesa vulkan-intel` (ou `vulkan-radeon`) si le PC n'a pas de puce graphique dédiée.
+> *   Ajouter `power-profiles-daemon` à l'étape 2 pour la gestion de la batterie.
+
+---
+
+## Phase 1 : Préparation et Partitionnement
+
+1. **Générer la clé USB bootable :**
+   ```bash
+   sudo dd if=archlinux-x86_64.iso of=/dev/sdX bs=4M status=progress oflag=sync
+   ```
+2. **Prérequis BIOS / Windows :**
+   * Désactiver le **Secure Boot** dans le BIOS.
+   * Désactiver le **Démarrage rapide** (Fast Startup) sous Windows.
+3. **Démarrage sur la clé USB (UEFI) :**
+   * Connexion Wi-Fi (si nécessaire) : `iwctl station wlan0 connect "NomDeBox"`
+   * Test de connexion : `ping archlinux.org`
+4. **Partitionnement (`lsblk -f` pour repérer les disques) :**
+   * `fdisk /dev/nvme0n1`
+   * Conserver la partition EFI Windows (`FAT32`).
+   * Créer la nouvelle partition Racine (`ext4`).
+   * Formater la Racine : `mkfs.ext4 /dev/nvme0n1pX`
+5. **Montage des disques :**
+   ```bash
+   mount /dev/nvme0n1pX /mnt
+   mount --mkdir /dev/nvme0n1pY /mnt/boot/efi  # pY = partition EFI Windows
+   ```
+
+---
+
+## Phase 2 : Système de base et Configuration
+
+1. **Déployer le système minimal :**
+   ```bash
+   pacstrap -K /mnt base linux linux-headers linux-firmware amd-ucode nano sudo
+   ```
+2. **Générer le fichier fstab (Table des disques) :**
+   ```bash
+   genfstab -U /mnt >> /mnt/etc/fstab
+   ```
+3. **Entrer dans le système (Chroot) :**
+   ```bash
+   arch-chroot /mnt
+   ```
+4. **Localisation et Heure :**
+   ```bash
+   ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
+   hwclock --systohc
+   nano /etc/locale.gen          # Décommenter en_US.UTF-8 (et fr_FR.UTF-8 si besoin)
+   locale-gen
+   echo "LANG=en_US.UTF-8" > /etc/locale.conf
+   ```
+5. **Réseau :**
+   ```bash
+   echo "archlinux" > /etc/hostname
+   pacman -S networkmanager
+   systemctl enable NetworkManager
+   ```
+6. **Utilisateur et Droits d'administration :**
+   ```bash
+   passwd                         # Mot de passe administrateur (root)
+   useradd -m -G wheel -s /bin/bash nom_utilisateur
+   passwd nom_utilisateur         # Mot de passe du nouvel utilisateur
+   EDITOR=nano visudo             # Décommenter la ligne : %wheel ALL=(ALL:ALL) ALL
+   ```
+
+---
+
+## Phase 3 : Pilotes Graphiques et Démarrage (GRUB)
+
+1. **Activer le dépôt 32 bits (Multilib) :**
+   * Ouvrir `nano /etc/pacman.conf`.
+   * Décommenter les deux lignes `[multilib]` et son `Include`.
+   * Exécuter `pacman -Sy`.
+2. **Installer les pilotes NVIDIA :**
+   ```bash
+   pacman -S nvidia-open nvidia-utils lib32-nvidia-utils
+   ```
+3. **Installer GRUB et Os-Prober (Détection Windows) :**
+   ```bash
+   pacman -S grub efibootmgr os-prober
+   ```
+4. **Configurer GRUB (`nano /etc/default/grub`) :**
+   * Ajouter `nvidia_drm.modeset=1` dans `GRUB_CMDLINE_LINUX_DEFAULT`.
+   * Décommenter `GRUB_DISABLE_OS_PROBER=false`.
+5. **Déployer GRUB :**
+   ```bash
+   grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB --recheck
+   grub-mkconfig -o /boot/grub/grub.cfg
+   ```
+6. **Sortie et Redémarrage :**
+   ```bash
+   exit
+   umount -R /mnt
+   reboot
+   # Retirer la clé USB à l'extinction.
+   ```
+
+---
+
+## Phase 4 : Pile Graphique et Outils (Depuis le TTY)
+
+1. **Audio et Compilation :**
+   ```bash
+   sudo pacman -S pipewire pipewire-pulse pipewire-alsa pipewire-jack wireplumber base-devel git
+   ```
+2. **Polices système :**
+   ```bash
+   sudo pacman -S noto-fonts noto-fonts-emoji ttf-dejavu ttf-liberation ttf-jetbrains-mono-nerd
+   fc-cache -fv
+   ```
+3. **Composants de l'environnement (Hyprland) :**
+   ```bash
+   sudo pacman -S hyprland kitty waybar rofi-wayland polkit-kde-agent xdg-desktop-portal-hyprland
+   ```
+4. **Gestionnaire de fichiers (Yazi) :**
+   ```bash
+   sudo pacman -S yazi ffmpegthumbnailer 7zip jq poppler fd ripgrep fzf zoxide imagemagick
+   ```
+5. **Installer l'assistant AUR (`yay`) :**
+   ```bash
+   git clone https://aur.archlinux.org/yay.git
+   cd yay && makepkg -si && cd .. && rm -rf yay
+   ```
+
+---
+
+## Phase 5 : Configuration Hyprland (Lua)
+
+1. **Créer/Modifier `~/.config/hypr/hyprland.lua` :**
+   * **Base :** Retirer la sécurité `autogenerated = true`.
+   * **Clavier :** Régler `kb_layout = "us"`.
+   * **Explorateur :** Modifier la variable `local fileManager = "kitty -e yazi"`.
+   * **Variables NVIDIA :**
+     ```lua
+     hl.env("LIBVA_DRIVER_NAME", "nvidia")
+     hl.env("XDG_SESSION_TYPE", "wayland")
+     hl.env("GBM_BACKEND", "nvidia-drm")
+     hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
+     hl.config({ cursor = { no_hardware_cursors = true } })
+     ```
+   * **Raccourci Rofi :** 
+     ```lua
+     hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("rofi -show drun"))
+     ```
+   * **Démarrage automatique (Waybar & Polkit) :**
+     ```lua
+     hl.on("hyprland.start", function()
+         hl.exec_cmd("waybar")
+         hl.exec_cmd("/usr/lib/polkit-kde-authentication-agent-1")
+     end)
+     ```
+2. **Lancer l'interface :**
+   ```bash
+   start-hyprland
+   ```
