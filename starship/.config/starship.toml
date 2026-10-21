@@ -1,8 +1,8 @@
 add_newline = true
-palette = "catppuccin_mocha"
+palette = "electrovoid"
 
 format = """\
-[╭╴](fg:overlay0)\
+[╭╴](fg:muted)\
 $os\
 $username\
 $directory\
@@ -13,67 +13,63 @@ $nodejs\
 $rust\
 $cmd_duration\
 $time
-[╰─](fg:overlay0)$character\
+[╰─](fg:muted)$character\
 """
 
-# Official Catppuccin Mocha Palette
-[palettes.catppuccin_mocha]
-rosewater = "#f5e0dc"
-flamingo = "#f2cdcd"
-pink = "#f5c2e7"
-mauve = "#cba6f7"
-red = "#f38ba8"
-maroon = "#eba0ac"
-peach = "#fab387"
-yellow = "#f9e2af"
-green = "#a6e3a1"
-teal = "#94e2d5"
-sky = "#89dceb"
-sapphire = "#74c7ec"
-blue = "#89b4fa"
-lavender = "#b4befe"
-text = "#cdd6f4"
-overlay0 = "#6c7086"
-base = "#1e1e2e"
+# -----------------------------------------------------------------------------
+# PALETTE : ELECTROVOID (Extracted from Zed Theme)
+# -----------------------------------------------------------------------------
+[palettes.electrovoid]
+base = "#000000"         # Black text for high contrast inside bright pills
+text = "#ffffff"         # White text
+muted = "#555555"        # Gray for connectors/brackets
+purple = "#8800ff"       # Primary border/accent
+purple_light = "#bb00ff" # Active/Hover accent
+cyan = "#00e5ff"         # Info/Functions
+green = "#00ff88"        # Success/Strings
+orange = "#ffaa00"       # Warnings/Numbers
+pink = "#ff2fa0"         # Links/Keywords
+red = "#ff3b5c"          # Errors
 
 # -----------------------------------------------------------------------------
-# OS & USER (Merged into the same Mauve pill)
+# OS & USER (Neon Purple)
 # -----------------------------------------------------------------------------
 [os]
 disabled = false
-style = "bg:mauve fg:base"
-format = "[](fg:mauve)[$symbol]($style)"
+style = "bg:purple_light fg:base"
+format = "[](fg:purple_light)[$symbol]($style)"
 
 [username]
-style_user = "bg:mauve fg:base"
+style_user = "bg:purple_light fg:base"
 style_root = "bg:red fg:base"
-format = "[$user ]($style)[](fg:mauve) "
+format = "[$user ]($style)[](fg:purple_light) "
 show_always = true
 
 [os.symbols]
 Arch = " "
+Macos = " "
 
 # -----------------------------------------------------------------------------
-# DIRECTORY (Blue pill)
+# DIRECTORY (Neon Cyan)
 # -----------------------------------------------------------------------------
 [directory]
-style = "bg:blue fg:base"
-format = "[](fg:blue)[  $path ]($style)[](fg:blue) "
+style = "bg:cyan fg:base"
+format = "[](fg:cyan)[  $path ]($style)[](fg:cyan) "
 truncation_length = 3
 truncate_to_repo = true
 truncation_symbol = "…/"
 read_only = "  "
 
 # -----------------------------------------------------------------------------
-# GIT (Green Branch, Peach Status)
+# GIT (Acid Green Branch, Orange Status)
 # -----------------------------------------------------------------------------
 [git_branch]
 style = "bg:green fg:base"
 format = "[](fg:green)[ $branch ]($style)[](fg:green) "
 
 [git_status]
-style = "bg:peach fg:base"
-format = "[](fg:peach)[$all_status$ahead_behind ]($style)[](fg:peach) "
+style = "bg:orange fg:base"
+format = "[](fg:orange)[$all_status$ahead_behind ]($style)[](fg:orange) "
 # Explicit Nerd Font Icons
 modified = " "
 staged = " "
@@ -87,37 +83,37 @@ behind = " "
 diverged = " "
 
 # -----------------------------------------------------------------------------
-# LANGUAGES (Sky Blue pills)
+# LANGUAGES (Neon Pink)
 # -----------------------------------------------------------------------------
 [python]
-style = "bg:sky fg:base"
-format = '[](fg:sky)[ ${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)[](fg:sky) '
+style = "bg:pink fg:base"
+format = '[](fg:pink)[ ${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)[](fg:pink) '
 
 [nodejs]
-style = "bg:sky fg:base"
-format = "[](fg:sky)[ $version ]($style)[](fg:sky) "
+style = "bg:pink fg:base"
+format = "[](fg:pink)[ $version ]($style)[](fg:pink) "
 
 [rust]
-style = "bg:sky fg:base"
-format = "[](fg:sky)[ $version ]($style)[](fg:sky) "
+style = "bg:pink fg:base"
+format = "[](fg:pink)[ $version ]($style)[](fg:pink) "
 
 # -----------------------------------------------------------------------------
-# TOOLS & TIMER (Yellow and Teal pills)
+# TOOLS & TIMER (Dark Purple and Muted Gray)
 # -----------------------------------------------------------------------------
 [cmd_duration]
-style = "bg:yellow fg:base"
-format = "[](fg:yellow)[ $duration ]($style)[](fg:yellow) "
+style = "bg:purple fg:text"
+format = "[](fg:purple)[ $duration ]($style)[](fg:purple) "
 min_time = 500
 
 [time]
 disabled = false
 time_format = "%H:%M"
-style = "bg:teal fg:base"
-format = "[](fg:teal)[ $time ]($style)[](fg:teal) "
+style = "bg:muted fg:text"
+format = "[](fg:muted)[ $time ]($style)[](fg:muted) "
 
 # -----------------------------------------------------------------------------
 # FINAL CHARACTER
 # -----------------------------------------------------------------------------
 [character]
-success_symbol = "[❯](fg:green)"
+success_symbol = "[❯](fg:purple_light)"
 error_symbol = "[❯](fg:red)"

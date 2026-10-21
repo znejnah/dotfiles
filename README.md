@@ -34,7 +34,13 @@ Designed for development and high refresh-rate gaming on an AMD Zen 4 + NVIDIA R
 │   └── arch_installation_roadmap.md
 ├── bash/
 │   └── .bashrc             # Shell options, tools init (fzf, zoxide, starship)
+├── starship/
+│   └── .config/
+│       └── starship.toml   # Custom Catppuccin Mocha prompt theme
 └── zed/
     └── .config/zed/
-        └── settings.json   # Keymaps, LSP configurations, themes
+        └── settings.json   # Keymaps, LSP configurations, editor settings
+        └── themes/
+            └── themes/     # Custom UI theme
+
 ```
