@@ -36,7 +36,7 @@ Designed for development and high refresh-rate gaming on an AMD Zen 4 + NVIDIA R
 │   └── .bashrc             # Shell options, tools init (fzf, zoxide, starship)
 ├── starship/
 │   └── .config/
-│       └── starship.toml   # Custom Catppuccin Mocha prompt theme
+│       └── starship.toml   # Custom prompt theme
 └── zed/
     └── .config/zed/
         └── settings.json   # Keymaps, LSP configurations, editor settings
