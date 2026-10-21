@@ -50,8 +50,10 @@ alias cr="cargo run"                                        # Run Rust project
 alias cc="cargo clean"                                      # Clean target/ directory
 alias rustclean="rm -rf ~/.cargo/registry ~/.cargo/git ~/.rustup/downloads" # Purge Rust caches
 
-# --- Zed Editor ---
-alias zed="zeditor"
+# Arch Linux specific alias for Zed
+if command -v zeditor >/dev/null 2>&1; then
+    alias zed="zeditor"
+fi
 
 # ==========================
 # DOCKER & ORBSTACK
