@@ -1,4 +1,4 @@
-add_newline = true
+ add_newline = true
 palette = "electrovoid"
 
 format = """\
@@ -17,103 +17,101 @@ $time
 """
 
 # -----------------------------------------------------------------------------
-# PALETTE : ELECTROVOID (Extracted from Zed Theme)
+# PALETTE : ELECTROVOID
 # -----------------------------------------------------------------------------
 [palettes.electrovoid]
-base = "#000000"         # Black text for high contrast inside bright pills
-text = "#ffffff"         # White text
-muted = "#555555"        # Gray for connectors/brackets
-purple = "#8800ff"       # Primary border/accent
-purple_light = "#bb00ff" # Active/Hover accent
-cyan = "#00e5ff"         # Info/Functions
-green = "#00ff88"        # Success/Strings
-orange = "#ffaa00"       # Warnings/Numbers
-pink = "#ff2fa0"         # Links/Keywords
-red = "#ff3b5c"          # Errors
+base = "#000000"
+text = "#ffffff"
+muted = "#555555"
+purple = "#8800ff"
+purple_light = "#bb00ff"
+cyan = "#00e5ff"
+green = "#00ff88"
+orange = "#ffaa00"
+pink = "#ff2fa0"
+red = "#ff3b5c"
 
 # -----------------------------------------------------------------------------
 # OS & USER (Neon Purple)
 # -----------------------------------------------------------------------------
 [os]
 disabled = false
-style = "bg:purple_light fg:base"
-format = "[](fg:purple_light)[$symbol]($style)"
+style = "fg:purple_light bold"
+format = "[$symbol]($style)"
 
 [username]
-style_user = "bg:purple_light fg:base"
-style_root = "bg:red fg:base"
-format = "[$user ]($style)[](fg:purple_light) "
+style_user = "fg:purple_light bold"
+style_root = "fg:red bold"
+format = "[$user]($style) [::](fg:muted) "
 show_always = true
 
 [os.symbols]
 Arch = " "
-Macos = " "
 
 # -----------------------------------------------------------------------------
 # DIRECTORY (Neon Cyan)
 # -----------------------------------------------------------------------------
 [directory]
-style = "bg:cyan fg:base"
-format = "[](fg:cyan)[  $path ]($style)[](fg:cyan) "
+style = "fg:cyan bold"
+format = "[  $path]($style) "
 truncation_length = 3
 truncate_to_repo = true
 truncation_symbol = "…/"
 read_only = "  "
 
 # -----------------------------------------------------------------------------
-# GIT (Acid Green Branch, Orange Status)
+# GIT (Acid Green & Orange)
 # -----------------------------------------------------------------------------
 [git_branch]
-style = "bg:green fg:base"
-format = "[](fg:green)[ $branch ]($style)[](fg:green) "
+style = "fg:purple_light bold"
+format = "[ $branch]($style) "
 
 [git_status]
-style = "bg:orange fg:base"
-format = "[](fg:orange)[$all_status$ahead_behind ]($style)[](fg:orange) "
-# Explicit Nerd Font Icons
-modified = " "
-staged = " "
-untracked = " "
-deleted = " "
-renamed = "󰑕 "
-stashed = " "
-conflicted = " "
-ahead = " "
-behind = " "
-diverged = " "
+style = "fg:pink bold"
+format = '[\[](fg:muted)[ $all_status$ahead_behind ]($style)[\]](fg:muted) '
+modified = "[ ](fg:orange bold)"
+staged = "[ ](fg:green bold)"
+untracked = "[ ](fg:cyan bold)"
+deleted = "[ ](fg:red bold)"
+renamed = "[󰑕 ](fg:purple_light bold)"
+stashed = "[ ](fg:pink bold)"
+conflicted = "[ ](fg:red bold)"
+ahead = "[ ](fg:cyan bold)"
+behind = "[ ](fg:purple_light bold)"
+diverged = "[ ](fg:red bold)"
 
 # -----------------------------------------------------------------------------
 # LANGUAGES (Neon Pink)
 # -----------------------------------------------------------------------------
 [python]
-style = "bg:pink fg:base"
-format = '[](fg:pink)[ ${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)[](fg:pink) '
+style = "fg:pink bold"
+format = '[ ${pyenv_prefix}${version}]($style) '
 
 [nodejs]
-style = "bg:pink fg:base"
-format = "[](fg:pink)[ $version ]($style)[](fg:pink) "
+style = "fg:pink bold"
+format = "[ $version]($style) "
 
 [rust]
-style = "bg:pink fg:base"
-format = "[](fg:pink)[ $version ]($style)[](fg:pink) "
+style = "fg:pink bold"
+format = "[ $version]($style) "
 
 # -----------------------------------------------------------------------------
-# TOOLS & TIMER (Dark Purple and Muted Gray)
+# TOOLS & TIMER (Muted & Purple)
 # -----------------------------------------------------------------------------
 [cmd_duration]
-style = "bg:purple fg:text"
-format = "[](fg:purple)[ $duration ]($style)[](fg:purple) "
+style = "fg:purple bold"
+format = "[ $duration]($style) "
 min_time = 500
 
 [time]
 disabled = false
 time_format = "%H:%M"
-style = "bg:muted fg:text"
-format = "[](fg:muted)[ $time ]($style)[](fg:muted) "
+style = "fg:muted"
+format = "[ $time]($style) "
 
 # -----------------------------------------------------------------------------
 # FINAL CHARACTER
 # -----------------------------------------------------------------------------
 [character]
-success_symbol = "[❯](fg:purple_light)"
-error_symbol = "[❯](fg:red)"
+success_symbol = "[>_](fg:cyan bold)"
+error_symbol = "[>_](fg:red bold)"
