@@ -1,0 +1,10 @@
+---------------------
+---- MY PROGRAMS ----
+---------------------
+
+return {
+    terminal = "kitty",
+    fileManager = "kitty -e yazi",
+    menu = "rofi -show drun -theme ~/.config/rofi/config.rasi",
+    bluetooth = "rofi-bluetooth"
+}

@@ -153,12 +153,20 @@
         },
       },
     },
-
     "rust-analyzer": {
       "initialization_options": {
         "check": {
           // Use `cargo clippy` instead of `cargo check` on file save for stricter linting
           "command": "clippy",
+        },
+      },
+    },
+    "lua-language-server": {
+      "settings": {
+        "Lua": {
+          "diagnostics": {
+            "globals": ["hl"],
+          },
         },
       },
     },
