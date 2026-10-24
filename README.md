@@ -43,6 +43,12 @@ Designed for development and high refresh-rate gaming on an AMD Zen 4 + NVIDIA R
 - **System:** `Experimental = true` mode in `/etc/bluetooth/main.conf` for battery polling. `uhid` kernel module for BLE mice.
 - **Interface:** Rofi-bluetooth mapped to `SUPER + B` via the Lua programs table.
 
+**Notification Daemon (Dunst)**
+
+- **Deployment:** `stow dunst`
+- **Aesthetics:** ElectroVoid theme with custom neon borders based on urgency (Cyan for low, Purple for normal, Red for critical).
+- **System:** Minimalist D-Bus listener via `libnotify`.
+
 ---
 
 ## Repository Layout
@@ -58,6 +64,9 @@ Designed for development and high refresh-rate gaming on an AMD Zen 4 + NVIDIA R
 ├── docs/
 │   └── arch_installation_roadmap.md
 │   └── hyprland_cheat_sheet.md
+├── dunst/
+│   └── .config/dunst/
+│       └── dunstrc                  # Notification alerts configuration
 ├── hypr/
 │   └── .config/hypr/
 │       └── hyprland.lua              # Global WM configuration centralized
