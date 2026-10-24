@@ -1,0 +1,81 @@
+configuration {
+    display-drun: "󱀤  SYS.INIT:";
+    show-icons: true;
+    icon-theme: "candy-icons";
+    drun-display-format: "{name}";
+    font: "JetBrainsMono Nerd Font 12";
+}
+
+* {
+    bg: #101010D9;
+    bg-alt: #1a1a1a;
+    fg: #ffffff;
+    cyan: #00e5ff;
+    purple: #8800ff;
+
+    background-color: transparent;
+    text-color: @fg;
+}
+
+window {
+    background-color: @bg;
+    border: 2px;
+    border-color: @cyan;
+    border-radius: 12px;
+    padding: 20px;
+    width: 40%;
+}
+
+mainbox {
+    spacing: 15px;
+}
+
+inputbar {
+    background-color: @bg-alt;
+    border: 1px;
+    border-color: @purple;
+    border-radius: 8px;
+    padding: 12px;
+    children: [prompt, entry];
+}
+
+prompt {
+    text-color: @cyan;
+    font: "sans-serif bold 11";
+}
+
+entry {
+    placeholder: "Search...";
+    placeholder-color: #555555;
+    padding: 0 0 0 10px;
+    text-color: @purple;
+}
+
+listview {
+    lines: 8;
+    columns: 1;
+    scrollbar: false;
+    spacing: 5px;
+    border: 0px;
+}
+
+element {
+    padding: 10px;
+    border-radius: 6px;
+}
+
+element-icon {
+    size: 24px;
+    margin: 0 15px 0 0;
+}
+
+element-text {
+    vertical-align: 0.5;
+}
+
+element selected.normal {
+    background-color: @purple;
+    text-color: #101010;
+    border: 1px;
+    border-color: @cyan;
+}

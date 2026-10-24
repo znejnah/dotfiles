@@ -1,14 +1,16 @@
 {
   "layer": "top",
   "position": "top",
+  "height": 36,
+  "spacing": 8,
+  "exclusive": true,
   "margin-top": 8,
   "margin-left": 12,
   "margin-right": 12,
-  "spacing": 8,
 
   "modules-left": ["hyprland/workspaces", "hyprland/window"],
   "modules-center": ["clock"],
-  "modules-right": ["network", "pulseaudio", "tray"],
+  "modules-right": ["network", "cpu", "memory", "pulseaudio", "bluetooth", "tray"],
 
   "hyprland/workspaces": {
     "format": "{icon}",
@@ -23,37 +25,62 @@
   },
 
   "hyprland/window": {
-    "format": "{}",
-    "max-length": 40,
+    "format": "{class}:::{title}",
+    "max-length": 50,
     "rewrite": {
-      "(.*) - Mozilla Firefox": "  $1",
-      "(.*) - Zed": "  $1",
-      "(.*) - Kitty": "  $",
+      "firefox:::(.*)": "󰈹  $1",
+      "dev.zed.Zed:::(.*)": "  $1",
+      "kitty:::(.*)": "  $1",
+      "^(?!(firefox|dev\\.zed\\.Zed|kitty))([^:]*):::(.*)": ">_  $1",
     },
   },
 
   "clock": {
     "format": "  {:%H:%M}",
+    "format-alt": "{:%A %d %B %Y}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
   },
 
   "network": {
-    "format-wifi": "  {essid}",
-    "format-ethernet": "󰈀  Wired",
-    "format-disconnected": "⚠  Offline",
+    "format-wifi": "  {bandwidthDownBits} ↓ {bandwidthUpBits} ↑",
+    "format-ethernet": "󰈀  {bandwidthDownBits} ↓ {bandwidthUpBits} ↑",
+    "format-disconnected": "󰪎  Offline",
     "tooltip-format": "{ipaddr}/{cidr}",
+    "interval": 2,
+  },
+
+  "cpu": {
+    "format": "{usage}%   ",
+    "interval": 2,
+  },
+
+  "memory": {
+    "format": "{}%   ",
+    "interval": 2,
   },
 
   "pulseaudio": {
-    "format": "{icon}  {volume}%",
-    "format-muted": "󰝟  Muted",
+    "format": "{volume}% {icon} ",
+    "format-muted": "  Muted",
     "format-icons": {
-      "default": [" ", " ", " "],
+      "default": [" ", " ", " ", " "],
     },
+    "format-bluetooth": " {icon} {volume}%",
     "on-click": "pavucontrol",
   },
 
+  "bluetooth": {
+    "format": "󰂯 {status}",
+    "format-connected": " {device_alias}",
+    "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+    "format-off": "󰂲 {status}",
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+    "on-click": "rofi-bluetooth",
+  },
+
   "tray": {
+    "icon-size": 16,
     "spacing": 10,
   },
 }
