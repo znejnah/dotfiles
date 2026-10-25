@@ -11,6 +11,7 @@ $git_status\
 $python\
 $nodejs\
 $rust\
+$lua\
 $cmd_duration\
 $time
 [╰─](fg:muted)$character\
@@ -47,6 +48,7 @@ show_always = true
 
 [os.symbols]
 Arch = " "
+Macos = " "
 
 # -----------------------------------------------------------------------------
 # DIRECTORY (Neon Cyan)
@@ -60,7 +62,7 @@ truncation_symbol = "…/"
 read_only = "  "
 
 # -----------------------------------------------------------------------------
-# GIT (Acid Green & Orange)
+# GIT
 # -----------------------------------------------------------------------------
 [git_branch]
 style = "fg:purple_light bold"
@@ -94,6 +96,10 @@ format = "[ $version]($style) "
 [rust]
 style = "fg:pink bold"
 format = "[ $version]($style) "
+
+[lua]
+style = "fg:pink bold"
+format = "[ $version]($style) "
 
 # -----------------------------------------------------------------------------
 # TOOLS & TIMER (Muted & Purple)
