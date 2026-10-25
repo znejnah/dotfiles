@@ -10,44 +10,49 @@
 # ==============================================================================
 # SYSTEM GLOBALS & DEFAULTS (Arch Linux)
 # ==============================================================================
-# Source global definitions from the Arch base system
 if [ -f /etc/bash.bashrc ]; then
   . /etc/bash.bashrc
 fi
 
 
 # ==============================================================================
-# ENVIRONMENT VARIABLES & CLI THEMES
+# ENVIRONMENT VARIABLES
 # ==============================================================================
+export COLORTERM="truecolor"
+export INFRA_FILE="$HOME/dev/ops/docker-compose.yml"
+
 # Safely prepend local bin directories to PATH without duplication
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
   PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
 export PATH
 
-# Theme configuration for bat (syntax highlighter replacing cat)
-export BAT_THEME="Catppuccin Mocha"
 
-# Catppuccin Mocha color palette & reverse UI layout for fzf
+# ==============================================================================
+# CLI THEMES (ElectroVoid Palette)
+# ==============================================================================
+export BAT_THEME="base16" # Neutral fallback before creating a custom bat theme
+
+# FZF ElectroVoid UI (Dark bg, Purple borders, Cyan pointer, Pink highlights)
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
 export FZF_DEFAULT_OPTS=" \
---color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
---color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
---color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
---color=selected-bg:#45475a \
---prompt='  ' --pointer=' ' --layout=reverse --border"
+--color=bg:#101010,bg+:#202020,fg:#ffffff,fg+:#ffffff,hl:#ff2fa0,hl+:#ff2fa0 \
+--color=prompt:#8800ff,pointer:#00e5ff,marker:#00ff88,border:#8800ff,header:#555555 \
+--prompt='>_ ' --pointer='❯' --layout=reverse --border"
 
 
 # ==============================================================================
-# BASH BEHAVIOR & SHELL OPTIONS (shopt)
+# BASH BEHAVIOR & HISTORY
 # ==============================================================================
-shopt -s autocd
-shopt -s cdspell
-shopt -s globstar
-shopt -s checkwinsize
+shopt -s autocd cdspell globstar checkwinsize histappend
 set -o ignoreeof
 
-# Append to history and synchronize across all open terminals in real time
-shopt -s histappend
+# History limits and duplication control
+HISTSIZE=50000
+HISTFILESIZE=50000
+HISTCONTROL=ignoreboth:erasedups
+
+# Synchronize history across all open terminals in real time
 PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 
@@ -60,9 +65,18 @@ PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 # ==============================================================================
 # TOOL INTEGRATIONS (Strict Order Required)
 # ==============================================================================
+# 1. Node Version Manager
+eval "$(fnm env --use-on-cd --shell bash)"
+
+# 2. Navigation & Search
 eval "$(fzf --bash)"
 eval "$(zoxide init bash --cmd cd)"
+
+# 3. Prompt
 eval "$(starship init bash)"
+
+# 4. Angular Autocompletion (Fail silently if not installed yet)
+command -v ng >/dev/null 2>&1 && source <(ng completion script)
 
 
 # ==============================================================================

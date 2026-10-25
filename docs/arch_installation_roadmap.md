@@ -3,16 +3,18 @@
 Ce guide détaille l'installation d'une base Arch Linux pure avec un environnement en tuiles (Hyprland), optimisée pour le développement et le jeu.
 
 ## 0. Résumé du Système
-*   **Socle :** Arch Linux (Dual boot UEFI avec Windows)
-*   **GPU :** RTX 5070 (pilotes `nvidia-open`)
-*   **Audio :** PipeWire (`pipewire-pulse`, `pipewire-jack`)
-*   **Interface :** Hyprland (Wayland), configuré via `hyprland.lua`
-*   **Composants de base :** Kitty (Terminal), Rofi (Lanceur), Waybar (Barre d'état), Yazi (Fichiers), Polkit-KDE (Authentification), Yay (AUR).
+
+- **Socle :** Arch Linux (Dual boot UEFI avec Windows)
+- **GPU :** RTX 5070 (pilotes `nvidia-open`)
+- **Audio :** PipeWire (`pipewire-pulse`, `pipewire-jack`)
+- **Interface :** Hyprland (Wayland), configuré via `hyprland.lua`
+- **Composants de base :** Kitty (Terminal), Rofi (Lanceur), Waybar (Barre d'état), Yazi (Fichiers), Polkit-KDE (Authentification), Yay (AUR).
 
 > **💡 Spécificités pour une installation sur PC Portable :**
-> *   Remplacer `amd-ucode` par `intel-ucode` (si processeur Intel).
-> *   Remplacer `nvidia-open` par `mesa vulkan-intel` (ou `vulkan-radeon`) si le PC n'a pas de puce graphique dédiée.
-> *   Ajouter `power-profiles-daemon` à l'étape 2 pour la gestion de la batterie.
+>
+> - Remplacer `amd-ucode` par `intel-ucode` (si processeur Intel).
+> - Remplacer `nvidia-open` par `mesa vulkan-intel` (ou `vulkan-radeon`) si le PC n'a pas de puce graphique dédiée.
+> - Ajouter `power-profiles-daemon` à l'étape 2 pour la gestion de la batterie.
 
 ---
 
@@ -23,16 +25,16 @@ Ce guide détaille l'installation d'une base Arch Linux pure avec un environneme
    sudo dd if=archlinux-x86_64.iso of=/dev/sdX bs=4M status=progress oflag=sync
    ```
 2. **Prérequis BIOS / Windows :**
-   * Désactiver le **Secure Boot** dans le BIOS.
-   * Désactiver le **Démarrage rapide** (Fast Startup) sous Windows.
+   - Désactiver le **Secure Boot** dans le BIOS.
+   - Désactiver le **Démarrage rapide** (Fast Startup) sous Windows.
 3. **Démarrage sur la clé USB (UEFI) :**
-   * Connexion Wi-Fi (si nécessaire) : `iwctl station wlan0 connect "NomDeBox"`
-   * Test de connexion : `ping archlinux.org`
+   - Connexion Wi-Fi (si nécessaire) : `iwctl station wlan0 connect "NomDeBox"`
+   - Test de connexion : `ping archlinux.org`
 4. **Partitionnement (`lsblk -f` pour repérer les disques) :**
-   * `fdisk /dev/nvme0n1`
-   * Conserver la partition EFI Windows (`FAT32`).
-   * Créer la nouvelle partition Racine (`ext4`).
-   * Formater la Racine : `mkfs.ext4 /dev/nvme0n1pX`
+   - `fdisk /dev/nvme0n1`
+   - Conserver la partition EFI Windows (`FAT32`).
+   - Créer la nouvelle partition Racine (`ext4`).
+   - Formater la Racine : `mkfs.ext4 /dev/nvme0n1pX`
 5. **Montage des disques :**
    ```bash
    mount /dev/nvme0n1pX /mnt
@@ -82,9 +84,9 @@ Ce guide détaille l'installation d'une base Arch Linux pure avec un environneme
 ## Phase 3 : Pilotes Graphiques et Démarrage (GRUB)
 
 1. **Activer le dépôt 32 bits (Multilib) :**
-   * Ouvrir `nano /etc/pacman.conf`.
-   * Décommenter les deux lignes `[multilib]` et son `Include`.
-   * Exécuter `pacman -Sy`.
+   - Ouvrir `nano /etc/pacman.conf`.
+   - Décommenter les deux lignes `[multilib]` et son `Include`.
+   - Exécuter `pacman -Sy`.
 2. **Installer les pilotes NVIDIA :**
    ```bash
    pacman -S nvidia-open nvidia-utils lib32-nvidia-utils
@@ -94,8 +96,8 @@ Ce guide détaille l'installation d'une base Arch Linux pure avec un environneme
    pacman -S grub efibootmgr os-prober
    ```
 4. **Configurer GRUB (`nano /etc/default/grub`) :**
-   * Ajouter `nvidia_drm.modeset=1` dans `GRUB_CMDLINE_LINUX_DEFAULT`.
-   * Décommenter `GRUB_DISABLE_OS_PROBER=false`.
+   - Ajouter `nvidia_drm.modeset=1` dans `GRUB_CMDLINE_LINUX_DEFAULT`.
+   - Décommenter `GRUB_DISABLE_OS_PROBER=false`.
 5. **Déployer GRUB :**
    ```bash
    grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB --recheck
@@ -124,16 +126,20 @@ Ce guide détaille l'installation d'une base Arch Linux pure avec un environneme
    ```
 3. **Composants de l'environnement (Hyprland) :**
    ```bash
-   sudo pacman -S hyprland kitty waybar rofi-wayland polkit-kde-agent xdg-desktop-portal-hyprland
+   sudo pacman -S hyprland kitty waybar rofi-wayland polkit-kde-agent xdg-desktop-portal-hyprland dunst libnotify
    ```
-4. **Gestionnaire de fichiers (Yazi) :**
+4. **Outils système et terminal :**
    ```bash
-   sudo pacman -S yazi ffmpegthumbnailer 7zip jq poppler fd ripgrep fzf zoxide imagemagick
+   sudo pacman -S yazi ffmpegthumbnailer 7zip jq poppler fd ripgrep fzf zoxide imagemagick stow starship less
    ```
 5. **Installer l'assistant AUR (`yay`) :**
    ```bash
    git clone https://aur.archlinux.org/yay.git
    cd yay && makepkg -si && cd .. && rm -rf yay
+   ```
+6. **AUR :**
+   ```bash
+   yay -S candy-icons-git rofi-bluetooth-git
    ```
 
 ---
@@ -141,10 +147,10 @@ Ce guide détaille l'installation d'une base Arch Linux pure avec un environneme
 ## Phase 5 : Configuration Hyprland (Lua)
 
 1. **Créer/Modifier `~/.config/hypr/hyprland.lua` :**
-   * **Base :** Retirer la sécurité `autogenerated = true`.
-   * **Clavier :** Régler `kb_layout = "us"`.
-   * **Explorateur :** Modifier la variable `local fileManager = "kitty -e yazi"`.
-   * **Variables NVIDIA :**
+   - **Base :** Retirer la sécurité `autogenerated = true`.
+   - **Clavier :** Régler `kb_layout = "us"`.
+   - **Explorateur :** Modifier la variable `local fileManager = "kitty -e yazi"`.
+   - **Variables NVIDIA :**
      ```lua
      hl.env("LIBVA_DRIVER_NAME", "nvidia")
      hl.env("XDG_SESSION_TYPE", "wayland")
@@ -152,11 +158,11 @@ Ce guide détaille l'installation d'une base Arch Linux pure avec un environneme
      hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
      hl.config({ cursor = { no_hardware_cursors = true } })
      ```
-   * **Raccourci Rofi :** 
+   - **Raccourci Rofi :**
      ```lua
      hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("rofi -show drun"))
      ```
-   * **Démarrage automatique (Waybar & Polkit) :**
+   - **Démarrage automatique (Waybar & Polkit) :**
      ```lua
      hl.on("hyprland.start", function()
          hl.exec_cmd("waybar")
@@ -166,4 +172,20 @@ Ce guide détaille l'installation d'une base Arch Linux pure avec un environneme
 2. **Lancer l'interface :**
    ```bash
    start-hyprland
+   ```
+
+---
+
+## Phase 6 : Déploiement de l'environnement (Dotfiles)
+
+Une fois Hyprland fonctionnel, récupère la configuration personnalisée (thème ElectroVoid, Starship, Dunst, etc.) :
+
+1. **Cloner le dépôt :**
+   ```bash
+   git clone https://github.com/TonUtilisateur/dotfiles.git ~/dotfiles
+   ```
+2. **Déployer l'ensemble des configurations avec Stow :**
+   ```bash
+   cd ~/dotfiles
+   stow */
    ```
