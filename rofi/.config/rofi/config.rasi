@@ -1,26 +1,37 @@
+/* =============================================================================
+ * ROFI CONFIGURATION: ROYAL SHEIKAH
+ * ============================================================================= */
+
 configuration {
-    display-drun: "󱀤  SYS.INIT:";
+    /* Ancient tablet initialization prompt */
+    display-drun: "◈ RUNE.INIT:";
     show-icons: true;
+    /* Keeping your icon theme, though you might want a flatter one later */
     icon-theme: "candy-icons";
     drun-display-format: "{name}";
     font: "JetBrainsMono Nerd Font 12";
 }
 
+/* --- Royal Sheikah Palette & Global Reset --- */
 * {
-    bg: #101010D9;
-    bg-alt: #1a1a1a;
-    fg: #ffffff;
-    cyan: #00e5ff;
-    purple: #8800ff;
+    obsidian: rgba(28, 28, 30, 0.95); /* Deep slate with slight transparency */
+    obsidian-solid: #1c1c1e;          /* Solid dark for contrast on selected items */
+    surface: rgba(36, 36, 38, 0.95);  /* Slightly elevated rock for the input bar */
+    rock: #4e544b;
+    stone: #c0c6ba;                   /* Default text color */
+    muted: #788074;
+    sheikah: #00e5ff;                 /* Cyan energy */
+    royal: #d4af37;                   /* Triforce Gold */
 
     background-color: transparent;
-    text-color: @fg;
+    text-color: @stone;
 }
 
+/* --- Main Window --- */
 window {
-    background-color: @bg;
+    background-color: @obsidian;
     border: 2px;
-    border-color: @cyan;
+    border-color: @sheikah;
     border-radius: 12px;
     padding: 20px;
     width: 40%;
@@ -30,27 +41,29 @@ mainbox {
     spacing: 15px;
 }
 
+/* --- Search Bar (Elevated Surface) --- */
 inputbar {
-    background-color: @bg-alt;
+    background-color: @surface;
     border: 1px;
-    border-color: @purple;
+    border-color: @royal;
     border-radius: 8px;
     padding: 12px;
     children: [prompt, entry];
 }
 
 prompt {
-    text-color: @cyan;
-    font: "sans-serif bold 11";
+    text-color: @sheikah;
+    font: "JetBrainsMono Nerd Font Bold 11";
 }
 
 entry {
-    placeholder: "Search...";
-    placeholder-color: #555555;
+    placeholder: "Search the compendium...";
+    placeholder-color: @muted;
     padding: 0 0 0 10px;
-    text-color: @purple;
+    text-color: @royal;
 }
 
+/* --- Application List --- */
 listview {
     lines: 8;
     columns: 1;
@@ -69,13 +82,22 @@ element-icon {
     margin: 0 15px 0 0;
 }
 
+/* Ensure text inherits the color from the selected state */
 element-text {
     vertical-align: 0.5;
+    text-color: inherit;
+    background-color: inherit;
 }
 
+element normal.normal, element alternate.normal {
+    background-color: transparent;
+    text-color: @stone;
+}
+
+/* --- Active Selection --- */
 element selected.normal {
-    background-color: @purple;
-    text-color: #101010;
+    background-color: @royal;
+    text-color: @obsidian-solid;
     border: 1px;
-    border-color: @cyan;
+    border-color: @sheikah;
 }

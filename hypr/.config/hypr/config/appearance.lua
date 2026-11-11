@@ -11,8 +11,10 @@ hl.config({
         border_size = 2,
 
         col = {
-            active_border   = { colors = {"rgba(00e5ffff)", "rgba(8800ffff)"}, angle = 45 },
-            inactive_border = "rgba(101010ff)",
+            -- Active window: Gradient from Royal Gold to Sheikah Cyan
+            active_border   = { colors = {"rgba(d4af37ff)", "rgba(00e5ffff)"}, angle = 45 },
+            -- Inactive window: Rock Gray (subtle and passive)
+            inactive_border = "rgba(4e544baa)",
         },
 
         -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
@@ -28,22 +30,23 @@ hl.config({
         rounding       = 10,
         rounding_power = 2,
 
-        -- Change transparency of focused and unfocused windows
-        active_opacity   = 0.9,
+        -- Change transparency of focused and unfocused windows (Tablet aesthetic)
+        active_opacity   = 0.90,
         inactive_opacity = 0.75,
 
         shadow = {
             enabled      = true,
-            range        = 5,
+            range        = 6,
             render_power = 3,
-            color        = "rgba(8800ff66)",
+            -- Sheikah Energy subtle glow for window shadows
+            color        = "rgba(00e5ff33)",
         },
 
         blur = {
-            enabled   = true,
-            size      = 6,
-            passes   = 3,
-            vibrancy = 0.1696,
+            enabled        = true,
+            size           = 6,
+            passes         = 3,
+            vibrancy       = 0.1696,
             ignore_opacity = false
         },
     },

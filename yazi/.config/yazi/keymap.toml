@@ -1,0 +1,43 @@
+# ==============================================================================
+# File        : keymap.toml
+# Description : Custom keybindings for Yazi (Zero external plugins)
+# ==============================================================================
+
+# Directory navigation & file opening
+[[mgr.prepend_keymap]]
+on   = "l"
+run  = "open"
+desc = "Open file or enter directory"
+
+[[mgr.prepend_keymap]]
+on   = "<Enter>"
+run  = "open"
+desc = "Open file or enter directory"
+
+# File and directory creation
+[[mgr.prepend_keymap]]
+on   = "A"
+run  = "create --dir"
+desc = "Create a new directory"
+
+[[mgr.prepend_keymap]]
+on   = "a"
+run  = "create"
+desc = "Create a new file"
+
+# Shell integration (Opens interactive subshell in cwd)
+[[mgr.prepend_keymap]]
+on   = "<C-s>"
+run  = 'shell "$SHELL" --block'
+desc = "Open shell in current directory"
+
+# Task management
+[[tasks.prepend_keymap]]
+on   = "x"
+run  = "cancel"
+desc = "Cancel selected tasks"
+
+[[tasks.prepend_keymap]]
+on   = "<C-c>"
+run  = "cancel"
+desc = "Cancel selected tasks"

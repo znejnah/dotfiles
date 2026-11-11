@@ -1,31 +1,91 @@
+# ==============================================================================
+# DUNST CONFIGURATION: ROYAL SHEIKAH
+# ==============================================================================
+
 [global]
-  monitor = 0
-  follow = mouse
-  width = 300
-  height = 300
-  origin = top-right
-  offset = 20x20
-  padding = 16
-  horizontal_padding = 16
-  frame_width = 2
-  frame_color = "#8800ff"
-  separator_color = frame_color
-  font = JetBrainsMono Nerd Font 10
-  format = "<b>%s</b>\n%b"
-  corner_radius = 8
-  background = "#101010"
-  foreground = "#ffffff"
-  timeout = 5
+# --- Display & Geometry ---
+monitor = 0
+follow = mouse
+# Width x Height + Offset_X + Offset_Y
+width = 320
+height = 300
+origin = top-right
+# Leaves a gap below the Waybar (assuming Waybar height is ~38 + 8 margin)
+offset = 12x56
+scale = 0
+notification_limit = 5
 
-[urgency-low]
-  frame_color = "#00e5ff"
-  timeout = 3
+# --- Progress Bar ---
+progress_bar = true
+progress_bar_height = 8
+progress_bar_frame_width = 1
+progress_bar_min_width = 150
+progress_bar_max_width = 300
 
-[urgency-normal]
-  frame_color = "#8800ff"
-  timeout = 5
+# --- Spacing & Padding ---
+# Internal padding to mimic the tablet artifact aspect
+padding = 12
+horizontal_padding = 16
+text_icon_padding = 12
+gap_size = 8
 
+# --- Borders & Appearance ---
+frame_width = 2
+separator_height = 2
+separator_color = frame
+sort = yes
+idle_threshold = 120
 
-[urgency-critical]
-  frame_color = "#ff003c"
-  timeout = 0
+# Matches the Waybar and Kitty border radius
+corner_radius = 8
+
+# --- Typography ---
+font = JetBrainsMono Nerd Font 10
+line_height = 0
+markup = full
+# Bold title, standard body
+format = "<b>%s</b>\n%b"
+alignment = left
+vertical_alignment = center
+show_age_threshold = 60
+word_wrap = yes
+
+# --- Backend & Behavior ---
+browser = /usr/bin/xdg-open
+always_run_script = true
+title = Dunst
+class = Dunst
+ignore_dbusclose = false
+force_xwayland = false
+force_xinerama = false
+mouse_left_click = close_current
+mouse_middle_click = do_action, close_current
+mouse_right_click = close_all
+
+# ==============================================================================
+# URGENCY LEVELS & PALETTE
+# ==============================================================================
+# Obsidian Base: #1c1c1e (with ~90% opacity -> #1c1c1ee6)
+# Text: #c0c6ba (Light Stone)
+
+[urgency_low]
+# Sheikah Cyan for minor info (e.g., media player tracks)
+background = "#1c1c1ee6"
+foreground = "#c0c6ba"
+frame_color = "#00e5ff"
+timeout = 4
+
+[urgency_normal]
+# Royal Gold for standard notifications
+background = "#1c1c1ee6"
+foreground = "#c0c6ba"
+frame_color = "#d4af37"
+timeout = 6
+
+[urgency_critical]
+# Gloom Red for critical system states (e.g., low battery, errors)
+# Timeout 0 means it will stay on screen until manually clicked
+background = "#1c1c1ee6"
+foreground = "#e5e5e5"
+frame_color = "#e11d48"
+timeout = 0
