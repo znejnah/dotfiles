@@ -1,0 +1,71 @@
+# ==============================================================================
+# File        : royal_sheikah.theme
+# Description : Royal Sheikah color theme for btop
+# Palette     : Obsidian #1c1c1e | Gold #d4af37 | Cyan #00e5ff | Gray #4e544b
+#               Green #22c55e | Stasis Orange #ff7a00 | Gloom Red #e11d48
+# ==============================================================================
+
+# Main background (Obsidian)
+theme[main_bg]="#1c1c1e"
+
+# Main text color (Sheikah Sand) and titles (Royal Gold)
+theme[main_fg]="#c0c6ba"
+theme[title]="#d4af37"
+
+# Highlighted text and selected items (Sheikah Cyan)
+theme[hi_fg]="#00e5ff"
+theme[selected_bg]="#d4af37"
+theme[selected_fg]="#1c1c1e"
+
+# Inactive / muted text (Rock Gray)
+theme[inactive_fg]="#4e544b"
+
+# Graph background / grid lines
+theme[graph_text]="#4e544b"
+
+# Box outlines (Focused: Sheikah Cyan, Unfocused: Rock Gray)
+theme[border_focused]="#00e5ff"
+theme[border_inactive]="#4e544b"
+
+# Process box styling
+theme[proc_misc]="#00e5ff"
+
+# CPU box & frequency gradients
+# Gradient starts at Cyan, shifts to Gold, Orange, then Gloom Red under heavy load
+theme[cpu_box]="#4e544b"
+theme[cpu_core]="#00e5ff"
+theme[cpu_temp_start]="#00e5ff"
+theme[cpu_temp_mid]="#ff7a00"
+theme[cpu_temp_end]="#e11d48"
+
+# Memory box (Green Ocarina to Gold)
+theme[mem_box]="#4e544b"
+
+# Network box (Sheikah Cyan)
+theme[net_box]="#4e544b"
+
+# Disk box
+theme[disks_box]="#4e544b"
+
+# General Meter Gradients (Load, memory, disks)
+# Start (low load) -> Mid (medium load) -> End (critical load)
+theme[meter_start]="#00e5ff"
+theme[meter_mid]="#d4af37"
+theme[meter_end]="#e11d48"
+
+# Process tree branch symbols
+theme[proc_tree]="#4e544b"
+
+# Download / Upload graphs
+theme[download_start]="#00e5ff"
+theme[download_mid]="#22c55e"
+theme[download_end]="#d4af37"
+
+theme[upload_start]="#d4af37"
+theme[upload_mid]="#ff7a00"
+theme[upload_end]="#e11d48"
+
+# Process CPU / Mem usage gradient
+theme[process_start]="#00e5ff"
+theme[process_mid]="#d4af37"
+theme[process_end]="#e11d48"

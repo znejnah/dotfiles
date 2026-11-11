@@ -1,99 +1,130 @@
 /* =============================================================================
- * WAYBAR STYLESHEET: ROYAL SHEIKAH
+ * WAYBAR STYLESHEET: ROYAL SHEIKAH (EXACT MAPPING)
  * ============================================================================= */
 
-/* --- Global Reset & Typography --- */
+/* Global reset */
 * {
-  font-family: "JetBrainsMono Nerd Font";
-  font-size: 14px;
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  font-size: 13px;
   font-weight: bold;
   border: none;
+  border-radius: 0;
   min-height: 0;
 }
 
-/* The main bar is fully transparent to allow the floating modules effect */
+/* Transparent bar container */
 window#waybar {
   background-color: transparent;
   color: #c0c6ba;
 }
 
-/*
- * --- FLOATING ARTIFACTS (Segmented Modules) ---
- * Each module acts as a floating block of Obsidian rock,
- * underlined by a flow of Sheikah energy.
- */
+/* Floating Obsidian Islands (Exact modules list) */
 #workspaces,
 #window,
 #clock,
 #network,
+#bluetooth,
 #cpu,
+#temperature,
 #memory,
 #pulseaudio,
-#bluetooth,
 #tray {
-  background-color: rgba(28, 28, 30, 0.9); /* Obsidian / Anthracite base */
-  border-bottom: 2px solid #00e5ff; /* Sheikah Energy flow */
-  border-radius: 8px; /* Tablet-like rounded corners */
-  margin: 0 5px; /* Horizontal gap between floating blocks */
-  padding: 2px 14px;
-  box-shadow: 0 4px 10px rgba(0, 229, 255, 0.15); /* Subtle ground aura */
+  background-color: rgba(28, 28, 30, 0.92);
+  border-bottom: 2px solid #00e5ff;
+  border-radius: 8px;
+  margin: 4px 4px 2px 4px;
+  padding: 2px 12px;
 }
 
-/* =============================================================================
- * WORKSPACES BEHAVIOR
- * ============================================================================= */
+/* Workspaces */
 #workspaces {
-  padding: 2px 6px; /* Specific padding adjustment to center the icons */
+  padding: 2px 4px;
 }
 
 #workspaces button {
-  color: rgba(0, 229, 255, 0.4); /* Inactive nodes (Dimmed Cyan) */
-  padding: 0 8px;
-  background: transparent;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  color: rgba(0, 229, 255, 0.4);
+  background-color: transparent;
+  padding: 0 6px;
+  border-radius: 4px;
 }
 
 #workspaces button:hover {
-  box-shadow: inherit;
-  text-shadow: 0 0 8px #00e5ff;
   color: #00e5ff;
+  background-color: rgba(0, 229, 255, 0.1);
 }
 
 #workspaces button.active {
-  color: #d4af37; /* Royal Gold for the active workspace */
-  text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+  color: #d4af37;
+  background-color: rgba(212, 175, 55, 0.12);
 }
 
 #workspaces button.urgent {
-  color: #ff7a00; /* Magmatic Orange / Stasis for alerts */
-  text-shadow: 0 0 8px rgba(255, 122, 0, 0.6);
+  color: #e11d48;
+  border-bottom: 2px solid #e11d48;
 }
 
-/* =============================================================================
- * MODULE SPECIFIC COLORS
- * ============================================================================= */
+/* Active window title */
 #window {
-  color: #d4af37; /* Royal Gold */
+  color: #d4af37;
+  font-weight: normal;
 }
 
-#clock,
+/* Time module */
+#clock {
+  color: #d4af37;
+}
+
+/* Core telemetry and status modules */
+#network,
 #bluetooth,
-#memory {
-  color: #00e5ff; /* Sheikah Cyan */
-  text-shadow: 0 0 5px rgba(0, 229, 255, 0.4);
-}
-
 #cpu,
+#memory {
+  color: #00e5ff;
+}
+
+#bluetooth.off,
+#bluetooth.disabled {
+  color: #4e544b;
+}
+
+/* CPU & Memory dynamic thresholds */
+#cpu.warning,
+#memory.warning {
+  color: #ff7a00;
+  border-bottom-color: #ff7a00;
+}
+
+#cpu.critical,
+#memory.critical {
+  color: #e11d48;
+  border-bottom-color: #e11d48;
+}
+
+#temperature {
+  color: #00e5ff;
+}
+
+#temperature.critical {
+  color: #e11d48;
+  border-bottom-color: #e11d48;
+}
+
+#network.disconnected {
+  color: #e11d48;
+  border-bottom-color: #e11d48;
+}
+
+/* Sound module */
 #pulseaudio {
-  color: #d4af37; /* Royal Gold */
+  color: #d4af37;
 }
 
-#network {
-  color: #c0c6ba; /* Default light stone */
+#pulseaudio.muted {
+  color: #4e544b;
+  border-bottom-color: #4e544b;
 }
 
+/* System tray */
 #tray {
-  /* Internal padding adjustments to accommodate varied app icons */
-  padding-right: 12px;
-  padding-left: 12px;
+  padding: 0 10px;
 }

@@ -15,6 +15,7 @@ Designed for development and high refresh-rate gaming on an AMD Zen 4 + NVIDIA R
 | **Terminal**        | [Kitty](https://sw.kovidgoyal.net/kitty/)                                                |
 | **Shell**           | Bash + [Starship](https://starship.rs/) + [ble.sh](https://github.com/akinomyoga/ble.sh) |
 | **File Manager**    | [Yazi](https://yazi-rs.github.io/) (terminal)                                            |
+| **System Monitor**  | [btop](https://github.com/aristocratos/btop)                                             |
 | **App Launcher**    | [Rofi (Wayland)](https://github.com/lbonn/rofi) + Candy Icons theme                      |
 | **Status Bar**      | [Waybar](https://github.com/Alexays/Waybar)                                              |
 | **Audio**           | PipeWire + WirePlumber + pavucontrol                                                     |
@@ -24,13 +25,45 @@ Designed for development and high refresh-rate gaming on an AMD Zen 4 + NVIDIA R
 
 ---
 
+## Visual Identity: Royal Sheikah
+
+| Role                       | Name          | Hex Code  |
+| :------------------------- | :------------ | :-------- |
+| **Base / Surfaces**        | Obsidian      | `#1c1c1e` |
+| **Primary Accent / Mode**  | Royal Gold    | `#d4af37` |
+| **Active Tech / Network**  | Sheikah Cyan  | `#00e5ff` |
+| **Success / Battery**      | Ocarina Green | `#22c55e` |
+| **Warning / Intermediate** | Stasis Orange | `#ff7a00` |
+| **Critical / Danger**      | Gloom Red     | `#e11d48` |
+| **Borders / Separators**   | Rock Gray     | `#4e544b` |
+| **Foreground Text**        | Sheikah Sand  | `#c0c6ba` |
+
+---
+
 ## Core Configurations
 
 **Status Bar (Waybar)**
 
 - **Deployment:** `stow waybar`
-- **Aesthetics:** ElectroVoid theme, 85% opacity with Hyprland blur, JetBrainsMono font.
-- **Modules:** Workspaces, active window, clock, network, CPU, RAM, volume, Bluetooth, tray.
+- **Aesthetics:** Floating obsidian islands with Sheikah Cyan bottom borders and state glows.
+- **Modules:** Workspaces, active window, clock, network, CPU, CPU temperature (`k10temp` Tctl), RAM, volume, Bluetooth, tray.
+
+**File Manager (Yazi)**
+
+- **Deployment:** `stow yazi`
+- **Aesthetics:** Native Royal Sheikah `theme.toml` matching manager states, badges, and mime types.
+- **Philosophy:** Vanilla configuration with zero external plugins.
+
+**System Monitor (btop)**
+
+- **Deployment:** `stow btop`
+- **Aesthetics:** Custom `royal_sheikah.theme` with multi-tier gradients for CPU/RAM load and temperature metrics.
+
+**Notification Daemon (Dunst)**
+
+- **Deployment:** `stow dunst`
+- **Aesthetics:** Royal Sheikah palette with dynamic borders based on notification urgency.
+- **System:** Minimalist D-Bus listener via `libnotify`.
 
 **Audio Server (PipeWire)**
 
@@ -42,12 +75,6 @@ Designed for development and high refresh-rate gaming on an AMD Zen 4 + NVIDIA R
 - **Dependencies:** `bluez`, `bluez-utils`, `upower`, `rofi-bluetooth-git` (AUR).
 - **System:** `Experimental = true` mode in `/etc/bluetooth/main.conf` for battery polling. `uhid` kernel module for BLE mice.
 - **Interface:** Rofi-bluetooth mapped to `SUPER + B` via the Lua programs table.
-
-**Notification Daemon (Dunst)**
-
-- **Deployment:** `stow dunst`
-- **Aesthetics:** ElectroVoid theme with custom neon borders based on urgency (Cyan for low, Purple for normal, Red for critical).
-- **System:** Minimalist D-Bus listener via `libnotify`.
 
 ---
 
@@ -61,6 +88,10 @@ Designed for development and high refresh-rate gaming on an AMD Zen 4 + NVIDIA R
 │   └── .aliases                     # Global shell aliases & custom commands
 ├── bash/
 │   └── .bashrc                      # Shell options, tools init (fzf, zoxide, starship)
+├── btop/
+│   └── .config/btop/
+│       ├── btop.conf
+│       └── themes/
 ├── docs/
 │   └── arch_installation_roadmap.md
 │   └── hyprland_cheat_sheet.md
@@ -73,7 +104,6 @@ Designed for development and high refresh-rate gaming on an AMD Zen 4 + NVIDIA R
 │       └── hyprpaper.conf
 │       └── config/                   # Config split into sections
 │       └── wallpapers/
-│           └── themes/               # Custom UI theme
 ├── kitty/
 │   └── .config/kitty/
 │       └── kitty.conf                # Terminal configuration
@@ -85,11 +115,18 @@ Designed for development and high refresh-rate gaming on an AMD Zen 4 + NVIDIA R
 │       └── starship.toml             # Custom prompt theme
 ├── waybar/
 │   └── .config/waybar/
-│       └── config.jsonc              # Wayland status bar configuration
+│       ├── config.jsonc              # Wayland status bar
+│       └── style.css
+ configuration
 │       └── style.css                 # ElectroVoid styling
+├── yazi/
+│   └── .config/yazi/
+│       ├── init.lua
+│       ├── keymap.toml
+│       ├── theme.toml
+│       └── yazi.toml
 └── zed/
     └── .config/zed/
         └── settings.json             # Keymaps, LSP configurations, editor settings
         └── themes/
-            └── electrovoid.json      # Custom UI theme
 ```
