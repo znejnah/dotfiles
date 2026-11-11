@@ -1,35 +1,28 @@
+/* =============================================================================
+ * WAYBAR STYLESHEET: ROYAL SHEIKAH
+ * ============================================================================= */
+
+/* --- Global Reset & Typography --- */
 * {
   font-family: "JetBrainsMono Nerd Font";
   font-size: 14px;
   font-weight: bold;
   border: none;
-  border-radius: 0;
   min-height: 0;
 }
 
+/* The main bar is fully transparent to allow the floating modules effect */
 window#waybar {
-  background-color: rgba(16, 16, 16, 0.85);
-  border-bottom: 2px solid #8800ff;
-  color: #ffffff;
+  background-color: transparent;
+  color: #c0c6ba;
 }
 
-#workspaces button {
-  color: #00e5ff;
-  padding: 0 12px;
-  background: transparent;
-  transition: all 0.2s ease;
-}
-
-#workspaces button:hover {
-  box-shadow: inherit;
-  text-shadow: 0 0 5px #00e5ff;
-}
-
-#workspaces button.active {
-  background-color: #8800ff;
-  color: #00e5ff;
-}
-
+/*
+ * --- FLOATING ARTIFACTS (Segmented Modules) ---
+ * Each module acts as a floating block of Obsidian rock,
+ * underlined by a flow of Sheikah energy.
+ */
+#workspaces,
 #window,
 #clock,
 #network,
@@ -38,36 +31,69 @@ window#waybar {
 #pulseaudio,
 #bluetooth,
 #tray {
-  padding: 0 15px;
-  margin: 4px 0;
+  background-color: rgba(28, 28, 30, 0.9); /* Obsidian / Anthracite base */
+  border-bottom: 2px solid #00e5ff; /* Sheikah Energy flow */
+  border-radius: 8px; /* Tablet-like rounded corners */
+  margin: 0 5px; /* Horizontal gap between floating blocks */
+  padding: 2px 14px;
+  box-shadow: 0 4px 10px rgba(0, 229, 255, 0.15); /* Subtle ground aura */
 }
 
-#clock {
+/* =============================================================================
+ * WORKSPACES BEHAVIOR
+ * ============================================================================= */
+#workspaces {
+  padding: 2px 6px; /* Specific padding adjustment to center the icons */
+}
+
+#workspaces button {
+  color: rgba(0, 229, 255, 0.4); /* Inactive nodes (Dimmed Cyan) */
+  padding: 0 8px;
+  background: transparent;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+#workspaces button:hover {
+  box-shadow: inherit;
+  text-shadow: 0 0 8px #00e5ff;
   color: #00e5ff;
+}
+
+#workspaces button.active {
+  color: #d4af37; /* Royal Gold for the active workspace */
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+}
+
+#workspaces button.urgent {
+  color: #ff7a00; /* Magmatic Orange / Stasis for alerts */
+  text-shadow: 0 0 8px rgba(255, 122, 0, 0.6);
+}
+
+/* =============================================================================
+ * MODULE SPECIFIC COLORS
+ * ============================================================================= */
+#window {
+  color: #d4af37; /* Royal Gold */
+}
+
+#clock,
+#bluetooth,
+#memory {
+  color: #00e5ff; /* Sheikah Cyan */
   text-shadow: 0 0 5px rgba(0, 229, 255, 0.4);
+}
+
+#cpu,
+#pulseaudio {
+  color: #d4af37; /* Royal Gold */
 }
 
 #network {
-  color: #ffffff;
-}
-
-#cpu {
-  color: #8800ff;
-}
-
-#memory {
-  color: #00e5ff;
-}
-
-#pulseaudio {
-  color: #8800ff;
-}
-
-#bluetooth {
-  color: #00e5ff;
-  text-shadow: 0 0 5px rgba(0, 229, 255, 0.4);
+  color: #c0c6ba; /* Default light stone */
 }
 
 #tray {
-  padding-right: 15px;
+  /* Internal padding adjustments to accommodate varied app icons */
+  padding-right: 12px;
+  padding-left: 12px;
 }

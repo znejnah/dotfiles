@@ -1,8 +1,8 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 36,
-  "spacing": 8,
+  "height": 38,
+  "spacing": 0,
   "exclusive": true,
   "margin-top": 8,
   "margin-left": 12,
@@ -15,9 +15,9 @@
   "hyprland/workspaces": {
     "format": "{icon}",
     "format-icons": {
-      "active": " ",
-      "default": " ",
-      "urgent": " ",
+      "active": "◈ ",
+      "default": "◇ ",
+      "urgent": "⎔ ",
     },
     "persistent-workspaces": {
       "*": 4,
@@ -31,7 +31,7 @@
       "firefox:::(.*)": "󰈹  $1",
       "dev.zed.Zed:::(.*)": "  $1",
       "kitty:::(.*)": "  $1",
-      "^(?!(firefox|dev\\.zed\\.Zed|kitty))([^:]*):::(.*)": ">_  $1",
+      "^(?!(firefox|dev\\.zed\\.Zed|kitty))([^:]*):::(.*)": "⟁ $1",
     },
   },
 
@@ -50,17 +50,17 @@
   },
 
   "cpu": {
-    "format": "{usage}%   ",
+    "format": "  {usage}%",
     "interval": 2,
   },
 
   "memory": {
-    "format": "{}%   ",
+    "format": "  {}%",
     "interval": 2,
   },
 
   "pulseaudio": {
-    "format": "{volume}% {icon} ",
+    "format": "{icon} {volume}%",
     "format-muted": "  Muted",
     "format-icons": {
       "default": [" ", " ", " ", " "],

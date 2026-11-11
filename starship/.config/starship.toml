@@ -1,8 +1,8 @@
- add_newline = true
-palette = "electrovoid"
+add_newline = true
+palette = "royalsheikah"
 
 format = """\
-[╭╴](fg:muted)\
+[╭╴](fg:rock)\
 $os\
 $username\
 $directory\
@@ -14,110 +14,115 @@ $rust\
 $lua\
 $cmd_duration\
 $time
-[╰─](fg:muted)$character\
+[╰─](fg:rock)$character\
 """
 
-# -----------------------------------------------------------------------------
-# PALETTE : ELECTROVOID
-# -----------------------------------------------------------------------------
-[palettes.electrovoid]
-base = "#000000"
-text = "#ffffff"
-muted = "#555555"
-purple = "#8800ff"
-purple_light = "#bb00ff"
-cyan = "#00e5ff"
-green = "#00ff88"
-orange = "#ffaa00"
-pink = "#ff2fa0"
-red = "#ff3b5c"
+# ==============================================================================
+# PALETTE: ROYAL SHEIKAH
+# ==============================================================================
+[palettes.royalsheikah]
+obsidian = "#1c1c1e"
+rock     = "#4e544b"       # Gray/Green stone for passive structures
+sheikah  = "#00e5ff"       # Electric Cyan (Ancient glow)
+royal    = "#d4af37"       # Triforce Gold (Active, Selection)
+ocarina  = "#22c55e"       # 40th Anniversary Green (Success, Additions)
+stasis   = "#ff7a00"       # Magmatic Orange (Modifications, alerts)
+gloom    = "#e11d48"       # Ruby Red (Errors)
 
-# -----------------------------------------------------------------------------
-# OS & USER (Neon Purple)
-# -----------------------------------------------------------------------------
+
+# ==============================================================================
+# OS & USER (The Royal Heritage)
+# ==============================================================================
 [os]
 disabled = false
-style = "fg:purple_light bold"
+style = "fg:royal bold"
 format = "[$symbol]($style)"
 
 [username]
-style_user = "fg:purple_light bold"
-style_root = "fg:red bold"
-format = "[$user]($style) [::](fg:muted) "
+style_user = "fg:royal bold"
+style_root = "fg:gloom bold"
+format = "[$user]($style) [::](fg:rock) "
 show_always = true
 
 [os.symbols]
 Arch = " "
 Macos = " "
 
-# -----------------------------------------------------------------------------
-# DIRECTORY (Neon Cyan)
-# -----------------------------------------------------------------------------
+
+# ==============================================================================
+# DIRECTORY (Sheikah Energy)
+# ==============================================================================
 [directory]
-style = "fg:cyan bold"
-format = "[  $path]($style) "
+style = "fg:sheikah bold"
+format = "[◈  $path]($style) "
 truncation_length = 3
 truncate_to_repo = true
 truncation_symbol = "…/"
 read_only = "  "
 
-# -----------------------------------------------------------------------------
-# GIT
-# -----------------------------------------------------------------------------
+
+# ==============================================================================
+# GIT (Explicit Sheikah Structure)
+# ==============================================================================
 [git_branch]
-style = "fg:purple_light bold"
+style = "fg:royal bold"
 format = "[ $branch]($style) "
 
 [git_status]
-style = "fg:pink bold"
-format = '[\[](fg:muted)[ $all_status$ahead_behind ]($style)[\]](fg:muted) '
-modified = "[ ](fg:orange bold)"
-staged = "[ ](fg:green bold)"
-untracked = "[ ](fg:cyan bold)"
-deleted = "[ ](fg:red bold)"
-renamed = "[󰑕 ](fg:purple_light bold)"
-stashed = "[ ](fg:pink bold)"
-conflicted = "[ ](fg:red bold)"
-ahead = "[ ](fg:cyan bold)"
-behind = "[ ](fg:purple_light bold)"
-diverged = "[ ](fg:red bold)"
+style = "fg:sheikah bold"
+format = '[\[](fg:rock)[ $all_status$ahead_behind ]($style)[\]](fg:rock) '
 
-# -----------------------------------------------------------------------------
-# LANGUAGES (Neon Pink)
-# -----------------------------------------------------------------------------
+# Geometric symbols paired with standard Git text indicators for clarity
+modified   = "[⎔ M ](fg:stasis bold)"     # Modified
+staged     = "[◈ + ](fg:ocarina bold)"    # Added/Staged
+untracked  = "[◇ ? ](fg:stasis bold)"     # Untracked
+deleted    = "[ - ](fg:gloom bold)"      # Deleted
+renamed    = "[󰑕 R ](fg:sheikah bold)"    # Renamed
+stashed    = "[ * ](fg:royal bold)"      # Stashed
+conflicted = "[ ! ](fg:gloom bold)"      # Conflicted
+ahead      = "[▲ ⇡ ](fg:sheikah bold)"    # Commits ahead
+behind     = "[▼ ⇣ ](fg:stasis bold)"     # Commits behind
+diverged   = "[⟁ ⇕ ](fg:gloom bold)"      # Diverged branches
+
+
+# ==============================================================================
+# LANGUAGES (Ancient Tools)
+# ==============================================================================
 [python]
-style = "fg:pink bold"
+style = "fg:sheikah bold"
 format = '[ ${pyenv_prefix}${version}]($style) '
 
 [nodejs]
-style = "fg:pink bold"
+style = "fg:sheikah bold"
 format = "[ $version]($style) "
 
 [rust]
-style = "fg:pink bold"
+style = "fg:sheikah bold"
 format = "[ $version]($style) "
 
 [lua]
-style = "fg:pink bold"
+style = "fg:sheikah bold"
 format = "[ $version]($style) "
 
-# -----------------------------------------------------------------------------
-# TOOLS & TIMER (Muted & Purple)
-# -----------------------------------------------------------------------------
+
+# ==============================================================================
+# TOOLS & TIMER
+# ==============================================================================
 [cmd_duration]
-style = "fg:purple bold"
+style = "fg:stasis bold"
 format = "[ $duration]($style) "
 min_time = 500
 
 [time]
 disabled = false
 time_format = "%H:%M"
-style = "fg:muted"
+style = "fg:rock"
 format = "[ $time]($style) "
 
-# -----------------------------------------------------------------------------
-# FINAL CHARACTER
-# -----------------------------------------------------------------------------
+
+# ==============================================================================
+# FINAL CHARACTER (The Prompt)
+# ==============================================================================
 [character]
-success_symbol = "[>_](fg:cyan bold)"
-error_symbol = "[>_](fg:red bold)"
+success_symbol = "[>_](fg:sheikah bold)"
+error_symbol = "[>_](fg:gloom bold)"

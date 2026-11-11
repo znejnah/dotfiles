@@ -33,12 +33,12 @@ export PATH
 # ==============================================================================
 export BAT_THEME="base16" # Neutral fallback before creating a custom bat theme
 
-# FZF ElectroVoid UI (Dark bg, Purple borders, Cyan pointer, Pink highlights)
+# FZF Royal Sheikah UI (Anthracite bg, Cyan Sheikah accents, Royal Gold selections)
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
 export FZF_DEFAULT_OPTS=" \
---color=bg:#101010,bg+:#202020,fg:#ffffff,fg+:#ffffff,hl:#ff2fa0,hl+:#ff2fa0 \
---color=prompt:#8800ff,pointer:#00e5ff,marker:#00ff88,border:#8800ff,header:#555555 \
---prompt='>_ ' --pointer='❯' --layout=reverse --border"
+--color=bg:#1c1c1e,bg+:#242426,fg:#c0c6ba,fg+:#e5e5e5,hl:#ff7a00,hl+:#ff7a00 \
+--color=prompt:#00e5ff,pointer:#d4af37,marker:#22c55e,border:#4e544b,header:#4e544b \
+--prompt='◈ ' --pointer='▲' --marker='⎔' --layout=reverse --border"
 
 
 # ==============================================================================

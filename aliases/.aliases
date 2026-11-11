@@ -31,7 +31,7 @@ dev() {
     echo " Angular project detected. Starting server with ${pkg_manager}..."
     $pkg_manager start
   elif [ -f "nest-cli.json" ]; then
-    echo "󰄛 NestJS project detected. Starting watch mode with ${pkg_manager}..."
+    echo " NestJS project detected. Starting watch mode with ${pkg_manager}..."
     $pkg_manager run start:dev
   elif [ -f "package.json" ]; then
     echo " Generic Node project detected. Starting with ${pkg_manager}..."

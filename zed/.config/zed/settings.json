@@ -32,12 +32,12 @@
   "theme": {
     "mode": "dark",
     "light": "One Light",
-    "dark": "ElectroVoid",
+    "dark": "Royal Sheikah",
   },
 
   // File tree and tab icon themes
   "icon_theme": {
-    "mode": "dark",
+    "mode": "light",
     "light": "Zed (Default)",
     "dark": "Zed (Default)",
   },
