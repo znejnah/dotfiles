@@ -22,13 +22,12 @@ $time
 # ==============================================================================
 [palettes.royalsheikah]
 obsidian = "#1c1c1e"
-rock     = "#4e544b"       # Gray/Green stone for passive structures
-sheikah  = "#00e5ff"       # Electric Cyan (Ancient glow)
-royal    = "#d4af37"       # Triforce Gold (Active, Selection)
-ocarina  = "#22c55e"       # 40th Anniversary Green (Success, Additions)
-stasis   = "#ff7a00"       # Magmatic Orange (Modifications, alerts)
-gloom    = "#e11d48"       # Ruby Red (Errors)
-
+rock     = "#4e544b"       # Gray stone passive structure
+sheikah  = "#00e5ff"       # Ancient Cyan glow
+royal    = "#d4af37"       # Triforce Gold (User / Active)
+ocarina  = "#22c55e"       # Green (Success / Staged)
+stasis   = "#ff7a00"       # Magmatic Orange (Warning / Modified)
+gloom    = "#e11d48"       # Ruby Red (Errors / Critical)
 
 # ==============================================================================
 # OS & USER (The Royal Heritage)
@@ -38,16 +37,15 @@ disabled = false
 style = "fg:royal bold"
 format = "[$symbol]($style)"
 
+[os.symbols]
+Arch = " "
+Macos = " "
+
 [username]
 style_user = "fg:royal bold"
 style_root = "fg:gloom bold"
 format = "[$user]($style) [::](fg:rock) "
 show_always = true
-
-[os.symbols]
-Arch = " "
-Macos = " "
-
 
 # ==============================================================================
 # DIRECTORY (Sheikah Energy)
@@ -60,7 +58,6 @@ truncate_to_repo = true
 truncation_symbol = "…/"
 read_only = "  "
 
-
 # ==============================================================================
 # GIT (Explicit Sheikah Structure)
 # ==============================================================================
@@ -72,18 +69,16 @@ format = "[ $branch]($style) "
 style = "fg:sheikah bold"
 format = '[\[](fg:rock)[ $all_status$ahead_behind ]($style)[\]](fg:rock) '
 
-# Geometric symbols paired with standard Git text indicators for clarity
-modified   = "[⎔ M ](fg:stasis bold)"     # Modified
-staged     = "[◈ + ](fg:ocarina bold)"    # Added/Staged
-untracked  = "[◇ ? ](fg:stasis bold)"     # Untracked
-deleted    = "[ - ](fg:gloom bold)"      # Deleted
-renamed    = "[󰑕 R ](fg:sheikah bold)"    # Renamed
-stashed    = "[ * ](fg:royal bold)"      # Stashed
-conflicted = "[ ! ](fg:gloom bold)"      # Conflicted
-ahead      = "[▲ ⇡ ](fg:sheikah bold)"    # Commits ahead
-behind     = "[▼ ⇣ ](fg:stasis bold)"     # Commits behind
-diverged   = "[⟁ ⇕ ](fg:gloom bold)"      # Diverged branches
-
+modified   = "[⎔ M ](fg:stasis bold)"
+staged     = "[◈ + ](fg:ocarina bold)"
+untracked  = "[◇ ? ](fg:stasis bold)"
+deleted    = "[ - ](fg:gloom bold)"
+renamed    = "[󰑕 R ](fg:sheikah bold)"
+stashed    = "[ * ](fg:royal bold)"
+conflicted = "[ ! ](fg:gloom bold)"
+ahead      = "[▲ ⇡ ](fg:sheikah bold)"
+behind     = "[▼ ⇣ ](fg:stasis bold)"
+diverged   = "[⟁ ⇕ ](fg:gloom bold)"
 
 # ==============================================================================
 # LANGUAGES (Ancient Tools)
@@ -104,7 +99,6 @@ format = "[ $version]($style) "
 style = "fg:sheikah bold"
 format = "[ $version]($style) "
 
-
 # ==============================================================================
 # TOOLS & TIMER
 # ==============================================================================
@@ -119,10 +113,9 @@ time_format = "%H:%M"
 style = "fg:rock"
 format = "[ $time]($style) "
 
-
 # ==============================================================================
 # FINAL CHARACTER (The Prompt)
 # ==============================================================================
 [character]
-success_symbol = "[>_](fg:sheikah bold)"
-error_symbol = "[>_](fg:gloom bold)"
+success_symbol = "[>_ ](fg:sheikah bold)"
+error_symbol = "[>_ ](fg:gloom bold)"
