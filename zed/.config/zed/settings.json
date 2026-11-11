@@ -123,6 +123,12 @@
       ],
     },
 
+    "CSS": {
+      "language_servers": ["tailwindcss-language-server", "!vscode-css-language-server"],
+      "format_on_save": "on",
+      "formatter": "prettier",
+    },
+
     "TSX": {
       "language_servers": ["typescript-language-server", "eslint", "!vtsls"],
       "code_actions_on_format": {
