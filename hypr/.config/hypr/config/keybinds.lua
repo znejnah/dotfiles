@@ -11,6 +11,7 @@ hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(progs.fileManager))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(progs.bluetooth))
+hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(progs.menu))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
@@ -20,8 +21,6 @@ hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + up",    hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
-
-hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(progs.menu))
 
 -- Move active window in the grid with mainMod + SHIFT + arrow keys
 hl.bind(mainMod .. " + SHIFT + left",  hl.dsp.window.swap({ direction = "left" }))
@@ -46,6 +45,31 @@ end
 -- Example special workspace (scratchpad)
 hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special("magic"))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
+
+-- Screenshots (grim + slurp + satty with Royal Sheikah selection colors)
+local slurp_cmd = 'slurp -b "#1c1c1e80" -c "#d4af37ff" -s "#00e5ff20" -w 2'
+
+hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(
+    'grim -g "$(' .. slurp_cmd .. ')" -t ppm - | satty --filename - --output-filename ~/Pictures/Screenshots/satty-$(date +%Y%m%d-%H%M%S).png'
+))
+
+hl.bind(mainMod .. " + SHIFT + C", hl.dsp.exec_cmd(
+    'grim -t ppm - | satty --filename - --output-filename ~/Pictures/Screenshots/satty-$(date +%Y%m%d-%H%M%S).png'
+))
+
+hl.bind(mainMod .. " + CTRL + C", hl.dsp.exec_cmd(
+    'grim -g "$(' .. slurp_cmd .. ')" - | wl-copy'
+))
+
+-- Clipboard history (cliphist)
+hl.bind(mainMod .. " + SHIFT + V", hl.dsp.exec_cmd(
+    "cliphist list | rofi -dmenu -display-columns 2 -p 'Presse-papier' | cliphist decode | wl-copy"
+))
+
+-- Delete a single entry from clipboard history
+hl.bind(mainMod .. " + ALT + V", hl.dsp.exec_cmd(
+    "cliphist list | rofi -dmenu -display-columns 2 -p 'Supprimer' | cliphist delete"
+))
 
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))

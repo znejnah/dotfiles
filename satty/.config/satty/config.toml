@@ -1,0 +1,24 @@
+[general]
+fullscreen = false
+early-exit = true
+initial-tool = "arrow"
+copy-command = "wl-copy"
+annotation-size-factor = 1
+output-filename = "~/Pictures/Screenshots/satty-%Y%m%d-%H%M%S.png"
+save-after-copy = false
+default-hide-toolbars = false
+focus-toggles-toolbars = true
+disable-notifications = false
+
+[font]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[color-palette]
+palette = [
+  "#d4af37", # Or Royal
+  "#00e5ff", # Cyan Sheikah
+  "#22c55e", # Vert Ocarina
+  "#ef4444", # Alerte / Rouge
+  "#c0c6ba"  # Sable
+]

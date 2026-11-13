@@ -47,3 +47,13 @@ hl.window_rule({
     move  = "20 monitor_h-120",
     float = true,
 })
+
+-- Satty (screenshot annotation tool) - floating & centered
+hl.window_rule({
+    name   = "satty-floating",
+    match  = { class = "^(com\\.gabm\\.satty|satty)$" },
+
+    float  = true,
+    center = true,
+    size   = "75% 75%",
+})
