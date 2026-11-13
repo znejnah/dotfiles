@@ -12,8 +12,7 @@
   // When opening a file/directory from the terminal (e.g. `zed .`), open a new window
   "cli_default_open_behavior": "new_window",
 
-  // Adopts JetBrains IDE keybindings (IntelliJ, WebStorm, etc.)
-  "base_keymap": "JetBrains",
+  "base_keymap": "Zed",
 
   // =========================================================================
   // FONTS & TYPOGRAPHY
