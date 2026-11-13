@@ -1,156 +1,196 @@
-# Feuille de route : Installation Arch Linux (Hyprland / Wayland)
+# Roadmap: Arch Linux Installation (Hyprland / Wayland)
 
-Ce guide détaille l'installation d'une base Arch Linux pure avec un environnement en tuiles (Hyprland), optimisée pour le développement et le jeu.
+This guide outlines the installation of a pure Arch Linux base with a keyboard-driven tiling window manager (**Hyprland**), built around minimal dependencies and the **Royal Sheikah** visual identity for development and high refresh-rate gaming.
 
-## 0. Résumé du Système
+## 0. System Summary
 
-- **Socle :** Arch Linux (Dual boot UEFI avec Windows)
-- **GPU :** RTX 5070 (pilotes `nvidia-open`)
-- **Audio :** PipeWire (`pipewire-pulse`, `pipewire-jack`)
-- **Interface :** Hyprland (Wayland), configuré via `hyprland.lua`
-- **Composants de base :** Kitty (Terminal), Rofi (Lanceur), Waybar (Barre d'état), Yazi (Fichiers), Polkit-KDE (Authentification), Yay (AUR).
+- **Base OS:** Arch Linux (UEFI Dual-boot with Windows)
+- **GPU:** NVIDIA RTX 5070 (`nvidia-open` drivers)
+- **Audio:** PipeWire (`pipewire-pulse`, `pipewire-jack`, `wireplumber`)
+- **Compositor:** Hyprland (Wayland), configured in Lua (`hyprland.lua`)
+- **Core Stack:** Kitty (Terminal), Fuzzel (Launcher & dmenu), Waybar (Status Bar), Yazi (File Manager), Satty + Grim + Slurp (Screenshots), Cliphist (Clipboard History), Bluetui (Bluetooth TUI), Polkit-KDE (Authentication).
 
-> **💡 Spécificités pour une installation sur PC Portable :**
+> **Laptop-Specific Adjustments:**
 >
-> - Remplacer `amd-ucode` par `intel-ucode` (si processeur Intel).
-> - Remplacer `nvidia-open` par `mesa vulkan-intel` (ou `vulkan-radeon`) si le PC n'a pas de puce graphique dédiée.
-> - Ajouter `power-profiles-daemon` à l'étape 2 pour la gestion de la batterie.
+> - Replace `amd-ucode` with `intel-ucode` on Intel CPUs.
+> - Replace `nvidia-open` with `mesa vulkan-intel` (or `vulkan-radeon`) if no discrete NVIDIA GPU is present.
+> - Add `power-profiles-daemon` in Phase 4 for battery profile management.
 
 ---
 
-## Phase 1 : Préparation et Partitionnement
+## Phase 1: Preparation and Partitioning
 
-1. **Générer la clé USB bootable :**
+1. **Create the bootable USB drive:**
+
    ```bash
    sudo dd if=archlinux-x86_64.iso of=/dev/sdX bs=4M status=progress oflag=sync
    ```
-2. **Prérequis BIOS / Windows :**
-   - Désactiver le **Secure Boot** dans le BIOS.
-   - Désactiver le **Démarrage rapide** (Fast Startup) sous Windows.
-3. **Démarrage sur la clé USB (UEFI) :**
-   - Connexion Wi-Fi (si nécessaire) : `iwctl station wlan0 connect "NomDeBox"`
-   - Test de connexion : `ping archlinux.org`
-4. **Partitionnement (`lsblk -f` pour repérer les disques) :**
+
+2. **BIOS & Windows Prerequisites:**
+   - Disable **Secure Boot** in the UEFI/BIOS settings.
+   - Disable **Fast Startup** in Windows Power Options.
+
+3. **Boot from USB (UEFI mode):**
+   - Connect to Wi-Fi (if needed): `iwctl station wlan0 connect "SSID_Name"`
+   - Verify internet connectivity: `ping archlinux.org`
+
+4. **Disk Partitioning (`lsblk -f` to identify drives):**
    - `fdisk /dev/nvme0n1`
-   - Conserver la partition EFI Windows (`FAT32`).
-   - Créer la nouvelle partition Racine (`ext4`).
-   - Formater la Racine : `mkfs.ext4 /dev/nvme0n1pX`
-5. **Montage des disques :**
+   - Keep the existing Windows EFI System Partition (`FAT32`).
+   - Create a new Linux Root partition (`ext4`).
+   - Format the Root partition: `mkfs.ext4 /dev/nvme0n1pX`
+
+5. **Mount Partitions:**
    ```bash
    mount /dev/nvme0n1pX /mnt
-   mount --mkdir /dev/nvme0n1pY /mnt/boot/efi  # pY = partition EFI Windows
+   mount --mkdir /dev/nvme0n1pY /mnt/boot/efi  # pY = Windows EFI partition
    ```
 
 ---
 
-## Phase 2 : Système de base et Configuration
+## Phase 2: Base System and Configuration
 
-1. **Déployer le système minimal :**
+1. **Install the minimal base system:**
+
    ```bash
    pacstrap -K /mnt base linux linux-headers linux-firmware amd-ucode nano sudo
    ```
-2. **Générer le fichier fstab (Table des disques) :**
+
+2. **Generate `fstab`:**
+
    ```bash
    genfstab -U /mnt >> /mnt/etc/fstab
    ```
-3. **Entrer dans le système (Chroot) :**
+
+3. **Enter the new system (Chroot):**
+
    ```bash
    arch-chroot /mnt
    ```
-4. **Localisation et Heure :**
+
+4. **Localization and Timezone:**
+
    ```bash
    ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
    hwclock --systohc
-   nano /etc/locale.gen          # Décommenter en_US.UTF-8 (et fr_FR.UTF-8 si besoin)
+   nano /etc/locale.gen           # Uncomment en_US.UTF-8 (and fr_FR.UTF-8 if needed)
    locale-gen
    echo "LANG=en_US.UTF-8" > /etc/locale.conf
    ```
-5. **Réseau :**
+
+5. **Network Setup:**
+
    ```bash
    echo "archlinux" > /etc/hostname
    pacman -S networkmanager
    systemctl enable NetworkManager
    ```
-6. **Utilisateur et Droits d'administration :**
+
+6. **User Account and Sudo Privileges:**
    ```bash
-   passwd                         # Mot de passe administrateur (root)
-   useradd -m -G wheel -s /bin/bash nom_utilisateur
-   passwd nom_utilisateur         # Mot de passe du nouvel utilisateur
-   EDITOR=nano visudo             # Décommenter la ligne : %wheel ALL=(ALL:ALL) ALL
+   passwd                         # Set root password
+   useradd -m -G wheel -s /bin/bash username
+   passwd username                # Set user password
+   EDITOR=nano visudo             # Uncomment: %wheel ALL=(ALL:ALL) ALL
    ```
 
 ---
 
-## Phase 3 : Pilotes Graphiques et Démarrage (GRUB)
+## Phase 3: Graphics Drivers and Bootloader (GRUB)
 
-1. **Activer le dépôt 32 bits (Multilib) :**
-   - Ouvrir `nano /etc/pacman.conf`.
-   - Décommenter les deux lignes `[multilib]` et son `Include`.
-   - Exécuter `pacman -Sy`.
-2. **Installer les pilotes NVIDIA :**
+1. **Enable the 32-bit Repository (`multilib`):**
+   - Open `nano /etc/pacman.conf`.
+   - Uncomment both `[multilib]` and its `Include` line.
+   - Synchronize package databases: `pacman -Sy`.
+
+2. **Install NVIDIA Open Kernel Modules:**
+
    ```bash
    pacman -S nvidia-open nvidia-utils lib32-nvidia-utils
    ```
-3. **Installer GRUB et Os-Prober (Détection Windows) :**
+
+3. **Install GRUB and OS-Prober (Windows Dual-boot detection):**
+
    ```bash
    pacman -S grub efibootmgr os-prober
    ```
-4. **Configurer GRUB (`nano /etc/default/grub`) :**
-   - Ajouter `nvidia_drm.modeset=1` dans `GRUB_CMDLINE_LINUX_DEFAULT`.
-   - Décommenter `GRUB_DISABLE_OS_PROBER=false`.
-5. **Déployer GRUB :**
+
+4. **Configure GRUB (`nano /etc/default/grub`):**
+   - Append `nvidia_drm.modeset=1` to `GRUB_CMDLINE_LINUX_DEFAULT`.
+   - Uncomment `GRUB_DISABLE_OS_PROBER=false`.
+
+5. **Install and Generate GRUB Config:**
+
    ```bash
    grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB --recheck
    grub-mkconfig -o /boot/grub/grub.cfg
    ```
-6. **Sortie et Redémarrage :**
+
+6. **Exit and Reboot:**
    ```bash
    exit
    umount -R /mnt
    reboot
-   # Retirer la clé USB à l'extinction.
+   # Remove the USB drive once the system powers off.
    ```
 
 ---
 
-## Phase 4 : Pile Graphique et Outils (Depuis le TTY)
+## Phase 4: Graphical Stack and Minimalist Tooling (From TTY)
 
-1. **Audio et Compilation :**
+1. **Audio & Build Essentials:**
+
    ```bash
    sudo pacman -S pipewire pipewire-pulse pipewire-alsa pipewire-jack wireplumber base-devel git
    ```
-2. **Polices système :**
+
+2. **System Fonts:**
+
    ```bash
-   sudo pacman -S noto-fonts noto-fonts-emoji ttf-dejavu ttf-liberation ttf-jetbrains-mono-nerd
+   sudo pacman -S noto-fonts noto-fonts-emoji ttf-jetbrains-mono-nerd
    fc-cache -fv
    ```
-3. **Composants de l'environnement (Hyprland) :**
+
+3. **Hyprland Desktop & Wayland Utilities:**
+
    ```bash
-   sudo pacman -S hyprland kitty waybar rofi-wayland polkit-kde-agent xdg-desktop-portal-hyprland dunst libnotify
+   sudo pacman -S hyprland hyprpaper kitty waybar fuzzel polkit-kde-agent xdg-desktop-portal-hyprland dunst libnotify
    ```
-4. **Outils système et terminal :**
+
+4. **Screenshots, Clipboard & Bluetooth (Official Repos Only):**
+
    ```bash
-   sudo pacman -S yazi ffmpegthumbnailer 7zip jq poppler fd ripgrep fzf zoxide imagemagick stow starship less
+   sudo pacman -S grim slurp satty cliphist wl-clipboard bluez bluez-utils bluetui upower
+   sudo systemctl enable --now bluetooth
    ```
-5. **Installer l'assistant AUR (`yay`) :**
+
+5. **Terminal & Dotfiles Tooling:**
+
+   ```bash
+   sudo pacman -S yazi btop bat eza fastfetch openssh fnm ffmpegthumbnailer 7zip jq poppler fd ripgrep fzf zoxide imagemagick stow starship less
+   ```
+
+6. **Install AUR Helper (`yay`) _(Optional — for packages not in official repos)_:**
    ```bash
    git clone https://aur.archlinux.org/yay.git
    cd yay && makepkg -si && cd .. && rm -rf yay
    ```
-6. **AUR :**
-   ```bash
-   yay -S candy-icons-git rofi-bluetooth-git
-   ```
+   - _Tip:_ Set `!debug` in `OPTIONS=(...)` inside `/etc/makepkg.conf` to prevent `makepkg` from generating `*-debug` packages.
 
 ---
 
-## Phase 5 : Configuration Hyprland (Lua)
+## Phase 5: Hyprland Bootstrap (Lua)
 
-1. **Créer/Modifier `~/.config/hypr/hyprland.lua` :**
-   - **Base :** Retirer la sécurité `autogenerated = true`.
-   - **Clavier :** Régler `kb_layout = "us"`.
-   - **Explorateur :** Modifier la variable `local fileManager = "kitty -e yazi"`.
-   - **Variables NVIDIA :**
+1. **Verify `~/.config/hypr/hyprland.lua` & modular configs (`config/`):**
+   - **Base:** Remove `autogenerated = true`.
+   - **Keyboard & Core Programs (`config/programs.lua`):**
+     ```lua
+     terminal    = "kitty",
+     fileManager = "kitty -e yazi",
+     menu        = "fuzzel",
+     bluetooth   = "kitty --class bluetooth-tui -e bluetui",
+     ```
+   - **NVIDIA Environment (`config/environment.lua`):**
      ```lua
      hl.env("LIBVA_DRIVER_NAME", "nvidia")
      hl.env("XDG_SESSION_TYPE", "wayland")
@@ -158,33 +198,40 @@ Ce guide détaille l'installation d'une base Arch Linux pure avec un environneme
      hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
      hl.config({ cursor = { no_hardware_cursors = true } })
      ```
-   - **Raccourci Rofi :**
-     ```lua
-     hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("rofi -show drun"))
-     ```
-   - **Démarrage automatique (Waybar & Polkit) :**
+   - **Autostart Daemons (`config/autostart.lua`):**
      ```lua
      hl.on("hyprland.start", function()
-         hl.exec_cmd("waybar")
+         hl.exec_cmd("waybar & hyprpaper")
          hl.exec_cmd("/usr/lib/polkit-kde-authentication-agent-1")
+         hl.exec_cmd("wl-paste --type text --watch cliphist store")
+         hl.exec_cmd("wl-paste --type image --watch cliphist store")
      end)
      ```
-2. **Lancer l'interface :**
+
+2. **Start the Graphical Session:**
    ```bash
    start-hyprland
    ```
 
 ---
 
-## Phase 6 : Déploiement de l'environnement (Dotfiles)
+## Phase 6: Dotfiles Deployment (Royal Sheikah)
 
-Une fois Hyprland fonctionnel, récupère la configuration personnalisée (thème ElectroVoid, Starship, Dunst, etc.) :
+Once inside Hyprland, deploy the **Royal Sheikah** configurations across all modules:
 
-1. **Cloner le dépôt :**
+1. **Clone the repository:**
+
    ```bash
-   git clone https://github.com/TonUtilisateur/dotfiles.git ~/dotfiles
+   git clone https://github.com/znejnah/dotfiles.git ~/dotfiles
    ```
-2. **Déployer l'ensemble des configurations avec Stow :**
+
+2. **Create the screenshots directory:**
+
+   ```bash
+   mkdir -p ~/Pictures/Screenshots
+   ```
+
+3. **Symlink all packages with GNU Stow:**
    ```bash
    cd ~/dotfiles
    stow */
