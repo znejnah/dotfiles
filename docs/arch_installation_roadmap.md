@@ -8,7 +8,7 @@ This guide outlines the installation of a pure Arch Linux base with a keyboard-d
 - **GPU:** NVIDIA RTX 5070 (`nvidia-open` drivers)
 - **Audio:** PipeWire (`pipewire-pulse`, `pipewire-jack`, `wireplumber`)
 - **Compositor:** Hyprland (Wayland), configured in Lua (`hyprland.lua`)
-- **Core Stack:** Kitty (Terminal), Fuzzel (Launcher & dmenu), Waybar (Status Bar), Yazi (File Manager), Satty + Grim + Slurp (Screenshots), Cliphist (Clipboard History), Bluetui (Bluetooth TUI), Hyprpolkitagent (Authentication).
+- **Core Stack:** Kitty (Terminal), Fuzzel (Launcher & dmenu), Waybar (Status Bar), Yazi (File Manager), Satty + Grim + Slurp (Screenshots), Cliphist (Clipboard History), Bluetui (Bluetooth TUI), Hyprpolkitagent (Authentication), Wiremix (Audio TUI).
 
 > **Laptop-Specific Adjustments:**
 >
@@ -141,7 +141,7 @@ This guide outlines the installation of a pure Arch Linux base with a keyboard-d
 1. **Audio & Build Essentials:**
 
    ```bash
-   sudo pacman -S pipewire pipewire-pulse pipewire-alsa pipewire-jack wireplumber base-devel git
+   sudo pacman -S pipewire pipewire-pulse pipewire-alsa pipewire-jack wireplumber wiremix base-devel git
    ```
 
 2. **System Fonts:**
@@ -189,6 +189,7 @@ This guide outlines the installation of a pure Arch Linux base with a keyboard-d
      fileManager = "kitty -e yazi",
      menu        = "fuzzel",
      bluetooth   = "kitty --class bluetooth-tui -e bluetui",
+     audio       = "kitty --class audio-tui -e wiremix"
      ```
    - **NVIDIA Environment (`config/environment.lua`):**
      ```lua

@@ -80,12 +80,11 @@
 
   "pulseaudio": {
     "format": "{icon} {volume}%",
-    "format-muted": "  Muted",
+    "format-muted": "󰖁 Muted",
     "format-icons": {
-      "default": [" ", " ", " ", " "],
+      "default": ["󰕿", "󰖀", "󰕾"],
     },
-    "format-bluetooth": " {icon} {volume}%",
-    "on-click": "pavucontrol",
+    "on-click": "kitty --class audio-tui -e wiremix",
   },
 
   "bluetooth": {

@@ -67,3 +67,13 @@ hl.window_rule({
     center = true,
     size   = "55% 60%",
 })
+
+-- Wiremix (Audio TUI) - floating & centered
+hl.window_rule({
+    name   = "wiremix-floating",
+    match  = { class = "^audio-tui$" },
+
+    float  = true,
+    center = true,
+    size   = "55% 60%",
+})
