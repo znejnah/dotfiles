@@ -57,3 +57,13 @@ hl.window_rule({
     center = true,
     size   = "75% 75%",
 })
+
+-- Bluetui (Bluetooth TUI) - floating & centered
+hl.window_rule({
+    name   = "bluetui-floating",
+    match  = { class = "^bluetooth-tui$" },
+
+    float  = true,
+    center = true,
+    size   = "55% 60%",
+})

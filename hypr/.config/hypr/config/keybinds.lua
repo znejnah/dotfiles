@@ -61,14 +61,14 @@ hl.bind(mainMod .. " + CTRL + C", hl.dsp.exec_cmd(
     'grim -g "$(' .. slurp_cmd .. ')" - | wl-copy'
 ))
 
--- Clipboard history (cliphist)
+-- Clipboard history (cliphist + fuzzel)
 hl.bind(mainMod .. " + SHIFT + V", hl.dsp.exec_cmd(
-    "cliphist list | rofi -dmenu -display-columns 2 -p 'Presse-papier' | cliphist decode | wl-copy"
+    "cliphist list | fuzzel --dmenu --with-nth=2 -p 'Clip ❯ ' | cliphist decode | wl-copy"
 ))
 
 -- Delete a single entry from clipboard history
 hl.bind(mainMod .. " + ALT + V", hl.dsp.exec_cmd(
-    "cliphist list | rofi -dmenu -display-columns 2 -p 'Supprimer' | cliphist delete"
+    "cliphist list | fuzzel --dmenu --with-nth=2 -p 'Supprimer ❯ ' | cliphist delete"
 ))
 
 -- Scroll through existing workspaces with mainMod + scroll

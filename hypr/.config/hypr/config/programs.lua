@@ -5,6 +5,6 @@
 return {
     terminal = "kitty",
     fileManager = "kitty -e yazi",
-    menu = "rofi -show drun -theme ~/.config/rofi/config.rasi",
-    bluetooth = "rofi-bluetooth"
+    menu = "fuzzel",
+    bluetooth = "kitty --class bluetooth-tui -e bluetui"
 }
