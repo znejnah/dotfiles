@@ -8,7 +8,7 @@ This guide outlines the installation of a pure Arch Linux base with a keyboard-d
 - **GPU:** NVIDIA RTX 5070 (`nvidia-open` drivers)
 - **Audio:** PipeWire (`pipewire-pulse`, `pipewire-jack`, `wireplumber`)
 - **Compositor:** Hyprland (Wayland), configured in Lua (`hyprland.lua`)
-- **Core Stack:** Kitty (Terminal), Fuzzel (Launcher & dmenu), Waybar (Status Bar), Yazi (File Manager), Satty + Grim + Slurp (Screenshots), Cliphist (Clipboard History), Bluetui (Bluetooth TUI), Polkit-KDE (Authentication).
+- **Core Stack:** Kitty (Terminal), Fuzzel (Launcher & dmenu), Waybar (Status Bar), Yazi (File Manager), Satty + Grim + Slurp (Screenshots), Cliphist (Clipboard History), Bluetui (Bluetooth TUI), Hyprpolkitagent (Authentication).
 
 > **Laptop-Specific Adjustments:**
 >
@@ -154,7 +154,7 @@ This guide outlines the installation of a pure Arch Linux base with a keyboard-d
 3. **Hyprland Desktop & Wayland Utilities:**
 
    ```bash
-   sudo pacman -S hyprland hyprpaper kitty waybar fuzzel polkit-kde-agent xdg-desktop-portal-hyprland dunst libnotify
+   sudo pacman -S hyprland hyprpaper kitty waybar fuzzel hyprpolkitagent xdg-desktop-portal-hyprland dunst libnotify
    ```
 
 4. **Screenshots, Clipboard & Bluetooth (Official Repos Only):**
@@ -202,7 +202,7 @@ This guide outlines the installation of a pure Arch Linux base with a keyboard-d
      ```lua
      hl.on("hyprland.start", function()
          hl.exec_cmd("waybar & hyprpaper")
-         hl.exec_cmd("/usr/lib/polkit-kde-authentication-agent-1")
+         hl.exec_cmd("systemctl --user start hyprpolkitagent")
          hl.exec_cmd("wl-paste --type text --watch cliphist store")
          hl.exec_cmd("wl-paste --type image --watch cliphist store")
      end)
