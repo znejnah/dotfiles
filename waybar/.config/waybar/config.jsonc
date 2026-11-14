@@ -37,9 +37,28 @@
   },
 
   "clock": {
-    "format": "  {:%H:%M}",
-    "format-alt": "󰃭  {:%A %d %B %Y}",
+    "timezone": "Europe/Paris",
+    "format": " {:%I:%M <span color='#00e5ff' size='small'><b>%p</b></span>}",
+    "format-alt": "󰃭 {:%a %d %b}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "weeks-pos": "left",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#d4af37'><b>{}</b></span>",
+        "days": "<span color='#c0c6ba'>{}</span>",
+        "weeks": "<span color='#4e544b'>W{}</span>",
+        "weekdays": "<span color='#00e5ff'><b>{}</b></span>",
+        "today": "<span color='#1c1c1e' background='#d4af37'><b> {} </b></span>",
+      },
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down",
+    },
   },
 
   "network": {

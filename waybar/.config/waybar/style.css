@@ -4,7 +4,7 @@
 
 /* Global reset */
 * {
-  font-family: "JetBrainsMono Nerd Font", monospace;
+  font-family: "JetBrains Mono", "Symbols Nerd Font Mono", monospace;
   font-size: 13px;
   font-weight: bold;
   border: none;
@@ -101,7 +101,7 @@ window#waybar {
 }
 
 #temperature {
-  color: #00e5ff;
+  color: #d4af37;
 }
 
 #temperature.critical {
@@ -127,4 +127,52 @@ window#waybar {
 /* System tray */
 #tray {
   padding: 0 10px;
+}
+
+#tray menu {
+  background-color: rgba(28, 28, 30, 0.96);
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  border-bottom: 2px solid #00e5ff;
+  border-radius: 8px;
+  padding: 6px;
+  color: #c0c6ba;
+  font-family: "JetBrains Mono", "Symbols Nerd Font Mono", monospace;
+  font-size: 13px;
+}
+
+#tray menu menuitem {
+  padding: 6px 12px;
+  border-radius: 5px;
+  color: #c0c6ba;
+  background-color: transparent;
+}
+
+#tray menu menuitem:hover {
+  background-color: rgba(212, 175, 55, 0.14);
+  color: #d4af37;
+}
+
+#tray menu menuitem:disabled {
+  color: #4e544b;
+}
+
+#tray menu separator {
+  background-color: rgba(0, 229, 255, 0.2);
+  margin: 4px 8px;
+  min-height: 1px;
+}
+
+/* Popup calendrier & tooltips (Royal Sheikah) */
+tooltip {
+  background-color: rgba(28, 28, 30, 0.96);
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  border-bottom: 2px solid #00e5ff;
+  border-radius: 8px;
+}
+
+tooltip label {
+  color: #c0c6ba;
+  font-family: "JetBrains Mono", "Symbols Nerd Font Mono", monospace;
+  font-size: 13px;
+  padding: 8px 12px;
 }
