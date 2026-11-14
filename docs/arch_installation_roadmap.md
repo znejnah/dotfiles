@@ -53,7 +53,7 @@ This guide outlines the installation of a pure Arch Linux base with a keyboard-d
 1. **Install the minimal base system:**
 
    ```bash
-   pacstrap -K /mnt base linux linux-headers linux-firmware amd-ucode nano sudo
+   pacstrap -K /mnt base linux linux-firmware amd-ucode nano sudo
    ```
 
 2. **Generate `fstab`:**
@@ -103,10 +103,10 @@ This guide outlines the installation of a pure Arch Linux base with a keyboard-d
    - Uncomment both `[multilib]` and its `Include` line.
    - Synchronize package databases: `pacman -Sy`.
 
-2. **Install NVIDIA Open Kernel Modules:**
+2. **Install NVIDIA Open Kernel Modules & Vulkan Loaders:**
 
    ```bash
-   pacman -S nvidia-open nvidia-utils lib32-nvidia-utils
+   pacman -S nvidia-open nvidia-utils lib32-nvidia-utils vulkan-icd-loader lib32-vulkan-icd-loader
    ```
 
 3. **Install GRUB and OS-Prober (Windows Dual-boot detection):**
@@ -147,7 +147,7 @@ This guide outlines the installation of a pure Arch Linux base with a keyboard-d
 2. **System Fonts:**
 
    ```bash
-   sudo pacman -S noto-fonts noto-fonts-emoji ttf-jetbrains-mono-nerd
+   sudo pacman -S noto-fonts noto-fonts-emoji ttf-jetbrains-mono ttf-nerd-fonts-symbols-mono
    fc-cache -fv
    ```
 
