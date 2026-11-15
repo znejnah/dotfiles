@@ -137,6 +137,10 @@
       "formatter": "prettier",
     },
 
+    "JSONC": {
+      "format_on_save": "off",
+    },
+
     "Rust": {
       // Format with rustfmt automatically on save
       "format_on_save": "on",
