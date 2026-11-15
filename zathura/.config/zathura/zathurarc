@@ -1,0 +1,17 @@
+set selection-clipboard clipboard
+set window-title-basename true
+set statusbar-home-tilde true
+set adjust-open "width"
+set font "JetBrains Mono 11"
+
+# Royal Sheikah palette
+set default-bg "#1c1c1e"
+set default-fg "#e5e5e7"
+set statusbar-bg "#1c1c1e"
+set statusbar-fg "#d4af37"
+set inputbar-bg "#1c1c1e"
+set inputbar-fg "#00e5ff"
+set highlight-color "#d4af37"
+set highlight-active-color "#00e5ff"
+set completion-highlight-bg "#00e5ff"
+set completion-highlight-fg "#1c1c1e"

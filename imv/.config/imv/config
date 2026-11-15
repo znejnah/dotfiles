@@ -1,0 +1,6 @@
+[options]
+background = 1c1c1e
+overlay_font = JetBrains Mono:11
+overlay_text_color = 00e5ff
+overlay_background_color = 1c1c1e
+overlay_background_alpha = cc
