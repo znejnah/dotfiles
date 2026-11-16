@@ -1,6 +1,6 @@
 # dotfiles
 
-My personal configuration files for **Arch Linux**, managed with **GNU Stow**.
+My personal configuration files for **Arch Linux** (and shared cross-platform configs with **macOS**), managed with **GNU Stow**.
 
 Designed for keyboard-driven development, minimal dependencies, and high refresh-rate gaming on an AMD Zen 4 + NVIDIA RTX 50 series setup.
 
@@ -8,22 +8,23 @@ Designed for keyboard-driven development, minimal dependencies, and high refresh
 
 ## System Specs & Stack
 
-| Component           | Tool / Hardware                                                                          |
-| :------------------ | :--------------------------------------------------------------------------------------- |
-| **OS**              | Arch Linux (Dual-boot with Windows)                                                      |
-| **WM / Compositor** | [Hyprland](https://hyprland.org/) (configured in Lua)                                    |
-| **Terminal**        | [Kitty](https://sw.kovidgoyal.net/kitty/)                                                |
-| **Shell**           | Bash + [Starship](https://starship.rs/) + [ble.sh](https://github.com/akinomyoga/ble.sh) |
-| **File Manager**    | [Yazi](https://yazi-rs.github.io/) (terminal)                                            |
-| **System Monitor**  | [btop](https://github.com/aristocratos/btop)                                             |
-| **App Launcher**    | [Fuzzel](https://codeberg.org/dnkl/fuzzel) (Wayland native, icon-free)                   |
-| **Screenshots**     | `grim` + `slurp` + [Satty](https://github.com/gabm/Satty)                                |
-| **Clipboard**       | [cliphist](https://github.com/sentriz/cliphist) + `wl-clipboard` (via Fuzzel dmenu)      |
-| **Status Bar**      | [Waybar](https://github.com/Alexays/Waybar)                                              |
-| **Audio**           | PipeWire + WirePlumber + pavucontrol                                                     |
-| **Bluetooth**       | BlueZ + [bluetui](https://github.com/pythops/bluetui) (TUI)                              |
-| **Editor**          | [Zed](https://zed.dev/)                                                                  |
-| **Hardware**        | AMD Ryzen 5 7500F, NVIDIA GeForce RTX 5070, 32 GB RAM                                    |
+| Component           | Tool / Hardware                                                                                           |
+| :------------------ | :-------------------------------------------------------------------------------------------------------- |
+| **OS**              | Arch Linux (Dual-boot with Windows)                                                                       |
+| **WM / Compositor** | [Hyprland](https://hyprland.org/) (configured in Lua)                                                     |
+| **Terminal**        | [Kitty](https://sw.kovidgoyal.net/kitty/)                                                                 |
+| **Shell**           | Bash + [Starship](https://starship.rs/) + [ble.sh](https://github.com/akinomyoga/ble.sh) _(Zsh on macOS)_ |
+| **File Manager**    | [Yazi](https://yazi-rs.github.io/) (terminal)                                                             |
+| **PDF Viewer**      | [Zathura](https://pwmt.org/projects/zathura/) (`zathura-pdf-mupdf`, default via `xdg-open`)               |
+| **System Monitor**  | [btop](https://github.com/aristocratos/btop)                                                              |
+| **App Launcher**    | [Fuzzel](https://codeberg.org/dnkl/fuzzel) (Wayland native, icon-free)                                    |
+| **Screenshots**     | `grim` + `slurp` + [Satty](https://github.com/gabm/Satty)                                                 |
+| **Clipboard**       | [cliphist](https://github.com/sentriz/cliphist) + `wl-clipboard` (via Fuzzel dmenu)                       |
+| **Status Bar**      | [Waybar](https://github.com/Alexays/Waybar)                                                               |
+| **Audio**           | PipeWire + WirePlumber + [wiremix](https://github.com/tsowell/wiremix) (TUI)                              |
+| **Bluetooth**       | BlueZ + [bluetui](https://github.com/pythops/bluetui) (TUI)                                               |
+| **Editor**          | [Zed](https://zed.dev/)                                                                                   |
+| **Hardware**        | AMD Ryzen 5 7500F, NVIDIA GeForce RTX 5070, 32 GB RAM                                                     |
 
 ---
 
@@ -63,11 +64,11 @@ Designed for keyboard-driven development, minimal dependencies, and high refresh
 - **Aesthetics:** Floating obsidian islands with Sheikah Cyan bottom borders and state glows.
 - **Modules:** Workspaces, active window, clock, network, CPU, CPU temperature (`k10temp` Tctl), RAM, volume, Bluetooth, tray.
 
-**File Manager (Yazi)**
+**File Manager (Yazi) & PDF Viewer (Zathura)**
 
-- **Deployment:** `stow yazi`
-- **Aesthetics:** Native Royal Sheikah `theme.toml` matching manager states, badges, and mime types.
-- **Philosophy:** Vanilla configuration with zero external plugins.
+- **Deployment:** `stow yazi zathura`
+- **Aesthetics:** Native Royal Sheikah `theme.toml` in Yazi and matching statusbar/highlights in `zathurarc`.
+- **Integration:** Zathura is registered as default PDF handler (`xdg-mime`) and triggered via Yazi, `xdg-open`, or the cross-platform `o` shell alias, while hidden from Fuzzel (`NoDisplay=true`).
 
 **System Monitor (btop)**
 
@@ -80,10 +81,10 @@ Designed for keyboard-driven development, minimal dependencies, and high refresh
 - **Aesthetics:** Royal Sheikah palette with dynamic borders based on notification urgency.
 - **System:** Minimalist D-Bus listener via `libnotify`.
 
-**Audio Server (PipeWire)**
+**Audio Server (PipeWire & wiremix)**
 
-- **Dependencies:** `pipewire`, `wireplumber`, `pipewire-pulse`, `pavucontrol`.
-- **Mixing:** Graphical routing via pavucontrol, clickable from the Waybar volume module.
+- **Dependencies:** `pipewire`, `wireplumber`, `pipewire-pulse`, `wiremix`.
+- **Mixing:** Keyboard-driven `wiremix` TUI launched in a centered floating Kitty window (`audio-tui` class), also clickable from the Waybar volume module.
 
 **Bluetooth Connectivity (bluetui)**
 
@@ -97,12 +98,13 @@ Designed for keyboard-driven development, minimal dependencies, and high refresh
 
 ```text
 ~/dotfiles/
+├── .gitignore                       # Ignores OS-specific/auto-generated files (e.g. zed/prompts)
 ├── .stow-local-ignore               # Prevents non-config files from being symlinked
 ├── README.md
 ├── aliases/
-│   └── .aliases                     # Global shell aliases & custom commands
+│   └── .aliases                     # Cross-platform shell aliases & custom commands (Arch/macOS)
 ├── bash/
-│   └── .bashrc                      # Shell options, tools init (fzf, zoxide, starship)
+│   └── .bashrc                      # Bash options, tools init (fzf, zoxide, starship, ble.sh)
 ├── btop/
 │   └── .config/btop/
 │       ├── btop.conf
@@ -141,6 +143,9 @@ Designed for keyboard-driven development, minimal dependencies, and high refresh
 │       ├── keymap.toml
 │       ├── theme.toml
 │       └── yazi.toml
+├── zathura/
+│   └── .config/zathura/
+│       └── zathurarc                # Minimalist Royal Sheikah PDF viewer configuration
 └── zed/
     └── .config/zed/
         ├── settings.json            # Keymaps, LSP configurations, editor settings

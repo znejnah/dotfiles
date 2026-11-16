@@ -15,9 +15,9 @@
   "hyprland/workspaces": {
     "format": "{icon}",
     "format-icons": {
-      "active": " ◈ ",
-      "default": " ◇ ",
-      "urgent": " ⎔ ",
+      "active": "◈",
+      "default": "◇",
+      "urgent": "⎔",
     },
     "persistent-workspaces": {
       "*": 4,
@@ -28,9 +28,9 @@
     "format": "{class}:::{title}",
     "max-length": 45,
     "rewrite": {
-      "firefox:::(.*)": "󰈹  $1",
-      "dev.zed.Zed:::(.*)": "  $1",
-      "kitty:::(.*)": "  $1",
+      "firefox:::(.*)": "󰈹 $1",
+      "dev.zed.Zed:::(.*)": " $1",
+      "kitty:::(.*)": " $1",
       "^(?!(firefox|dev\\.zed\\.Zed|kitty))([^:]*):::(.*)": "⟁ $1",
     },
     "separate-outputs": true,
@@ -62,15 +62,15 @@
   },
 
   "network": {
-    "format-wifi": "  {bandwidthDownBytes} ↓ {bandwidthUpBytes} ↑",
-    "format-ethernet": "󰈀  {bandwidthDownBytes} ↓ {bandwidthUpBytes} ↑",
-    "format-disconnected": "󰪎  Offline",
+    "format-wifi": " {bandwidthDownBytes} ↓ {bandwidthUpBytes} ↑",
+    "format-ethernet": "󰈀 {bandwidthDownBytes} ↓ {bandwidthUpBytes} ↑",
+    "format-disconnected": "󰪎 Offline",
     "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
     "interval": 2,
   },
 
   "cpu": {
-    "format": "  {usage}%",
+    "format": " {usage}%",
     "interval": 2,
     "states": {
       "warning": 70,
@@ -89,7 +89,7 @@
   },
 
   "memory": {
-    "format": "  {}%",
+    "format": " {}%",
     "interval": 2,
     "states": {
       "warning": 75,

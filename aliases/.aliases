@@ -8,6 +8,12 @@ alias ll="eza -la --icons --group-directories-first"       # List files with det
 alias tree="eza --tree --icons=always"                     # Display directory tree
 alias cat="bat --paging=never"                             # Print file content with syntax highlighting
 
+if command -v xdg-open >/dev/null 2>&1; then
+  alias o="xdg-open"                                       # Open file or URL with default app
+elif command -v open >/dev/null 2>&1; then
+  alias o="open"                                           # Open file or URL with default app
+fi
+
 # ==========================
 # DEVELOPMENT TOOLS
 # ==========================

@@ -4,7 +4,7 @@
   // =========================================================================
   "telemetry": {
     "diagnostics": false,
-    "metrics": false
+    "metrics": false,
   },
 
   // =========================================================================
@@ -15,40 +15,54 @@
   "diff_view_style": "split",
 
   // Hide redundant UI buttons & panels (keep everything accessible via keybinds)
-    "agent": {
-      "enabled": false
+  "agent": {
+    "enabled": false,
+  },
+  "collaboration_panel": {
+    "button": false,
+  },
+  "outline_panel": {
+    "button": false,
+  },
+  "project_panel": {
+    "dock": "right",
+    "button": false,
+  },
+  "git_panel": {
+    "tree_view": true,
+    "button": false,
+  },
+  "title_bar": {
+    "show_onboarding_banner": false,
+    "show_user_picture": false,
+    "show_sign_in": false,
+  },
+  "tab_bar": {
+    "show_nav_history_buttons": false,
+  },
+  "tabs": {
+    "show_close_button": "hidden",
+  },
+  "minimap": {
+    "show": "never",
+  },
+  "scrollbar": {
+    "show": "auto",
+    "diagnostics": "all",
+    "git_diff": true,
+    "search_results": true,
+    "selected_text": false,
+    "cursors": false,
+  },
+  "diagnostics": {
+    "inline": {
+      "enabled": true,
+      "update_debounce_ms": 150,
+      "padding": 4,
+      "min_column": 0,
+      "max_severity": null,
     },
-    "collaboration_panel": {
-      "button": false
-    },
-    "outline_panel": {
-      "button": false
-    },
-    "project_panel": {
-      "dock": "right",
-      "button": false
-    },
-    "git_panel": {
-      "tree_view": true,
-      "button": false
-    },
-    "title_bar": {
-      "show_onboarding_banner": false,
-      "show_user_picture": false,
-      "show_sign_in": false
-    },
-    "tab_bar": {
-        "show_nav_history_buttons": false
-      },
-      "tabs": {
-        "show_close_button": "hidden"
-      },
-    "minimap": {
-      "show": "never"
-    },
-    "scrollbar": {
-      "show": "never"
-    },
+  },
 
   // =========================================================================
   // FONTS & TYPOGRAPHY (ROYAL SHEIKAH)
@@ -61,13 +75,13 @@
   "theme": {
     "mode": "dark",
     "light": "One Light",
-    "dark": "Royal Sheikah"
+    "dark": "Royal Sheikah",
   },
 
   "icon_theme": {
     "mode": "dark",
     "light": "Zed (Default)",
-    "dark": "Zed (Default)"
+    "dark": "Zed (Default)",
   },
 
   // =========================================================================
@@ -82,7 +96,7 @@
   "show_edit_predictions": false,
 
   "prettier": {
-    "allowed": true
+    "allowed": true,
   },
 
   // =========================================================================
@@ -92,8 +106,8 @@
     "git_gutter": "tracked_files",
     "inline_blame": {
       "enabled": true,
-      "delay_ms": 500
-    }
+      "delay_ms": 500,
+    },
   },
 
   // =========================================================================
@@ -105,52 +119,45 @@
         "angular-language-server",
         "typescript-language-server",
         "eslint",
-        "!vtsls"
+        "!vtsls",
       ],
       "code_actions_on_format": {
-        "source.organizeImports": true
+        "source.organizeImports": true,
       },
       "format_on_save": "on",
-      "formatter": "prettier"
+      "formatter": "prettier",
     },
 
     "HTML": {
       "language_servers": [
         "angular-language-server",
         "html-language-server",
-        "tailwindcss-language-server"
-      ]
+        "tailwindcss-language-server",
+      ],
     },
 
     "CSS": {
-      "language_servers": [
-        "tailwindcss-language-server",
-        "!vscode-css-language-server"
-      ],
+      "language_servers": ["tailwindcss-language-server", "!vscode-css-language-server"],
       "format_on_save": "on",
-      "formatter": "prettier"
+      "formatter": "prettier",
     },
 
     "TSX": {
-      "language_servers": [
-        "typescript-language-server",
-        "eslint",
-        "!vtsls"
-      ],
+      "language_servers": ["typescript-language-server", "eslint", "!vtsls"],
       "code_actions_on_format": {
-        "source.organizeImports": true
+        "source.organizeImports": true,
       },
       "format_on_save": "on",
-      "formatter": "prettier"
+      "formatter": "prettier",
     },
 
     "JSONC": {
-      "format_on_save": "off"
+      "format_on_save": "on",
     },
 
     "Rust": {
-      "format_on_save": "on"
-    }
+      "format_on_save": "on",
+    },
   },
 
   // =========================================================================
@@ -161,26 +168,26 @@
       "initialization_options": {
         "preferences": {
           "includeCompletionsForModuleExports": true,
-          "includeCompletionsWithInsertText": true
-        }
-      }
+          "includeCompletionsWithInsertText": true,
+        },
+      },
     },
     "rust-analyzer": {
       "initialization_options": {
         "check": {
-          "command": "clippy"
-        }
-      }
+          "command": "clippy",
+        },
+      },
     },
     "lua-language-server": {
       "settings": {
         "Lua": {
           "diagnostics": {
-            "globals": ["hl"]
-          }
-        }
-      }
-    }
+            "globals": ["hl"],
+          },
+        },
+      },
+    },
   },
 
   // =========================================================================
@@ -189,7 +196,7 @@
   "inlay_hints": {
     "enabled": true,
     "show_type_hints": true,
-    "show_parameter_hints": true
+    "show_parameter_hints": true,
   },
 
   // =========================================================================
@@ -202,8 +209,8 @@
     "font_family": "JetBrains Mono",
     "env": {
       "PATH": "$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin",
-      "GIT_EDITOR": "zed --wait"
-    }
+      "GIT_EDITOR": "zed --wait",
+    },
   },
 
   // =========================================================================
@@ -213,6 +220,6 @@
     "Git Attributes": ["**/{git,.git,.git/info}/attributes"],
     "Git Config": ["*.gitconfig", "**/{git,.git,.git/modules,.git/modules/*}/config"],
     "Git Ignore": ["**/{git,.git}/ignore", "**/.git/info/exclude"],
-    "Docker Compose": ["docker-compose*.yml", "docker-compose*.yaml"]
-  }
+    "Docker Compose": ["docker-compose*.yml", "docker-compose*.yaml"],
+  },
 }

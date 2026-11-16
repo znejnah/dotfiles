@@ -8,7 +8,7 @@ This guide outlines the installation of a pure Arch Linux base with a keyboard-d
 - **GPU:** NVIDIA RTX 5070 (`nvidia-open` drivers + 32/64-bit Vulkan)
 - **Audio:** PipeWire (`pipewire-pulse`, `pipewire-jack`, `wireplumber`, `wiremix`)
 - **Compositor:** Hyprland (Wayland), configured in Lua (`hyprland.lua`)
-- **Core Stack:** Kitty (Terminal), Fuzzel (Launcher & dmenu), Waybar (Status Bar), Yazi (File Manager), Satty + Grim + Slurp (Screenshots), Cliphist (Clipboard History), Bluetui (Bluetooth TUI), Hyprpolkitagent (Authentication), Wiremix (Audio TUI).
+- **Core Stack:** Kitty (Terminal), Fuzzel (Launcher & dmenu), Waybar (Status Bar), Yazi (File Manager), Zathura (PDF Viewer), Satty + Grim + Slurp (Screenshots), Cliphist (Clipboard History), Bluetui (Bluetooth TUI), Hyprpolkitagent (Authentication), Wiremix (Audio TUI).
 
 > **Laptop-Specific Adjustments:**
 >
@@ -75,7 +75,7 @@ This guide outlines the installation of a pure Arch Linux base with a keyboard-d
    ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
    hwclock --systohc
    systemctl enable systemd-timesyncd
-   nano /etc/locale.gen             # Uncomment en_US.UTF-8 (and fr_FR.UTF-8 if needed)
+   nano /etc/locale.gen              # Uncomment en_US.UTF-8 (and fr_FR.UTF-8 if needed)
    locale-gen
    echo "LANG=en_US.UTF-8" > /etc/locale.conf
    ```
@@ -91,10 +91,10 @@ This guide outlines the installation of a pure Arch Linux base with a keyboard-d
 6. **User Account and Sudo Privileges:**
 
    ```bash
-   passwd                          # Set root password
+   passwd                           # Set root password
    useradd -m -G wheel -s /bin/bash username
-   passwd username                 # Set user password
-   EDITOR=nano visudo              # Uncomment: %wheel ALL=(ALL:ALL) ALL
+   passwd username                  # Set user password
+   EDITOR=nano visudo               # Uncomment: %wheel ALL=(ALL:ALL) ALL
    ```
 
 ---
@@ -158,7 +158,7 @@ This guide outlines the installation of a pure Arch Linux base with a keyboard-d
 3. **Hyprland Desktop & Wayland Utilities:**
 
    ```bash
-   sudo pacman -S hyprland hyprpaper kitty waybar fuzzel hyprpolkitagent xdg-desktop-portal-hyprland dunst libnotify
+   sudo pacman -S hyprland hyprpaper kitty waybar fuzzel hyprpolkitagent xdg-desktop-portal-hyprland xdg-utils dunst libnotify
    ```
 
 4. **Screenshots, Clipboard & Bluetooth (Official Repos Only):**
@@ -168,10 +168,11 @@ This guide outlines the installation of a pure Arch Linux base with a keyboard-d
    sudo systemctl enable --now bluetooth
    ```
 
-5. **Terminal & Dotfiles Tooling:**
+5. **Terminal, PDF Viewer & Dotfiles Tooling:**
 
    ```bash
-   sudo pacman -S yazi btop bat eza fastfetch openssh fnm ffmpegthumbnailer 7zip jq poppler fd ripgrep fzf zoxide imagemagick stow starship less
+   sudo pacman -S yazi zathura zathura-pdf-mupdf btop bat eza fastfetch openssh fnm ffmpegthumbnailer 7zip jq poppler fd ripgrep fzf zoxide imagemagick stow starship less
+   xdg-mime default org.pwmt.zathura.desktop application/pdf
    ```
 
 6. **Install AUR Helper (`yay`) _(Optional — for packages not in official repos)_:**
@@ -238,10 +239,12 @@ Once inside Hyprland, deploy the **Royal Sheikah** configurations across all mod
    git clone https://github.com/znejnah/dotfiles.git ~/dotfiles
    ```
 
-2. **Create the screenshots directory:**
+2. **Create the screenshots directory and hide Zathura from Fuzzel launcher:**
 
    ```bash
-   mkdir -p ~/Pictures/Screenshots
+   mkdir -p ~/Pictures/Screenshots ~/.local/share/applications
+   cp /usr/share/applications/org.pwmt.zathura.desktop ~/.local/share/applications/
+   echo "NoDisplay=true" >> ~/.local/share/applications/org.pwmt.zathura.desktop
    ```
 
 3. **Symlink all packages with GNU Stow:**
