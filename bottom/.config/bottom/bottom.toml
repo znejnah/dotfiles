@@ -11,13 +11,17 @@ hide_table_gap = true
 dot_marker = false
 temperature_type = "c"
 mem_as_value = true
-tree = false
-group_processes = true
+enable_gpu_memory = true
+
+[processes]
+default_tree = false
+default_grouped = true
 case_sensitive = false
 whole_word = false
 regex = false
-enable_gpu_memory = true
-enable_cache_memory = false
+
+[memory]
+cache_memory = false
 
 # --- Row 1: CPU & Memory / VRAM (30%) ---
 [[row]]
