@@ -67,9 +67,9 @@
   // =========================================================================
   // FONTS & TYPOGRAPHY (ROYAL SHEIKAH)
   // =========================================================================
-  "buffer_font_family": "JetBrains Mono",
+  "buffer_font_family": "JetBrainsMono Nerd Font",
   "buffer_font_size": 14,
-  "ui_font_family": "JetBrains Mono",
+  "ui_font_family": "JetBrainsMono Nerd Font",
   "ui_font_size": 15,
 
   "theme": {
@@ -206,7 +206,7 @@
     "button": false,
     "shell": "system",
     "copy_on_select": true,
-    "font_family": "JetBrains Mono",
+    "font_family": "JetBrainsMono Nerd Font",
     "env": {
       "PATH": "$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin",
       "GIT_EDITOR": "zed --wait",
