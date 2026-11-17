@@ -1,0 +1,108 @@
+# =========================================================================
+# BOTTOM CONFIGURATION - ROYAL SHEIKAH
+# =========================================================================
+
+[flags]
+rate = "1000ms"
+default_time_value = "60s"
+time_delta = "15s"
+hide_time = false
+hide_table_gap = true
+dot_marker = false
+temperature_type = "c"
+mem_as_value = true
+tree = false
+group_processes = true
+case_sensitive = false
+whole_word = false
+regex = false
+enable_gpu_memory = true
+enable_cache_memory = false
+
+# --- Row 1: CPU & Memory / VRAM (30%) ---
+[[row]]
+  ratio = 30
+  [[row.child]]
+    ratio = 55
+    type = "cpu"
+  [[row.child]]
+    ratio = 45
+    type = "mem"
+
+# --- Row 2: Network, Temperatures & Disks (35%) ---
+[[row]]
+  ratio = 35
+  [[row.child]]
+    ratio = 45
+    type = "network"
+  [[row.child]]
+    ratio = 55
+    [[row.child.child]]
+      ratio = 50
+      type = "temp"
+    [[row.child.child]]
+      ratio = 50
+      type = "disk"
+
+# --- Row 3: Full-width Processes (35%) ---
+[[row]]
+  ratio = 35
+  [[row.child]]
+    type = "proc"
+    default = true
+
+# =========================================================================
+# ROYAL SHEIKAH PALETTE
+# =========================================================================
+[styles]
+  [styles.cpu]
+    all_entry_color = "#00e5ff"
+    avg_entry_color = "#d4af37"
+    cpu_core_colors = [
+      "#00e5ff",
+      "#22c55e",
+      "#d4af37",
+      "#ff7a00",
+      "#e11d48",
+      "#c0c6ba",
+      "#00b8d4",
+      "#eab308"
+    ]
+
+  [styles.memory]
+    ram_color = "#00e5ff"
+    cache_color = "#4e544b"
+    swap_color = "#ff7a00"
+    arc_color = "#22c55e"
+    gpu_colors = [
+      "#d4af37",
+      "#22c55e",
+      "#00e5ff",
+      "#ff7a00"
+    ]
+
+  [styles.network]
+    rx_color = "#00e5ff"
+    tx_color = "#d4af37"
+    rx_total_color = "#00b8d4"
+    tx_total_color = "#eab308"
+
+  [styles.battery]
+    high_battery_color = "#22c55e"
+    medium_battery_color = "#ff7a00"
+    low_battery_color = "#e11d48"
+
+  [styles.tables]
+    headers = { color = "#d4af37", bold = true }
+
+  [styles.graphs]
+    graph_color = "#c0c6ba"
+    legend_text = { color = "#c0c6ba" }
+
+  [styles.widgets]
+    border_color = "#4e544b"
+    selected_border_color = "#d4af37"
+    widget_title = { color = "#d4af37", bold = true }
+    text = { color = "#c0c6ba" }
+    selected_text = { color = "#1c1c1e", bg_color = "#00e5ff", bold = true }
+    disabled_text = { color = "#4e544b" }

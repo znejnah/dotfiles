@@ -16,7 +16,7 @@ Designed for keyboard-driven development, minimal dependencies, and high refresh
 | **Shell**           | Bash + [Starship](https://starship.rs/) + [ble.sh](https://github.com/akinomyoga/ble.sh) _(Zsh on macOS)_ |
 | **File Manager**    | [Yazi](https://yazi-rs.github.io/) (terminal)                                                             |
 | **PDF Viewer**      | [Zathura](https://pwmt.org/projects/zathura/) (`zathura-pdf-mupdf`, default via `xdg-open`)               |
-| **System Monitor**  | [btop](https://github.com/aristocratos/btop)                                                              |
+| **System Monitor**  | [bottom](https://github.com/ClementTsang/bottom) (`btm`)                                                  |
 | **App Launcher**    | [Fuzzel](https://codeberg.org/dnkl/fuzzel) (Wayland native, icon-free)                                    |
 | **Screenshots**     | `grim` + `slurp` + [Satty](https://github.com/gabm/Satty)                                                 |
 | **Clipboard**       | [cliphist](https://github.com/sentriz/cliphist) + `wl-clipboard` (via Fuzzel dmenu)                       |
@@ -70,10 +70,10 @@ Designed for keyboard-driven development, minimal dependencies, and high refresh
 - **Aesthetics:** Native Royal Sheikah `theme.toml` in Yazi and matching statusbar/highlights in `zathurarc`.
 - **Integration:** Zathura is registered as default PDF handler (`xdg-mime`) and triggered via Yazi, `xdg-open`, or the cross-platform `o` shell alias, while hidden from Fuzzel (`NoDisplay=true`).
 
-**System Monitor (btop)**
+**System Monitor (bottom)**
 
-- **Deployment:** `stow btop`
-- **Aesthetics:** Custom `royal_sheikah.theme` with multi-tier gradients for CPU/RAM load and temperature metrics (`save_config_on_exit = false` to keep Git state clean).
+- **Deployment:** `stow bottom`
+- **Aesthetics:** Pure declarative `bottom.toml` with a custom 3-row Royal Sheikah layout (CPU, RAM/VRAM, Network, Temperatures, Disks, and Vim-navigable Processes).
 
 **Notification Daemon (Dunst)**
 
@@ -105,10 +105,9 @@ Designed for keyboard-driven development, minimal dependencies, and high refresh
 │   └── .aliases                     # Cross-platform shell aliases & custom commands (Arch/macOS)
 ├── bash/
 │   └── .bashrc                      # Bash options, tools init (fzf, zoxide, starship, ble.sh)
-├── btop/
-│   └── .config/btop/
-│       ├── btop.conf
-│       └── themes/
+├── bottom/
+│   └── .config/bottom/
+│       └── bottom.toml              # Declarative Royal Sheikah system monitor
 ├── docs/
 │   ├── arch_installation_roadmap.md
 │   └── hyprland_cheat_sheet.md

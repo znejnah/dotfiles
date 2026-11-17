@@ -171,7 +171,7 @@ This guide outlines the installation of a pure Arch Linux base with a keyboard-d
 5. **Terminal, PDF Viewer & Dotfiles Tooling:**
 
    ```bash
-   sudo pacman -S yazi zathura zathura-pdf-mupdf btop bat eza fastfetch openssh fnm ffmpegthumbnailer 7zip jq poppler fd ripgrep fzf zoxide imagemagick stow starship less
+   sudo pacman -S yazi zathura zathura-pdf-mupdf bottom bat eza fastfetch openssh fnm ffmpegthumbnailer 7zip jq poppler fd ripgrep fzf zoxide imagemagick stow starship less
    xdg-mime default org.pwmt.zathura.desktop application/pdf
    ```
 
