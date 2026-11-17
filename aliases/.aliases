@@ -1,17 +1,17 @@
 # ==========================
 # NAVIGATION & DISPLAY
 # ==========================
-alias ..="cd .."                                           # Go up one directory
-alias ...="cd ../.."                                       # Go up two directories
-alias ls="eza --icons --group-directories-first"           # List files with icons
-alias ll="eza -la --icons --group-directories-first"       # List files with details & hidden
-alias tree="eza --tree --icons=always"                     # Display directory tree
+alias ..="cd .."                                           # Navigate to parent directory
+alias ...="cd ../.."                                       # Navigate up two directories
+alias ls="eza --icons --group-directories-first"           # List files with icons (directories first)
+alias ll="eza -la --icons --group-directories-first"       # List all files with details and permissions
+alias tree="eza --tree --icons=always"                     # Display recursive directory tree
 alias cat="bat --paging=never"                             # Print file content with syntax highlighting
 
 if command -v xdg-open >/dev/null 2>&1; then
-  alias o="xdg-open"                                       # Open file or URL with default app
+  alias o="xdg-open"                                       # Open file or URL with default app (Linux)
 elif command -v open >/dev/null 2>&1; then
-  alias o="open"                                           # Open file or URL with default app
+  alias o="open"                                           # Open file or URL with default app (macOS)
 fi
 
 # ==========================
@@ -47,118 +47,160 @@ dev() {
   fi
 }
 
-alias nk="npx npkill -d ~/dev"                              # Track and destroy old node_modules
-alias npmclean="npm cache clean --force && rm -rf ~/.npm/*" # Full npm cache purge
-alias pnpmclean="pnpm store prune"                          # Prune orphaned pnpm packages
+alias nk="npx npkill -d ~/dev"                              # Scan and delete old node_modules in ~/dev
+alias npmclean="npm cache clean --force && rm -rf ~/.npm/*" # Purge npm cache completely
+alias pnpmclean="pnpm store prune"                         # Remove orphaned packages from pnpm store
 
 # --- Rust ---
-alias cr="cargo run"                                        # Run Rust project
-alias cc="cargo clean"                                      # Clean target/ directory
-alias rustclean="rm -rf ~/.cargo/registry ~/.cargo/git ~/.rustup/downloads" # Purge Rust caches
+alias cr="cargo run"                                       # Compile and run current Rust project
+alias cc="cargo clean"                                     # Remove Rust build artifacts (target/)
+alias rustclean="rm -rf ~/.cargo/registry ~/.cargo/git ~/.rustup/downloads" # Purge Cargo and Rustup caches
 
 # Arch Linux specific alias for Zed
 if command -v zeditor >/dev/null 2>&1; then
-    alias zed="zeditor"
+  alias zed="zeditor"                                      # Launch Zed editor (Arch Linux binary)
 fi
 
 # ==========================
 # DOCKER & ORBSTACK
 # ==========================
-alias d="docker"                                           # Docker CLI
-alias dco="docker compose"                                 # Docker Compose CLI
-alias dps="docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'" # List containers cleanly
+alias d="docker"                                           # Docker CLI shortcut
+alias dco="docker compose"                                 # Docker Compose CLI shortcut
+alias dps="docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'" # List running containers (name, status, ports)
 
 # --- Cleanup ---
-alias dprune="docker system prune -f"                      # Routine cleanup (silent)
-alias dclean="docker system prune -a -f"                   # Remove unused images (silent)
-alias dnuke="docker system prune -a --volumes"             # Nuke everything including volumes (requires confirmation)
+alias dprune="docker system prune -f"                      # Remove unused containers, networks, and dangling images
+alias dclean="docker system prune -a -f"                   # Remove all unused images and build cache
+alias dnuke="docker system prune -a --volumes"             # DANGER: Purge all Docker containers, images, and volumes
 
 # --- OrbStack ---
-alias orbon="orbctl start"                                 # Start OrbStack
-alias orboff="orbctl stop"                                 # Stop OrbStack
-alias vm="orb"                                             # OrbStack CLI
+alias orbon="orbctl start"                                 # Start OrbStack daemon (macOS)
+alias orboff="orbctl stop"                                 # Stop OrbStack daemon (macOS)
+alias vm="orb"                                             # OrbStack CLI shortcut (macOS)
 
 # ==========================
 # GLOBAL INFRASTRUCTURE
 # ==========================
-alias opsup="docker compose -f $INFRA_FILE up -d"          # Start global infra
-alias opsdown="docker compose -f $INFRA_FILE down"         # Stop global infra
-alias opslog="docker compose -f $INFRA_FILE logs -f"       # Watch global infra logs
+alias opsup="docker compose -f $INFRA_FILE up -d"          # Start global infrastructure stack in background
+alias opsdown="docker compose -f $INFRA_FILE down"         # Stop and remove global infrastructure stack
+alias opslog="docker compose -f $INFRA_FILE logs -f"       # Follow live logs from global infrastructure stack
 
 # ==========================
 # GIT ESSENTIALS
 # ==========================
 
-# --- Functions ---
-# Delete local branches that have been merged and removed from remote
-gbclean() {
-  git fetch -p
-  git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -D 2>/dev/null
-  echo "✨ Local obsolete branches cleaned!"
-}
-
 # --- Basics ---
 alias gs="git status"                                      # Show working tree status
-alias ga="git add"                                         # Add specific files to index
-alias gaa="git add ."                                      # Stage all changes
-alias gc="git commit -m"                                   # Commit with message
+alias ga="git add"                                         # Stage specific files
+alias gaa="git add ."                                      # Stage all changes in repository
+alias gc="git commit -m"                                   # Commit staged changes with message
 
 # --- Pull & Push ---
-alias gl="git pull"                                        # Pull changes
-alias gup="git pull --rebase"                              # Pull with rebase (prevents merge commits)
-alias gp="git push"                                        # Push changes
-alias gpsup="git push -u origin HEAD"                      # Push and track new local branch
-alias gpf="git push --force-with-lease"                    # Safely force push
+alias gl="git pull"                                        # Fetch and merge remote changes
+alias gup="git pull --rebase"                              # Fetch and rebase local commits on top of remote
+alias gp="git push"                                        # Push commits to remote repository
+alias gpsup="git push -u origin HEAD"                      # Push current branch and set upstream tracking
+alias gpf="git push --force-with-lease"                    # Force push safely (checks remote updates first)
 
 # --- Branches & Checkout ---
 alias gb="git branch"                                      # List local branches
-alias gco="git checkout"                                   # Switch branch
+alias gco="git checkout"                                   # Switch branch or restore working tree files
 alias gcb="git checkout -b"                                # Create and switch to new branch
 
+# --- Cleanup Branches ---
+alias gbclean="git fetch -p && git branch -vv | grep ': gone]' | awk '{print \$1}' | xargs git branch -D 2>/dev/null; echo '✨ Local obsolete branches cleaned!'" # Force-delete local branches deleted on remote
+alias gbsweep="git branch --merged | grep -v '^\*\|main\|develop' | xargs git branch -d; echo '🧹 Local sweep: merged branches removed!'" # Delete local branches already merged into current branch
+
 # --- Diff ---
-alias gd="git diff"                                        # Show unstaged changes
-alias gds="git diff --staged"                              # Show staged changes
+alias gd="git diff"                                        # Show unstaged working tree changes
+alias gds="git diff --staged"                              # Show staged changes ready for commit
 
 # --- Stash ---
-alias gsta="git stash"                                     # Stash local changes
-alias gstp="git stash pop"                                 # Apply and remove last stash
-alias gstl="git stash list"                                # List all stashes
+alias gsta="git stash"                                     # Stash uncommitted changes
+alias gstp="git stash pop"                                 # Apply and drop most recent stash
+alias gstl="git stash list"                                # List all saved stashes
 
 # --- Undo & Fix ---
-alias gcamend="git commit --amend --no-edit"               # Add changes to last commit silently
-alias grh="git reset --hard"                               # ⚠️ DANGER: Discard all uncommitted changes
+alias gcamend="git commit --amend --no-edit"               # Amend staged changes into last commit silently
+alias grh="git reset --hard"                               # DANGER: Discard all uncommitted changes permanently
 
 # --- Logs ---
-alias glog="git log --oneline --graph --decorate"          # Show beautiful git commit tree
+alias glog="git log --oneline --graph --decorate"          # Display compact commit graph with branch refs
 
 # ==========================
 # SYSTEM OPTIMIZATION
 # ==========================
-alias reload="source ~/.zshrc"                             # Reload zshrc config
-alias brewup="brew update && brew upgrade && brew cleanup" # Update and clean Homebrew
-alias port="lsof -i -P -n | grep LISTEN | grep"            # Find process listening on a specific port
-alias cls="clear && printf '\e[3J'"                        # Clear terminal and scrollback buffer completely
-# alias cleandown="fd --type f --change-older-than 30d . ~/Downloads --exec rm" # Delete downloads older than 30 days
-alias cleandown-test="fd --type f --change-older-than 30d . ~/Downloads"      # Preview what will be deleted
-alias cleandown="fd --type f --change-older-than 30d . ~/Downloads --exec rm" # Actually delete them
+alias reload="source ~/.zshrc"                             # Reload Zsh configuration
+alias brewup="brew update && brew upgrade && brew cleanup" # Update, upgrade, and clean Homebrew packages (macOS)
+alias port="lsof -i -P -n | grep LISTEN | grep"            # Find process listening on a given TCP port
+alias cls="clear && printf '\e[3J'"                        # Clear terminal screen and scrollback buffer
+alias cleandown-test="fd --type f --change-older-than 30d . ~/Downloads"     # Preview files older than 30 days in ~/Downloads
+alias cleandown="fd --type f --change-older-than 30d . ~/Downloads --exec rm" # Delete files older than 30 days in ~/Downloads
 
 # ==========================
 # TMUX
 # ==========================
-alias t="tmux"                                             # Tmux CLI
-alias ta="tmux attach -t"                                  # Attach to Tmux session
-alias tl="tmux ls"                                         # List running Tmux sessions
-alias tk="tmux kill-server"                                # Kill all Tmux sessions globally
-alias td="~/.local/bin/tmux-dev"                           # Start/Attach Dev Tmux session
-alias tdk="tmux kill-session -t dev"                       # Kill Dev Tmux session completely
+alias t="tmux"                                             # Tmux CLI shortcut
+alias ta="tmux attach -t"                                  # Attach to named Tmux session
+alias tl="tmux ls"                                         # List active Tmux sessions
+alias tk="tmux kill-server"                                # Kill Tmux server and all active sessions
+alias td="~/.local/bin/tmux-dev"                           # Start or attach to 'dev' Tmux workspace
+alias tdk="tmux kill-session -t dev"                       # Kill 'dev' Tmux workspace session
 
 # ==========================
 # HELPERS
 # ==========================
-# Interactive shortcut viewer (Shortcut | Command | Description)
+# Interactive shortcut viewer (Shortcut | Description + Full command preview)
 ahelp() {
-  grep '^alias' ~/.aliases \
-    | sed -E 's/^alias ([^=]+)="([^"]+)"([ \t]*#[ \t]*(.*))?/\1\t\2\t\4/' \
-    | awk -F'\t' '{ printf "\033[32m%-12s\033[0m \033[90m%-40s\033[0m \033[36m%s\033[0m\n", $1, $2, $3 }' \
-    | fzf --ansi --height 50% --reverse --prompt='💡 Shortcuts: '
+  awk '
+    /^[[:space:]]*alias[[:space:]]+/ {
+      line = $0
+      sub(/^[[:space:]]*alias[[:space:]]+/, "", line)
+
+      eq = index(line, "=")
+      if (eq == 0) next
+      name = substr(line, 1, eq - 1)
+      rest = substr(line, eq + 1)
+
+      desc = ""
+      cmd = rest
+      if (match(rest, /[[:space:]]+#[[:space:]]*/)) {
+        cmd = substr(rest, 1, RSTART - 1)
+        desc = substr(rest, RSTART + RLENGTH)
+      }
+
+      gsub(/^[[:space:]]+|[[:space:]]+$/, "", cmd)
+      if ((substr(cmd, 1, 1) == "\"" && substr(cmd, length(cmd), 1) == "\"") ||
+          (substr(cmd, 1, 1) == "'"'"'" && substr(cmd, length(cmd), 1) == "'"'"'")) {
+        cmd = substr(cmd, 2, length(cmd) - 2)
+      }
+
+      count++
+      names[count] = name
+      descs[count] = desc
+      cmds[count]  = cmd
+
+      if (length(name) > max_name) max_name = length(name)
+    }
+    END {
+      col_name = max_name + 3
+
+      for (i = 1; i <= count; i++) {
+        pad_name = sprintf("%*s", col_name - length(names[i]), "")
+        # Field 1 (visible): Alias + Description | Field 2 (hidden, searchable & previewed): Full command
+        printf "\033[1;38;2;212;175;55m%s\033[0m%s\033[38;2;0;229;255m%s\033[0m\t\033[38;2;192;198;186m%s\033[0m\n", names[i], pad_name, descs[i], cmds[i]
+      }
+    }
+  ' ~/.aliases \
+    | fzf --ansi \
+          --delimiter=$'\t' \
+          --with-nth=1 \
+          --height 55% \
+          --reverse \
+          --border=rounded \
+          --prompt="❯ " \
+          --pointer="▶" \
+          --preview='printf "%b\n" {2}' \
+          --preview-window="down:2:wrap:border-top" \
+          --color="bg+:#1c1c1e,fg+:#00e5ff,hl:#d4af37,hl+:#d4af37,border:#4e544b,prompt:#d4af37,pointer:#00e5ff,info:#4e544b"
 }
