@@ -74,9 +74,12 @@ alias dclean="docker system prune -a -f"                   # Remove all unused i
 alias dnuke="docker system prune -a --volumes"             # DANGER: Purge all Docker containers, images, and volumes
 
 # --- OrbStack ---
-alias orbon="orbctl start"                                 # Start OrbStack daemon (macOS)
-alias orboff="orbctl stop"                                 # Stop OrbStack daemon (macOS)
-alias vm="orb"                                             # OrbStack CLI shortcut (macOS)
+alias orbon="orbctl start"                                                     # Start OrbStack daemon and VM (macOS)
+alias orboff="orbctl stop && osascript -e 'quit app \"OrbStack\"'"             # Stop OrbStack VM and quit host app (macOS)
+alias orbls="orb list"                                                         # List OrbStack Linux machines and status (macOS)
+alias orbsh="orb"                                                              # Open interactive shell in default Linux machine (macOS)
+alias orbdbg="orb debug"                                                       # Attach debug toolkit shell to any container (macOS)
+alias orbtop="orb top"                                                         # Live activity monitor for OrbStack containers/VMs (macOS)
 
 # ==========================
 # GLOBAL INFRASTRUCTURE
