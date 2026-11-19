@@ -8,7 +8,7 @@ This guide outlines the installation of a pure Arch Linux base with a keyboard-d
 - **GPU:** NVIDIA RTX 5070 (`nvidia-open` drivers + 32/64-bit Vulkan)
 - **Audio:** PipeWire (`pipewire-pulse`, `pipewire-jack`, `wireplumber`, `wiremix`)
 - **Compositor:** Hyprland (Wayland), configured in Lua (`hyprland.lua`)
-- **Core Stack:** Kitty (Terminal), Fuzzel (Launcher & dmenu), Waybar (Status Bar), Yazi (File Manager), Zathura (PDF Viewer), Satty + Grim + Slurp (Screenshots), Cliphist (Clipboard History), Bluetui (Bluetooth TUI), Hyprpolkitagent (Authentication), Wiremix (Audio TUI).
+- **Core Stack:** Kitty (Terminal), Fuzzel (Launcher & dmenu), Waybar (Status Bar), Yazi (File Manager), Zathura (PDF Viewer), Satty + Grim + Slurp (Screenshots), Cliphist (Clipboard History), Bluetui (Bluetooth TUI), Hyprpolkitagent (Authentication), Wiremix (Audio TUI), Zed (Editor), Hurl + websocat + grpcurl + oha (API & Load Testing CLI).
 
 > **Laptop-Specific Adjustments:**
 >
@@ -171,15 +171,23 @@ This guide outlines the installation of a pure Arch Linux base with a keyboard-d
 5. **Terminal, PDF Viewer & Dotfiles Tooling:**
 
    ```bash
-   sudo pacman -S yazi zathura zathura-pdf-mupdf bottom bat eza fastfetch openssh fnm ffmpegthumbnailer 7zip jq poppler fd ripgrep fzf zoxide imagemagick stow starship less
+   sudo pacman -S yazi zathura zathura-pdf-mupdf bottom bat eza fastfetch openssh fnm ffmpegthumbnailer 7zip jq poppler fd ripgrep fzf zoxide imagemagick stow starship less reflector pacman-contrib
    xdg-mime default org.pwmt.zathura.desktop application/pdf
    ```
 
-6. **Install AUR Helper (`yay`) _(Optional — for packages not in official repos)_:**
+6. **Editor & CLI API Testing Stack:**
 
    ```bash
-   git clone https://aur.archlinux.org/yay.git
-   cd yay && makepkg -si && cd .. && rm -rf yay
+   sudo pacman -S zed hurl websocat oha
+   ```
+
+7. **Optimize Mirrors & Install Precompiled AUR Helper (`yay-bin`):**
+
+   ```bash
+   sudo reflector --country France,Germany --latest 15 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+   git clone https://aur.archlinux.org/yay-bin.git
+   cd yay-bin && makepkg -si && cd .. && rm -rf yay-bin
+   yay -S --needed grpcurl-bin
    ```
 
    - _Tip:_ Set `!debug` in `OPTIONS=(...)` inside `/etc/makepkg.conf` to prevent `makepkg` from generating `*-debug` packages.
@@ -253,3 +261,9 @@ Once inside Hyprland, deploy the **Royal Sheikah** configurations across all mod
    cd ~/dotfiles
    stow */
    ```
+
+---
+
+## Phase 7: Next Steps & Security
+
+- **Minimalist WireGuard VPN:** Configure `wireguard-tools` with `wg-quick` for fast, CLI-driven encrypted networking without heavy GUI clients.

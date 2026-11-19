@@ -147,7 +147,15 @@ if [ -n "$ZSH_VERSION" ]; then
 elif [ -n "$BASH_VERSION" ]; then
   alias reload="source ~/.bashrc"                          # Reload Bash configuration (Arch/Bash)
 fi
+
 alias brewup="brew update && brew upgrade && brew cleanup" # Update, upgrade, and clean Homebrew packages (macOS)
+
+if command -v yay >/dev/null 2>&1; then
+  alias archup="yay -Syu && sudo paccache -r"                # Update system + AUR packages and prune old cache (Arch)
+elif command -v pacman >/dev/null 2>&1; then
+  alias archup="sudo pacman -Syu && sudo paccache -r"        # Update official Arch Linux packages and prune cache (Arch)
+fi
+
 alias mirrors="sudo reflector --country France,Germany --latest 15 --protocol https --sort rate --save /etc/pacman.d/mirrorlist" # Refresh fastest Arch Linux mirrors (Arch)
 alias port="lsof -i -P -n | grep LISTEN | grep"            # Find process listening on a given TCP port
 alias cls="clear && printf '\e[3J'"                        # Clear terminal screen and scrollback buffer

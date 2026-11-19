@@ -8,23 +8,25 @@ Designed for keyboard-driven development, minimal dependencies, and high refresh
 
 ## System Specs & Stack
 
-| Component           | Tool / Hardware                                                                                           |
-| :------------------ | :-------------------------------------------------------------------------------------------------------- |
-| **OS**              | Arch Linux (Dual-boot with Windows)                                                                       |
-| **WM / Compositor** | [Hyprland](https://hyprland.org/) (configured in Lua)                                                     |
-| **Terminal**        | [Kitty](https://sw.kovidgoyal.net/kitty/)                                                                 |
-| **Shell**           | Bash + [Starship](https://starship.rs/) + [ble.sh](https://github.com/akinomyoga/ble.sh) _(Zsh on macOS)_ |
-| **File Manager**    | [Yazi](https://yazi-rs.github.io/) (terminal)                                                             |
-| **PDF Viewer**      | [Zathura](https://pwmt.org/projects/zathura/) (`zathura-pdf-mupdf`, default via `xdg-open`)               |
-| **System Monitor**  | [bottom](https://github.com/ClementTsang/bottom) (`btm`)                                                  |
-| **App Launcher**    | [Fuzzel](https://codeberg.org/dnkl/fuzzel) (Wayland native, icon-free)                                    |
-| **Screenshots**     | `grim` + `slurp` + [Satty](https://github.com/gabm/Satty)                                                 |
-| **Clipboard**       | [cliphist](https://github.com/sentriz/cliphist) + `wl-clipboard` (via Fuzzel dmenu)                       |
-| **Status Bar**      | [Waybar](https://github.com/Alexays/Waybar)                                                               |
-| **Audio**           | PipeWire + WirePlumber + [wiremix](https://github.com/tsowell/wiremix) (TUI)                              |
-| **Bluetooth**       | BlueZ + [bluetui](https://github.com/pythops/bluetui) (TUI)                                               |
-| **Editor**          | [Zed](https://zed.dev/)                                                                                   |
-| **Hardware**        | AMD Ryzen 5 7500F, NVIDIA GeForce RTX 5070, 32 GB RAM                                                     |
+| Component           | Tool / Hardware                                                                                                                                                |
+| :------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **OS**              | Arch Linux (Dual-boot with Windows)                                                                                                                            |
+| **WM / Compositor** | [Hyprland](https://hyprland.org/) (configured in Lua)                                                                                                          |
+| **Terminal**        | [Kitty](https://sw.kovidgoyal.net/kitty/)                                                                                                                      |
+| **Shell**           | Bash + [Starship](https://starship.rs/) + [ble.sh](https://github.com/akinomyoga/ble.sh) _(Zsh on macOS)_                                                      |
+| **File Manager**    | [Yazi](https://yazi-rs.github.io/) (terminal)                                                                                                                  |
+| **PDF Viewer**      | [Zathura](https://pwmt.org/projects/zathura/) (`zathura-pdf-mupdf`, default via `xdg-open`)                                                                    |
+| **System Monitor**  | [bottom](https://github.com/ClementTsang/bottom) (`btm`)                                                                                                       |
+| **App Launcher**    | [Fuzzel](https://codeberg.org/dnkl/fuzzel) (Wayland native, icon-free)                                                                                         |
+| **Screenshots**     | `grim` + `slurp` + [Satty](https://github.com/gabm/Satty)                                                                                                      |
+| **Clipboard**       | [cliphist](https://github.com/sentriz/cliphist) + `wl-clipboard` (via Fuzzel dmenu)                                                                            |
+| **Status Bar**      | [Waybar](https://github.com/Alexays/Waybar)                                                                                                                    |
+| **Audio**           | PipeWire + WirePlumber + [wiremix](https://github.com/tsowell/wiremix) (TUI)                                                                                   |
+| **Bluetooth**       | BlueZ + [bluetui](https://github.com/pythops/bluetui) (TUI)                                                                                                    |
+| **Editor**          | [Zed](https://zed.dev/) (GPU-accelerated via Vulkan)                                                                                                           |
+| **API & Load CLI**  | [Hurl](https://hurl.dev/), [websocat](https://github.com/vi/websocat), [grpcurl](https://github.com/fullstorydev/grpcurl), [oha](https://github.com/hatoo/oha) |
+| **Package Maint.**  | `pacman` + `pacman-contrib` (`paccache`) + `reflector` + `yay-bin`                                                                                             |
+| **Hardware**        | AMD Ryzen 5 7500F, NVIDIA GeForce RTX 5070, 32 GB RAM                                                                                                          |
 
 ---
 
@@ -44,6 +46,18 @@ Designed for keyboard-driven development, minimal dependencies, and high refresh
 ---
 
 ## Core Configurations
+
+**Editor & API Testing Workflow (Zed + CLI Stack)**
+
+- **Deployment:** `stow zed aliases`
+- **Aesthetics:** Custom Royal Sheikah theme (`themes/`), custom keybindings (`keymap.json`), and task runner (`tasks.json`).
+- **CLI API Stack:** Pure terminal testing via `hurl` (`ht`, `hv`), `websocat` (`ws`), `grpcurl` (`grpc`), and HTTP benchmarking via `oha` (`bench`), integrated directly into Zed tasks (`Ctrl+Alt+R` / `Ctrl+Alt+V`).
+
+**Shell Aliases & System Maintenance**
+
+- **Deployment:** `stow aliases`
+- **Cross-Shell Helpers:** Unified `reload` (Bash & Zsh compatible) and interactive `fzf`-powered `ahelp()` command browser styled in Royal Sheikah colors.
+- **Arch Maintenance:** Fast mirror sorting (`mirrors` via `reflector`) and full system + AUR upgrade with automatic cache pruning (`archup` via `yay-bin` + `paccache`).
 
 **App Launcher & dmenu (Fuzzel)**
 
@@ -147,6 +161,8 @@ Designed for keyboard-driven development, minimal dependencies, and high refresh
 │       └── zathurarc                # Minimalist Royal Sheikah PDF viewer configuration
 └── zed/
     └── .config/zed/
-        ├── settings.json            # Keymaps, LSP configurations, editor settings
-        └── themes/
+        ├── keymap.json              # Custom editor & task runner keybindings
+        ├── settings.json            # LSP configurations, UI, and editor settings
+        ├── tasks.json               # CLI task definitions (Hurl, etc.)
+        └── themes/                  # Royal Sheikah Zed theme
 ```
