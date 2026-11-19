@@ -62,6 +62,15 @@ if command -v zeditor >/dev/null 2>&1; then
 fi
 
 # ==========================
+# API & NETWORK TESTING
+# ==========================
+alias ht="hurl --test --color"                             # Run Hurl API test file with assertions
+alias hv="hurl --very-verbose --color"                     # Run Hurl request with full headers and body trace
+alias ws="websocat"                                        # Connect to WebSocket endpoint interactively
+alias grpc="grpcurl -plaintext"                            # Query local plaintext gRPC service
+alias bench="oha -z 10s -c 20"                             # Run 10s HTTP load benchmark (20 concurrent workers)
+
+# ==========================
 # DOCKER & ORBSTACK
 # ==========================
 alias d="docker"                                           # Docker CLI shortcut
@@ -133,8 +142,13 @@ alias glog="git log --oneline --graph --decorate"          # Display compact com
 # ==========================
 # SYSTEM OPTIMIZATION
 # ==========================
-alias reload="source ~/.zshrc"                             # Reload Zsh configuration
+if [ -n "$ZSH_VERSION" ]; then
+  alias reload="source ~/.zshrc"                           # Reload Zsh configuration (macOS/Zsh)
+elif [ -n "$BASH_VERSION" ]; then
+  alias reload="source ~/.bashrc"                          # Reload Bash configuration (Arch/Bash)
+fi
 alias brewup="brew update && brew upgrade && brew cleanup" # Update, upgrade, and clean Homebrew packages (macOS)
+alias mirrors="sudo reflector --country France,Germany --latest 15 --protocol https --sort rate --save /etc/pacman.d/mirrorlist" # Refresh fastest Arch Linux mirrors (Arch)
 alias port="lsof -i -P -n | grep LISTEN | grep"            # Find process listening on a given TCP port
 alias cls="clear && printf '\e[3J'"                        # Clear terminal screen and scrollback buffer
 alias cleandown-test="fd --type f --change-older-than 30d . ~/Downloads"     # Preview files older than 30 days in ~/Downloads
