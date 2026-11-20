@@ -82,13 +82,18 @@ alias dprune="docker system prune -f"                      # Remove unused conta
 alias dclean="docker system prune -a -f"                   # Remove all unused images and build cache
 alias dnuke="docker system prune -a --volumes"             # DANGER: Purge all Docker containers, images, and volumes
 
-# --- OrbStack ---
-alias orbon="orbctl start"                                                     # Start OrbStack daemon and VM (macOS)
-alias orboff="orbctl stop && osascript -e 'quit app \"OrbStack\"'"             # Stop OrbStack VM and quit host app (macOS)
-alias orbls="orb list"                                                         # List OrbStack Linux machines and status (macOS)
-alias orbsh="orb"                                                              # Open interactive shell in default Linux machine (macOS)
-alias orbdbg="orb debug"                                                       # Attach debug toolkit shell to any container (macOS)
-alias orbtop="orb top"                                                         # Live activity monitor for OrbStack containers/VMs (macOS)
+# --- Daemon & Runtime (OS-Specific) ---
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  alias orbon="orbctl start"                                                     # Start OrbStack daemon and VM (macOS)
+  alias orboff="orbctl stop && osascript -e 'quit app \"OrbStack\"'"             # Stop OrbStack VM and quit host app (macOS)
+  alias orbls="orb list"                                                         # List OrbStack Linux machines and status (macOS)
+  alias orbsh="orb"                                                              # Open interactive shell in default Linux machine (macOS)
+  alias orbdbg="orb debug"                                                       # Attach debug toolkit shell to any container (macOS)
+  alias orbtop="orb top"                                                         # Live activity monitor for OrbStack containers/VMs (macOS)
+elif command -v systemctl >/dev/null 2>&1; then
+  alias don="sudo systemctl start docker.socket"                                 # Enable on-demand Docker socket (Arch)
+  alias doff="sudo systemctl stop docker.service docker.socket"                  # Stop Docker daemon and socket completely (Arch)
+fi
 
 # ==========================
 # GLOBAL INFRASTRUCTURE
