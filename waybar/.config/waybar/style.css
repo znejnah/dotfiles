@@ -1,5 +1,5 @@
 /* =============================================================================
- * WAYBAR STYLESHEET: ROYAL SHEIKAH (EXACT MAPPING)
+ * WAYBAR STYLESHEET: VICE (EXACT MAPPING)
  * ============================================================================= */
 
 /* Global reset */
@@ -15,10 +15,10 @@
 /* Transparent bar container */
 window#waybar {
   background-color: transparent;
-  color: #c0c6ba;
+  color: #e8e0f5;
 }
 
-/* Floating Obsidian Islands (Exact modules list) */
+/* Floating Vice Midnight Islands (Exact modules list) */
 #workspaces,
 #window,
 #clock,
@@ -29,8 +29,8 @@ window#waybar {
 #memory,
 #pulseaudio,
 #tray {
-  background-color: rgba(28, 28, 30, 0.92);
-  border-bottom: 2px solid #00e5ff;
+  background-color: rgba(19, 15, 29, 0.92);
+  border-bottom: 2px solid #00f0ff;
   border-radius: 8px;
   margin: 4px 4px 2px 4px;
   padding: 2px 12px;
@@ -42,36 +42,36 @@ window#waybar {
 }
 
 #workspaces button {
-  color: rgba(0, 229, 255, 0.4);
+  color: rgba(0, 240, 255, 0.4);
   background-color: transparent;
   padding: 0 6px;
   border-radius: 4px;
 }
 
 #workspaces button:hover {
-  color: #00e5ff;
-  background-color: rgba(0, 229, 255, 0.1);
+  color: #00f0ff;
+  background-color: rgba(0, 240, 255, 0.1);
 }
 
 #workspaces button.active {
-  color: #d4af37;
-  background-color: rgba(212, 175, 55, 0.12);
+  color: #ff2a85;
+  background-color: rgba(255, 42, 133, 0.14);
 }
 
 #workspaces button.urgent {
-  color: #e11d48;
-  border-bottom: 2px solid #e11d48;
+  color: #ff1744;
+  border-bottom: 2px solid #ff1744;
 }
 
 /* Active window title */
 #window {
-  color: #d4af37;
+  color: #ff2a85;
   font-weight: normal;
 }
 
 /* Time module */
 #clock {
-  color: #d4af37;
+  color: #ff2a85;
 }
 
 /* Core telemetry and status modules */
@@ -79,49 +79,49 @@ window#waybar {
 #bluetooth,
 #cpu,
 #memory {
-  color: #00e5ff;
+  color: #00f0ff;
 }
 
 #bluetooth.off,
 #bluetooth.disabled {
-  color: #4e544b;
+  color: #58467a;
 }
 
 /* CPU & Memory dynamic thresholds */
 #cpu.warning,
 #memory.warning {
-  color: #ff7a00;
-  border-bottom-color: #ff7a00;
+  color: #ff9e00;
+  border-bottom-color: #ff9e00;
 }
 
 #cpu.critical,
 #memory.critical {
-  color: #e11d48;
-  border-bottom-color: #e11d48;
+  color: #ff1744;
+  border-bottom-color: #ff1744;
 }
 
 #temperature {
-  color: #d4af37;
+  color: #ff2a85;
 }
 
 #temperature.critical {
-  color: #e11d48;
-  border-bottom-color: #e11d48;
+  color: #ff1744;
+  border-bottom-color: #ff1744;
 }
 
 #network.disconnected {
-  color: #e11d48;
-  border-bottom-color: #e11d48;
+  color: #ff1744;
+  border-bottom-color: #ff1744;
 }
 
 /* Sound module */
 #pulseaudio {
-  color: #d4af37;
+  color: #ff2a85;
 }
 
 #pulseaudio.muted {
-  color: #4e544b;
-  border-bottom-color: #4e544b;
+  color: #58467a;
+  border-bottom-color: #3b2d54;
 }
 
 /* System tray */
@@ -130,12 +130,12 @@ window#waybar {
 }
 
 #tray menu {
-  background-color: rgba(28, 28, 30, 0.96);
-  border: 1px solid rgba(0, 229, 255, 0.35);
-  border-bottom: 2px solid #00e5ff;
+  background-color: rgba(19, 15, 29, 0.96);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  border-bottom: 2px solid #00f0ff;
   border-radius: 8px;
   padding: 6px;
-  color: #c0c6ba;
+  color: #e8e0f5;
   font-family: "JetBrains Mono", "Symbols Nerd Font Mono", monospace;
   font-size: 13px;
 }
@@ -143,35 +143,35 @@ window#waybar {
 #tray menu menuitem {
   padding: 6px 12px;
   border-radius: 5px;
-  color: #c0c6ba;
+  color: #e8e0f5;
   background-color: transparent;
 }
 
 #tray menu menuitem:hover {
-  background-color: rgba(212, 175, 55, 0.14);
-  color: #d4af37;
+  background-color: rgba(255, 42, 133, 0.16);
+  color: #ff2a85;
 }
 
 #tray menu menuitem:disabled {
-  color: #4e544b;
+  color: #58467a;
 }
 
 #tray menu separator {
-  background-color: rgba(0, 229, 255, 0.2);
+  background-color: rgba(0, 240, 255, 0.2);
   margin: 4px 8px;
   min-height: 1px;
 }
 
-/* Popup calendrier & tooltips (Royal Sheikah) */
+/* Popup calendrier & tooltips (Vice City) */
 tooltip {
-  background-color: rgba(28, 28, 30, 0.96);
-  border: 1px solid rgba(0, 229, 255, 0.35);
-  border-bottom: 2px solid #00e5ff;
+  background-color: rgba(19, 15, 29, 0.96);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  border-bottom: 2px solid #00f0ff;
   border-radius: 8px;
 }
 
 tooltip label {
-  color: #c0c6ba;
+  color: #e8e0f5;
   font-family: "JetBrains Mono", "Symbols Nerd Font Mono", monospace;
   font-size: 13px;
   padding: 8px 12px;

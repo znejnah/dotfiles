@@ -36,9 +36,9 @@ export BAT_THEME="base16" # Neutral fallback before creating a custom bat theme
 # FZF Royal Sheikah UI (Anthracite bg, Cyan Sheikah accents, Royal Gold selections)
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
 export FZF_DEFAULT_OPTS=" \
---color=bg:#1c1c1e,bg+:#242426,fg:#c0c6ba,fg+:#e5e5e5,hl:#ff7a00,hl+:#ff7a00 \
---color=prompt:#00e5ff,pointer:#d4af37,marker:#22c55e,border:#4e544b,header:#4e544b \
---prompt='◈ ' --pointer='▲' --marker='⎔' --layout=reverse --border"
+--color=bg:#130f1d,bg+:#1b1529,fg:#e8e0f5,fg+:#ffffff,hl:#ff2a85,hl+:#ff2a85 \
+--color=prompt:#00f0ff,pointer:#ff2a85,marker:#00e676,border:#3b2d54,header:#3b2d54 \
+--prompt='❯ ' --pointer='▶' --marker='★' --layout=reverse --border=rounded"
 
 
 # ==============================================================================

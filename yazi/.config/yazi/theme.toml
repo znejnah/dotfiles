@@ -1,36 +1,29 @@
-# ==============================================================================
-# File        : theme.toml
-# Description : Royal Sheikah color theme for Yazi
-# Palette     : Obsidian #1c1c1e | Gold #d4af37 | Cyan #00e5ff | Gray #4e544b
-#               Green #22c55e | Stasis Orange #ff7a00 | Gloom Red #e11d48
-# ==============================================================================
-
 # : Manager {{{
 
 [mgr]
-cwd = { fg = "#00e5ff", bold = true }
+cwd = { fg = "#00f0ff", bold = true }
 
 # Find
-find_keyword  = { fg = "#d4af37", bold = true, italic = true, underline = true }
-find_position = { fg = "#00e5ff", bg = "reset", bold = true, italic = true }
+find_keyword  = { fg = "#ff2a85", bold = true, italic = true, underline = true }
+find_position = { fg = "#00f0ff", bg = "reset", bold = true, italic = true }
 
 # Symlink
-symlink_target = { italic = true, fg = "#4e544b" }
+symlink_target = { italic = true, fg = "#58467a" }
 
 # Marker
-marker_copied   = { fg = "#22c55e", bg = "#22c55e" }
-marker_cut      = { fg = "#e11d48", bg = "#e11d48" }
-marker_marked   = { fg = "#00e5ff", bg = "#00e5ff" }
-marker_selected = { fg = "#d4af37", bg = "#d4af37" }
+marker_copied   = { fg = "#00e676", bg = "#00e676" }
+marker_cut      = { fg = "#ff1744", bg = "#ff1744" }
+marker_marked   = { fg = "#00f0ff", bg = "#00f0ff" }
+marker_selected = { fg = "#ff2a85", bg = "#ff2a85" }
 
 # Count badges
-count_copied   = { fg = "#1c1c1e", bg = "#22c55e" }
-count_cut      = { fg = "#1c1c1e", bg = "#e11d48" }
-count_selected = { fg = "#1c1c1e", bg = "#d4af37" }
+count_copied   = { fg = "#130f1d", bg = "#00e676" }
+count_cut      = { fg = "#130f1d", bg = "#ff1744" }
+count_selected = { fg = "#130f1d", bg = "#ff2a85" }
 
 # Border
 border_symbol = "│"
-border_style  = { fg = "#4e544b" }
+border_style  = { fg = "#3b2d54" }
 
 # Syntax highlighting disabled (relies on terminal theme)
 syntect_theme = ""
@@ -40,8 +33,8 @@ syntect_theme = ""
 # : Tabs {{{
 
 [tabs]
-active   = { fg = "#1c1c1e", bg = "#d4af37", bold = true }
-inactive = { fg = "#d4af37", bg = "#1c1c1e" }
+active   = { fg = "#130f1d", bg = "#ff2a85", bold = true }
+inactive = { fg = "#ff2a85", bg = "#130f1d" }
 
 sep_inner = { open = "", close = "" }
 sep_outer = { open = "", close = "" }
@@ -51,14 +44,14 @@ sep_outer = { open = "", close = "" }
 # : Mode {{{
 
 [mode]
-normal_main = { fg = "#1c1c1e", bg = "#d4af37", bold = true }
-normal_alt  = { fg = "#d4af37", bg = "#1c1c1e" }
+normal_main = { fg = "#130f1d", bg = "#ff2a85", bold = true }
+normal_alt  = { fg = "#ff2a85", bg = "#130f1d" }
 
-select_main = { fg = "#1c1c1e", bg = "#00e5ff", bold = true }
-select_alt  = { fg = "#00e5ff", bg = "#1c1c1e" }
+select_main = { fg = "#130f1d", bg = "#00f0ff", bold = true }
+select_alt  = { fg = "#00f0ff", bg = "#130f1d" }
 
-unset_main  = { fg = "#1c1c1e", bg = "#ff7a00", bold = true }
-unset_alt   = { fg = "#ff7a00", bg = "#1c1c1e" }
+unset_main  = { fg = "#130f1d", bg = "#ff9e00", bold = true }
+unset_alt   = { fg = "#ff9e00", bg = "#130f1d" }
 
 # : }}}
 
@@ -75,63 +68,63 @@ padding = { open = "", close = "" }
 # : Status bar {{{
 
 [status]
-overall   = { fg = "#d4af37" }
+overall   = { fg = "#ff2a85" }
 sep_left  = { open = "", close = "" }
 sep_right = { open = "", close = "" }
 
 # Permissions
-perm_sep   = { fg = "#4e544b" }
-perm_type  = { fg = "#00e5ff" }
-perm_read  = { fg = "#d4af37" }
-perm_write = { fg = "#ff7a00" }
-perm_exec  = { fg = "#22c55e" }
+perm_sep   = { fg = "#3b2d54" }
+perm_type  = { fg = "#00f0ff" }
+perm_read  = { fg = "#ff2a85" }
+perm_write = { fg = "#ff9e00" }
+perm_exec  = { fg = "#00e676" }
 
 # Progress
-progress_label  = { fg = "#1c1c1e", bold = true }
-progress_normal = { fg = "#00e5ff", bg = "#4e544b" }
-progress_error  = { fg = "#e11d48", bg = "#4e544b" }
+progress_label  = { fg = "#130f1d", bold = true }
+progress_normal = { fg = "#00f0ff", bg = "#3b2d54" }
+progress_error  = { fg = "#ff1744", bg = "#3b2d54" }
 
 # : }}}
 
 # : Pick / Input / Tasks / Which {{{
 
 [pick]
-border   = { fg = "#00e5ff" }
-active   = { fg = "#d4af37", bold = true }
+border   = { fg = "#00f0ff" }
+active   = { fg = "#ff2a85", bold = true }
 inactive = {}
 
 [input]
-border   = { fg = "#00e5ff" }
-title    = { fg = "#d4af37" }
+border   = { fg = "#00f0ff" }
+title    = { fg = "#ff2a85" }
 value    = {}
 selected = { reversed = true }
 
 [cmp]
-border = { fg = "#4e544b" }
+border = { fg = "#3b2d54" }
 
 [tasks]
-border  = { fg = "#4e544b" }
-title   = { fg = "#d4af37" }
-hovered = { fg = "#00e5ff", underline = true }
+border  = { fg = "#3b2d54" }
+title   = { fg = "#ff2a85" }
+hovered = { fg = "#00f0ff", underline = true }
 
 [which]
-mask            = { bg = "#1c1c1e" }
-cand            = { fg = "#22c55e" }
-rest            = { fg = "#c0c6ba" }
-desc            = { fg = "#00e5ff" }
+mask            = { bg = "#130f1d" }
+cand            = { fg = "#00e676" }
+rest            = { fg = "#e8e0f5" }
+desc            = { fg = "#00f0ff" }
 separator       = "  "
-separator_style = { fg = "#4e544b" }
+separator_style = { fg = "#3b2d54" }
 
 [help]
-on      = { fg = "#22c55e" }
-run     = { fg = "#00e5ff" }
+on      = { fg = "#00e676" }
+run     = { fg = "#00f0ff" }
 hovered = { reversed = true, bold = true }
-footer  = { fg = "#1c1c1e", bg = "#d4af37" }
+footer  = { fg = "#130f1d", bg = "#ff2a85" }
 
 [notify]
-title_info  = { fg = "#00e5ff" }
-title_warn  = { fg = "#ff7a00" }
-title_error = { fg = "#e11d48" }
+title_info  = { fg = "#00f0ff" }
+title_warn  = { fg = "#ff9e00" }
+title_error = { fg = "#ff1744" }
 
 # : }}}
 
@@ -139,29 +132,29 @@ title_error = { fg = "#e11d48" }
 
 [filetype]
 rules = [
-# Hidden files and folders in Rock Gray
-{ url = ".*/", fg = "#4e544b" },
-{ url = ".*",  fg = "#4e544b" },
+# Hidden files and folders in Dusk Violet
+{ url = ".*/", fg = "#58467a" },
+{ url = ".*",  fg = "#58467a" },
 
-# Directories in Sheikah Cyan
-{ url = "*/",  fg = "#00e5ff" },
+# Directories in Ocean Drive Cyan
+{ url = "*/",  fg = "#00f0ff" },
 
-# Media in Royal Gold
-{ mime = "image/*",         fg = "#d4af37" },
-{ mime = "{audio,video}/*", fg = "#d4af37" },
+# Media in Flamingo Neon
+{ mime = "image/*",         fg = "#ff2a85" },
+{ mime = "{audio,video}/*", fg = "#ff2a85" },
 
-# Archives in Gloom Red
-{ mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "#e11d48" },
+# Archives in Heatwave Crimson
+{ mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "#ff1744" },
 
-# Documents in Sheikah Sand
-{ mime = "application/{doc,pdf,rtf}", fg = "#c0c6ba" },
+# Documents in Vapor Mist
+{ mime = "application/{doc,pdf,rtf}", fg = "#e8e0f5" },
 
 # Special and executable files
-{ url = "*", is = "orphan", bg = "#e11d48" },
-{ url = "*", is = "exec",   fg = "#22c55e" },
+{ url = "*", is = "orphan", bg = "#ff1744" },
+{ url = "*", is = "exec",   fg = "#00e676" },
 
 # Fallback for regular files
-{ url = "*", fg = "#c0c6ba" },
+{ url = "*", fg = "#e8e0f5" },
 ]
 
 # : }}}
@@ -171,13 +164,13 @@ rules = [
 [icon]
 conds = [
 # Hidden files and folders
-{ if = "hidden & dir", text = "", fg = "#4e544b" },
-{ if = "hidden",       text = "", fg = "#4e544b" },
+{ if = "hidden & dir", text = "", fg = "#58467a" },
+{ if = "hidden",       text = "", fg = "#58467a" },
 
 # Standard directories & files
-{ if = "dir & hovered", text = "", fg = "#00e5ff" },
-{ if = "dir",           text = "", fg = "#00e5ff" },
-{ if = "!dir",          text = "", fg = "#c0c6ba" },
+{ if = "dir & hovered", text = "", fg = "#00f0ff" },
+{ if = "dir",           text = "", fg = "#00f0ff" },
+{ if = "!dir",          text = "", fg = "#e8e0f5" },
 ]
 
 # : }}}

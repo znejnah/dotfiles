@@ -15,9 +15,9 @@
   "hyprland/workspaces": {
     "format": "{icon}",
     "format-icons": {
-      "active": "◈",
-      "default": "◇",
-      "urgent": "⎔",
+      "active": "󰓎 ",
+      "default": " ",
+      "urgent": "󱞈 ",
     },
     "persistent-workspaces": {
       "*": 4,
@@ -31,14 +31,15 @@
       "firefox:::(.*)": "󰈹 $1",
       "dev.zed.Zed:::(.*)": " $1",
       "kitty:::(.*)": " $1",
-      "^(?!(firefox|dev\\.zed\\.Zed|kitty))([^:]*):::(.*)": "⟁ $1",
+      "org.pwmt.zathura:::(.*)": "󰈦 $1",
+      "^(?!(firefox|dev\\.zed\\.Zed|kitty))([^:]*):::(.*)": "󱁕 $1",
     },
     "separate-outputs": true,
   },
 
   "clock": {
     "timezone": "Europe/Paris",
-    "format": " {:%I:%M <span color='#00e5ff' size='small'><b>%p</b></span>}",
+    "format": " {:%I:%M <span color='#00f0ff' size='small'><b>%p</b></span>}",
     "format-alt": "󰃭 {:%a %d %b}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     "calendar": {
@@ -47,11 +48,11 @@
       "weeks-pos": "left",
       "on-scroll": 1,
       "format": {
-        "months": "<span color='#d4af37'><b>{}</b></span>",
-        "days": "<span color='#c0c6ba'>{}</span>",
-        "weeks": "<span color='#4e544b'>W{}</span>",
-        "weekdays": "<span color='#00e5ff'><b>{}</b></span>",
-        "today": "<span color='#1c1c1e' background='#d4af37'><b> {} </b></span>",
+        "months": "<span color='#ff2a85'><b>{}</b></span>",
+        "days": "<span color='#e8e0f5'>{}</span>",
+        "weeks": "<span color='#58467a'>W{}</span>",
+        "weekdays": "<span color='#00f0ff'><b>{}</b></span>",
+        "today": "<span color='#130f1d' background='#ff2a85'><b> {} </b></span>",
       },
     },
     "actions": {

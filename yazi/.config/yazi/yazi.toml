@@ -1,162 +1,176 @@
-# # ==============================================================================
-# # File        : yazi.toml
-# # Description : General Yazi configuration (Clean & Purified)
-# # ==============================================================================
+# : Manager {{{
 
 [mgr]
-ratio = [1, 4, 3]
-sort_by = "natural"
-sort_sensitive = false
-sort_reverse = false
-sort_dir_first = true
-sort_translit = false
-linemode = "size"
-show_hidden = false
-show_symlink = true
-scrolloff = 5
-mouse_events = ["click", "scroll"]
-# title_format = "Yazi: {cwd}"
+cwd = { fg = "#00f0ff", bold = true }
 
-[preview]
-tab_size = 2
-max_width = 600
-max_height = 900
-cache_dir = ""
-image_delay = 30
-image_filter = "triangle"
-image_quality = 75
-sixel_fraction = 15
-ueberzug_scale = 1
-ueberzug_offset = [0, 0, 0, 0]
+# Find
+find_keyword  = { fg = "#ff2a85", bold = true, italic = true, underline = true }
+find_position = { fg = "#00f0ff", bg = "reset", bold = true, italic = true }
 
-[opener]
-edit = [
-    # { run = '${EDITOR:-vi} "$@"', desc = "$EDITOR", block = true, for = "unix" },
-    { run = 'nvim "$@"', desc = "nvim", block = true, for = "unix" },
-    { run = 'code %*', orphan = true, desc = "code", for = "windows" },
-    { run = 'code -w %*', block = true, desc = "code (block)", for = "windows" },
-]
-open = [
-    { run = 'xdg-open "$1"', desc = "Open", for = "linux" },
-    { run = 'open "$@"', desc = "Open", for = "macos" },
-    { run = 'start "" "%1"', orphan = true, desc = "Open", for = "windows" },
-]
-reveal = [
-    { run = 'xdg-open "$(dirname "$1")"', desc = "Reveal", for = "linux" },
-    { run = 'open -R "$1"', desc = "Reveal", for = "macos" },
-    { run = 'explorer /select,"%1"', orphan = true, desc = "Reveal", for = "windows" },
-    { run = '''exiftool "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF", for = "unix" },
-]
-extract = [
-    { run = 'ya pub extract --list "$@"', desc = "Extract here", for = "unix" },
-    { run = 'ya pub extract --list %*', desc = "Extract here", for = "windows" },
-]
-play = [
-    { run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
-    { run = 'mpv --force-window %*', orphan = true, for = "windows" },
-    { run = '''mediainfo "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
-]
+# Symlink
+symlink_target = { italic = true, fg = "#58467a" }
 
-[open]
-rules = [
-    # Folder
-    { url = "*/", use = ["edit", "open", "reveal"] },
-    # Text
-    { mime = "text/*", use = ["edit", "reveal"] },
-    # Image
-    { mime = "image/*", use = ["open", "reveal"] },
-    # Media
-    { mime = "{audio,video}/*", use = ["play", "reveal"] },
-    # Archive
-    { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = ["extract", "reveal"] },
-    # JSON
-    { mime = "application/{json,ndjson}", use = ["edit", "reveal"] },
-    { mime = "*/javascript", use = ["edit", "reveal"] },
-    # Empty file
-    { mime = "inode/empty", use = ["edit", "reveal"] },
-    # Fallback
-    { url = "*", use = ["open", "reveal"] },
-]
+# Marker
+marker_copied   = { fg = "#00e676", bg = "#00e676" }
+marker_cut      = { fg = "#ff1744", bg = "#ff1744" }
+marker_marked   = { fg = "#00f0ff", bg = "#00f0ff" }
+marker_selected = { fg = "#ff2a85", bg = "#ff2a85" }
 
-[tasks]
-file_workers = 10
-plugin_workers = 10
-fetch_workers = 10
-preload_workers = 10
-process_workers = 10
-bizarre_retry = 3
-image_alloc = 536870912  # 512MB
-image_bound = [0, 0]
-suppress_preload = true
+# Count badges
+count_copied   = { fg = "#130f1d", bg = "#00e676" }
+count_cut      = { fg = "#130f1d", bg = "#ff1744" }
+count_selected = { fg = "#130f1d", bg = "#ff2a85" }
 
-[input]
-cursor_blink = false
+# Border
+border_symbol = "│"
+border_style  = { fg = "#3b2d54" }
 
-# cd
-cd_title = "Change directory:"
-cd_origin = "top-center"
-cd_offset = [0, 2, 50, 3]
+# Syntax highlighting disabled (relies on terminal theme)
+syntect_theme = ""
 
-# create
-create_title = ["Create:", "Create (dir):"]
-create_origin = "top-center"
-create_offset = [0, 2, 50, 3]
+# : }}}
 
-# rename
-rename_title = "Rename:"
-rename_origin = "hovered"
-rename_offset = [0, 1, 50, 3]
+# : Tabs {{{
 
-# filter
-filter_title = "Filter:"
-filter_origin = "top-center"
-filter_offset = [0, 2, 50, 3]
+[tabs]
+active   = { fg = "#130f1d", bg = "#ff2a85", bold = true }
+inactive = { fg = "#ff2a85", bg = "#130f1d" }
 
-# find
-find_title = ["Find next:", "Find previous:"]
-find_origin = "top-center"
-find_offset = [0, 2, 50, 3]
+sep_inner = { open = "", close = "" }
+sep_outer = { open = "", close = "" }
 
-# search
-search_title = "Search via {n}:"
-search_origin = "top-center"
-search_offset = [0, 2, 50, 3]
+# : }}}
 
-# shell
-shell_title = ["Shell:", "Shell (block):"]
-shell_origin = "top-center"
-shell_offset = [0, 2, 50, 3]
+# : Mode {{{
 
-[confirm]
-# trash
-trash_title = "Trash {n} selected file{s}?"
-trash_origin = "center"
-trash_offset = [0, 0, 70, 20]
+[mode]
+normal_main = { fg = "#130f1d", bg = "#ff2a85", bold = true }
+normal_alt  = { fg = "#ff2a85", bg = "#130f1d" }
 
-# delete
-delete_title = "Permanently delete {n} selected file{s}?"
-delete_origin = "center"
-delete_offset = [0, 0, 70, 20]
+select_main = { fg = "#130f1d", bg = "#00f0ff", bold = true }
+select_alt  = { fg = "#00f0ff", bg = "#130f1d" }
 
-# overwrite
-overwrite_title = "Overwrite file?"
-overwrite_content = "Will overwrite the following file:"
-overwrite_origin = "center"
-overwrite_offset = [0, 0, 50, 15]
+unset_main  = { fg = "#130f1d", bg = "#ff9e00", bold = true }
+unset_alt   = { fg = "#ff9e00", bg = "#130f1d" }
 
-# quit
-quit_title = "Quit?"
-quit_content = "The following tasks are still running, are you sure you want to quit?"
-quit_origin = "center"
-quit_offset = [0, 0, 50, 15]
+# : }}}
+
+# : Indicator of hovered file {{{
+
+[indicator]
+parent  = { reversed = true }
+current = { reversed = true }
+preview = { underline = true }
+padding = { open = "", close = "" }
+
+# : }}}
+
+# : Status bar {{{
+
+[status]
+overall   = { fg = "#ff2a85" }
+sep_left  = { open = "", close = "" }
+sep_right = { open = "", close = "" }
+
+# Permissions
+perm_sep   = { fg = "#3b2d54" }
+perm_type  = { fg = "#00f0ff" }
+perm_read  = { fg = "#ff2a85" }
+perm_write = { fg = "#ff9e00" }
+perm_exec  = { fg = "#00e676" }
+
+# Progress
+progress_label  = { fg = "#130f1d", bold = true }
+progress_normal = { fg = "#00f0ff", bg = "#3b2d54" }
+progress_error  = { fg = "#ff1744", bg = "#3b2d54" }
+
+# : }}}
+
+# : Pick / Input / Tasks / Which {{{
 
 [pick]
-open_title = "Open with:"
-open_origin = "hovered"
-open_offset = [0, 1, 50, 7]
+border   = { fg = "#00f0ff" }
+active   = { fg = "#ff2a85", bold = true }
+inactive = {}
+
+[input]
+border   = { fg = "#00f0ff" }
+title    = { fg = "#ff2a85" }
+value    = {}
+selected = { reversed = true }
+
+[cmp]
+border = { fg = "#3b2d54" }
+
+[tasks]
+border  = { fg = "#3b2d54" }
+title   = { fg = "#ff2a85" }
+hovered = { fg = "#00f0ff", underline = true }
 
 [which]
-sort_by = "none"
-sort_sensitive = false
-sort_reverse = false
-sort_translit = false
+mask            = { bg = "#130f1d" }
+cand            = { fg = "#00e676" }
+rest            = { fg = "#e8e0f5" }
+desc            = { fg = "#00f0ff" }
+separator       = "  "
+separator_style = { fg = "#3b2d54" }
+
+[help]
+on      = { fg = "#00e676" }
+run     = { fg = "#00f0ff" }
+hovered = { reversed = true, bold = true }
+footer  = { fg = "#130f1d", bg = "#ff2a85" }
+
+[notify]
+title_info  = { fg = "#00f0ff" }
+title_warn  = { fg = "#ff9e00" }
+title_error = { fg = "#ff1744" }
+
+# : }}}
+
+# : File-specific styles {{{
+
+[filetype]
+rules = [
+# Hidden files and folders in Dusk Violet
+{ url = ".*/", fg = "#58467a" },
+{ url = ".*",  fg = "#58467a" },
+
+# Directories in Ocean Drive Cyan
+{ url = "*/",  fg = "#00f0ff" },
+
+# Media in Flamingo Neon
+{ mime = "image/*",         fg = "#ff2a85" },
+{ mime = "{audio,video}/*", fg = "#ff2a85" },
+
+# Archives in Heatwave Crimson
+{ mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "#ff1744" },
+
+# Documents in Vapor Mist
+{ mime = "application/{doc,pdf,rtf}", fg = "#e8e0f5" },
+
+# Special and executable files
+{ url = "*", is = "orphan", bg = "#ff1744" },
+{ url = "*", is = "exec",   fg = "#00e676" },
+
+# Fallback for regular files
+{ url = "*", fg = "#e8e0f5" },
+]
+
+# : }}}
+
+# : Icons {{{
+
+[icon]
+conds = [
+# Hidden files and folders
+{ if = "hidden & dir", text = "", fg = "#58467a" },
+{ if = "hidden",       text = "", fg = "#58467a" },
+
+# Standard directories & files
+{ if = "dir & hovered", text = "", fg = "#00f0ff" },
+{ if = "dir",           text = "", fg = "#00f0ff" },
+{ if = "!dir",          text = "", fg = "#e8e0f5" },
+]
+
+# : }}}

@@ -1,65 +1,65 @@
 # ==========================
-# VARIABLES D'ENVIRONNEMENT & TERMINAL
+# ENVIRONMENT VARIABLES & TERMINAL
 # ==========================
 export COLORTERM="truecolor"
 export PATH="$HOME/.local/bin:$PATH"
 export INFRA_FILE="$HOME/dev/ops/docker-compose.yml"
 
 # ==========================
-# GESTION DE L'HISTORIQUE
+# HISTORY MANAGEMENT
 # ==========================
 HISTSIZE=50000
 SAVEHIST=50000
 HISTFILE=~/.zsh_history
 
-setopt HIST_IGNORE_SPACE         # Ne pas enregistrer les commandes commençant par un espace
-setopt HIST_IGNORE_DUPS          # Ne pas enregistrer 2 fois de suite la même commande
-setopt HIST_IGNORE_ALL_DUPS      # Supprimer les anciens doublons si la commande est réexécutée
-setopt HIST_REDUCE_BLANKS        # Supprimer les espaces superflus
-setopt HIST_SAVE_NO_DUPS         # Ne pas écrire de doublons dans le fichier .zsh_history
+setopt HIST_IGNORE_SPACE         # Do not record commands starting with a space
+setopt HIST_IGNORE_DUPS          # Do not record consecutive duplicate commands
+setopt HIST_IGNORE_ALL_DUPS      # Remove older duplicates if a command is re-executed
+setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks
+setopt HIST_SAVE_NO_DUPS         # Do not write duplicate entries to .zsh_history
 
 # ==========================
-# CHARGEMENT DES ALIAS CUSTOM
+# CUSTOM ALIASES
 # ==========================
-# Si le fichier .aliases existe, on le charge ici
+# Source .aliases if it exists
 [ -f ~/.aliases ] && source ~/.aliases
 
 # ==========================
-# INITIALISATION DE L'AUTOCOMPLÉTION (ZSH)
+# ZSH COMPLETION INITIALIZATION
 # ==========================
-# Charge compdef pour que les outils ci-dessous puissent s'en servir
+# Load compdef so downstream tools can register completions
 autoload -Uz compinit
 compinit
 
 # ==========================
-# GESTIONNAIRE DE VERSIONS NODE (fnm)
+# NODE VERSION MANAGER (fnm)
 # ==========================
-# Charge fnm instantanément et active le changement auto de version
+# Load fnm and enable automatic version switching on directory change
 eval "$(fnm env --use-on-cd --shell zsh)"
 
 # ==========================
-# RECHERCHE FLOU & NAVIGATION (FZF & ZOXIDE)
+# FUZZY SEARCH & NAVIGATION (FZF & ZOXIDE)
 # ==========================
-# Backend de recherche
+# Search backend
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
 
-# Palette Royal Sheikah + interface flottante arrondie
+# Vice palette + rounded floating layout
 export FZF_DEFAULT_OPTS=" \
-  --color=bg+:#1c1c1e,bg:#1c1c1e,spinner:#00e5ff,hl:#00e5ff \
-  --color=fg:#c0c6ba,header:#d4af37,info:#d4af37,pointer:#00e5ff \
-  --color=marker:#22c55e,fg+:#ffffff,prompt:#00e5ff,hl+:#00e5ff \
-  --color=border:#4e544b \
+  --color=bg+:#1b1529,bg:#130f1d,spinner:#00f0ff,hl:#ff2a85 \
+  --color=fg:#e8e0f5,header:#ff2a85,info:#ff2a85,pointer:#00f0ff \
+  --color=marker:#00e676,fg+:#ffffff,prompt:#00f0ff,hl+:#ff2a85 \
+  --color=border:#3b2d54 \
   --layout=reverse \
   --border=rounded \
   --height=40% \
-  --prompt='◈ ' \
+  --prompt='❯ ' \
   --pointer='▶' \
-  --marker='✓'"
+  --marker='★'"
 
-# Binding fzf (Ctrl+R pour l'historique, Alt+C pour naviguer)
+# fzf keybindings (Ctrl+R for history, Alt+C for directory navigation)
 source <(fzf --zsh)
 
-# zoxide en mode `cd`
+# zoxide mapped to `cd`
 eval "$(zoxide init zsh --cmd cd)"
 
 # ==========================
@@ -67,8 +67,8 @@ eval "$(zoxide init zsh --cmd cd)"
 # ==========================
 eval "$(starship init zsh)"
 
-# Autosuggestion alignée sur Gris Roche Sheikah (#4e544b)
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#4e544b"
+# Autosuggestions styled with Vice muted violet (#685887)
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#685887"
 [ -f /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 [ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 

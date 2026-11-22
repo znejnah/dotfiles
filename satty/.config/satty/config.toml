@@ -16,9 +16,10 @@ style = "Regular"
 
 [color-palette]
 palette = [
-  "#d4af37", # Or Royal
-  "#00e5ff", # Cyan Sheikah
-  "#22c55e", # Vert Ocarina
-  "#ef4444", # Alerte / Rouge
-  "#c0c6ba"  # Sable
+  "#ff2a85", # Flamingo Neon
+  "#00f0ff", # Ocean Drive Cyan
+  "#00e676", # Palm Mint
+  "#ff9e00", # Sunset Amber
+  "#ff1744", # Heatwave Crimson
+  "#e8e0f5", # Vapor Mist
 ]

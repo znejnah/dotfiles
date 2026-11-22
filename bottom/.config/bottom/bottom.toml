@@ -1,5 +1,5 @@
 # =========================================================================
-# BOTTOM CONFIGURATION - ROYAL SHEIKAH
+# BOTTOM CONFIGURATION - VICE
 # =========================================================================
 
 [flags]
@@ -56,57 +56,57 @@ cache_memory = false
     default = true
 
 # =========================================================================
-# ROYAL SHEIKAH PALETTE
+# LEONIDA VICE PALETTE
 # =========================================================================
 [styles]
   [styles.cpu]
-    all_entry_color = "#00e5ff"
-    avg_entry_color = "#d4af37"
+    all_entry_color = "#00f0ff"
+    avg_entry_color = "#ff2a85"
     cpu_core_colors = [
-      "#00e5ff",
-      "#22c55e",
-      "#d4af37",
-      "#ff7a00",
-      "#e11d48",
-      "#c0c6ba",
-      "#00b8d4",
-      "#eab308"
+      "#00f0ff",
+      "#00e676",
+      "#ff2a85",
+      "#ff9e00",
+      "#ff1744",
+      "#e8e0f5",
+      "#7b7ef2",
+      "#ffc400"
     ]
 
   [styles.memory]
-    ram_color = "#00e5ff"
-    cache_color = "#4e544b"
-    swap_color = "#ff7a00"
-    arc_color = "#22c55e"
+    ram_color = "#00f0ff"
+    cache_color = "#58467a"
+    swap_color = "#ff9e00"
+    arc_color = "#00e676"
     gpu_colors = [
-      "#d4af37",
-      "#22c55e",
-      "#00e5ff",
-      "#ff7a00"
+      "#ff2a85",
+      "#00e676",
+      "#00f0ff",
+      "#ff9e00"
     ]
 
   [styles.network]
-    rx_color = "#00e5ff"
-    tx_color = "#d4af37"
-    rx_total_color = "#00b8d4"
-    tx_total_color = "#eab308"
+    rx_color = "#00f0ff"
+    tx_color = "#ff2a85"
+    rx_total_color = "#66f7ff"
+    tx_total_color = "#ff66a8"
 
   [styles.battery]
-    high_battery_color = "#22c55e"
-    medium_battery_color = "#ff7a00"
-    low_battery_color = "#e11d48"
+    high_battery_color = "#00e676"
+    medium_battery_color = "#ff9e00"
+    low_battery_color = "#ff1744"
 
   [styles.tables]
-    headers = { color = "#d4af37", bold = true }
+    headers = { color = "#ff2a85", bold = true }
 
   [styles.graphs]
-    graph_color = "#c0c6ba"
-    legend_text = { color = "#c0c6ba" }
+    graph_color = "#e8e0f5"
+    legend_text = { color = "#e8e0f5" }
 
   [styles.widgets]
-    border_color = "#4e544b"
-    selected_border_color = "#d4af37"
-    widget_title = { color = "#d4af37", bold = true }
-    text = { color = "#c0c6ba" }
-    selected_text = { color = "#1c1c1e", bg_color = "#00e5ff", bold = true }
-    disabled_text = { color = "#4e544b" }
+    border_color = "#3b2d54"
+    selected_border_color = "#ff2a85"
+    widget_title = { color = "#ff2a85", bold = true }
+    text = { color = "#e8e0f5" }
+    selected_text = { color = "#130f1d", bg_color = "#00f0ff", bold = true }
+    disabled_text = { color = "#58467a" }

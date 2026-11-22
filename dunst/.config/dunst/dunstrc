@@ -1,5 +1,5 @@
 # ==============================================================================
-# DUNST CONFIGURATION: ROYAL SHEIKAH
+# DUNST CONFIGURATION: VICE
 # ==============================================================================
 
 [global]
@@ -23,7 +23,6 @@ progress_bar_min_width = 150
 progress_bar_max_width = 300
 
 # --- Spacing & Padding ---
-# Internal padding to mimic the tablet artifact aspect
 padding = 12
 horizontal_padding = 16
 text_icon_padding = 12
@@ -43,8 +42,8 @@ corner_radius = 8
 font = JetBrainsMono Nerd Font 10
 line_height = 0
 markup = full
-# Bold title, standard body
-format = "<b>%s</b>\n%b"
+# Bold Flamingo title, standard Vapor Mist body
+format = "<b><span foreground='#ff2a85'>%s</span></b>\n%b"
 alignment = left
 vertical_alignment = center
 show_age_threshold = 60
@@ -65,27 +64,30 @@ mouse_right_click = close_all
 # ==============================================================================
 # URGENCY LEVELS & PALETTE
 # ==============================================================================
-# Obsidian Base: #1c1c1e (with ~90% opacity -> #1c1c1ee6)
-# Text: #c0c6ba (Light Stone)
+# Vice Midnight Base: #130f1d (with ~90% opacity -> #130f1de6)
+# Text: #e8e0f5 (Vapor Mist)
 
 [urgency_low]
-# Sheikah Cyan for minor info (e.g., media player tracks)
-background = "#1c1c1ee6"
-foreground = "#c0c6ba"
-frame_color = "#00e5ff"
+# Ocean Drive Cyan for minor info (e.g., media player tracks)
+background = "#130f1de6"
+foreground = "#e8e0f5"
+frame_color = "#00f0ff"
+highlight = "#00f0ff"
 timeout = 4
 
 [urgency_normal]
-# Royal Gold for standard notifications
-background = "#1c1c1ee6"
-foreground = "#c0c6ba"
-frame_color = "#d4af37"
+# Flamingo Neon for standard notifications
+background = "#130f1de6"
+foreground = "#e8e0f5"
+frame_color = "#ff2a85"
+highlight = "#00f0ff"
 timeout = 6
 
 [urgency_critical]
-# Gloom Red for critical system states (e.g., low battery, errors)
+# Heatwave Crimson for critical system states (e.g., low battery, errors)
 # Timeout 0 means it will stay on screen until manually clicked
-background = "#1c1c1ee6"
-foreground = "#e5e5e5"
-frame_color = "#e11d48"
+background = "#130f1df2"
+foreground = "#ffffff"
+frame_color = "#ff1744"
+highlight = "#ff1744"
 timeout = 0

@@ -1,9 +1,8 @@
 add_newline = true
-palette = "royalsheikah"
+palette = "vice"
 
 format = """\
-[╭╴](fg:rock)\
-$os\
+[╭╴](fg:dusk)[󰓎 ](fg:flamingo)[󱁕 ](fg:dusk)\
 $username\
 $directory\
 $git_branch\
@@ -12,110 +11,114 @@ $python\
 $nodejs\
 $rust\
 $lua\
+$fill\
 $cmd_duration\
 $time
-[╰─](fg:rock)$character\
+[╰─](fg:dusk)$character\
 """
 
 # ==============================================================================
-# PALETTE: ROYAL SHEIKAH
+# PALETTE: VICE
 # ==============================================================================
-[palettes.royalsheikah]
-obsidian = "#1c1c1e"
-rock     = "#4e544b"       # Gray stone passive structure
-sheikah  = "#00e5ff"       # Ancient Cyan glow
-royal    = "#d4af37"       # Triforce Gold (User / Active)
-ocarina  = "#22c55e"       # Green (Success / Staged)
-stasis   = "#ff7a00"       # Magmatic Orange (Warning / Modified)
-gloom    = "#e11d48"       # Ruby Red (Errors / Critical)
+[palettes.vice]
+midnight = "#130f1d"
+dusk     = "#3b2d54"       # Violet passive structure
+cyan     = "#00f0ff"       # Ocean Drive Cyan glow
+flamingo = "#ff2a85"       # Flamingo Neon (User / Active)
+palm     = "#00e676"       # Palm Mint (Success / Staged)
+sunset   = "#ff9e00"       # Sunset Amber (Warning / Modified)
+crimson  = "#ff1744"       # Heatwave Crimson (Errors / Critical)
+
+[fill]
+symbol = " "
 
 # ==============================================================================
-# OS & USER (The Royal Heritage)
+# OS & USER
 # ==============================================================================
 [os]
-disabled = false
-style = "fg:royal bold"
-format = "[$symbol]($style)"
+disabled = true
+style = "fg:flamingo bold"
+format = "[$symbol]($style) [󱁕 ](fg:dusk) "
 
 [os.symbols]
 Arch = " "
 Macos = " "
 
 [username]
-style_user = "fg:royal bold"
-style_root = "fg:gloom bold"
-format = "[$user]($style) [::](fg:rock) "
-show_always = true
+style_user = "fg:flamingo bold"
+style_root = "fg:crimson bold"
+format = "[$user]($style) [󱁕 ](fg:dusk) "
+show_always = false
 
 # ==============================================================================
-# DIRECTORY (Sheikah Energy)
+# DIRECTORY
 # ==============================================================================
 [directory]
-style = "fg:sheikah bold"
-format = "[◈  $path]($style) "
+style = "fg:cyan bold"
+format = "[$path]($style)[$read_only](fg:crimson) "
 truncation_length = 3
 truncate_to_repo = true
 truncation_symbol = "…/"
-read_only = "  "
+read_only = " "
 
 # ==============================================================================
-# GIT (Explicit Sheikah Structure)
+# GIT (Icons Only)
 # ==============================================================================
 [git_branch]
-style = "fg:royal bold"
+style = "fg:flamingo bold"
 format = "[ $branch]($style) "
 
 [git_status]
-style = "fg:sheikah bold"
-format = '[\[](fg:rock)[ $all_status$ahead_behind ]($style)[\]](fg:rock) '
+style = "fg:cyan bold"
+format = '[\[](fg:dusk)[ $all_status$ahead_behind ]($style)[\]](fg:dusk) '
 
-modified   = "[⎔ M ](fg:stasis bold)"
-staged     = "[◈ + ](fg:ocarina bold)"
-untracked  = "[◇ ? ](fg:stasis bold)"
-deleted    = "[ - ](fg:gloom bold)"
-renamed    = "[󰑕 R ](fg:sheikah bold)"
-stashed    = "[ * ](fg:royal bold)"
-conflicted = "[ ! ](fg:gloom bold)"
-ahead      = "[▲ ⇡ ](fg:sheikah bold)"
-behind     = "[▼ ⇣ ](fg:stasis bold)"
-diverged   = "[⟁ ⇕ ](fg:gloom bold)"
+modified   = "[ ](fg:sunset bold)"
+staged     = "[ ](fg:palm bold)"
+untracked  = "[ ](fg:cyan bold)"
+deleted    = "[ ](fg:crimson bold)"
+renamed    = "[󰑕 ](fg:flamingo bold)"
+stashed    = "[ ](fg:flamingo bold)"
+conflicted = "[ ](fg:crimson bold)"
+ahead      = "[ ](fg:cyan bold)"
+behind     = "[ ](fg:sunset bold)"
+diverged   = "[ ](fg:crimson bold)"
 
 # ==============================================================================
-# LANGUAGES (Ancient Tools)
+# LANGUAGES
 # ==============================================================================
 [python]
-style = "fg:sheikah bold"
+style = "fg:cyan bold"
 format = '[ ${pyenv_prefix}${version}]($style) '
 
 [nodejs]
-style = "fg:sheikah bold"
+style = "fg:cyan bold"
 format = "[ $version]($style) "
 
 [rust]
-style = "fg:sheikah bold"
+style = "fg:cyan bold"
 format = "[ $version]($style) "
 
 [lua]
-style = "fg:sheikah bold"
+style = "fg:cyan bold"
 format = "[ $version]($style) "
 
 # ==============================================================================
 # TOOLS & TIMER
 # ==============================================================================
 [cmd_duration]
-style = "fg:stasis bold"
-format = "[ $duration]($style) "
+style = "fg:sunset bold"
+format = "[󰔛 $duration]($style) "
 min_time = 500
 
 [time]
 disabled = false
 time_format = "%H:%M"
-style = "fg:rock"
-format = "[ $time]($style) "
+style = "fg:dusk"
+format = "[ $time]($style)"
 
 # ==============================================================================
 # FINAL CHARACTER (The Prompt)
 # ==============================================================================
 [character]
-success_symbol = "[>_ ](fg:sheikah bold)"
-error_symbol = "[>_ ](fg:gloom bold)"
+success_symbol = "[>_ ](fg:cyan bold)"
+error_symbol = "[>_ ](fg:crimson bold)"
