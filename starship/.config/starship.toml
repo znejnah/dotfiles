@@ -1,8 +1,12 @@
+# ==============================================================================
+# VICE CITY / LEONIDA — STARSHIP PROMPT (RESIZE-SAFE)
+# ==============================================================================
+
 add_newline = true
 palette = "vice"
 
 format = """\
-[╭╴](fg:dusk)[󰓎 ](fg:flamingo)[󱁕 ](fg:dusk)\
+[╭╴](fg:purple)[󰓎 ](fg:pink)[󱁕 ](fg:purple)\
 $username\
 $directory\
 $git_branch\
@@ -10,44 +14,36 @@ $git_status\
 $python\
 $nodejs\
 $rust\
-$lua\
-$fill\
-$cmd_duration\
-$time
-[╰─](fg:dusk)$character\
+$lua
+[╰─](fg:purple)$character\
 """
 
+right_format = """$cmd_duration$time"""
+
 # ==============================================================================
-# PALETTE: VICE
+# PALETTE (Abyssal Night & Soft Vapor)
 # ==============================================================================
 [palettes.vice]
-midnight = "#130f1d"
-dusk     = "#3b2d54"       # Violet passive structure
-cyan     = "#00f0ff"       # Ocean Drive Cyan glow
-flamingo = "#ff2a85"       # Flamingo Neon (User / Active)
-palm     = "#00e676"       # Palm Mint (Success / Staged)
-sunset   = "#ff9e00"       # Sunset Amber (Warning / Modified)
-crimson  = "#ff1744"       # Heatwave Crimson (Errors / Critical)
-
-[fill]
-symbol = " "
+midnight = "#07091B"       # Abyssal Night
+surface  = "#0F1436"       # Deep Bay
+vapor    = "#D5DDF7"       # Soft Vapor
+purple   = "#8C6CFF"       # Neon Purple (Structure / Clock)
+cyan     = "#00F0FF"       # Vice Cyan (Paths / Prompt)
+pink     = "#FF5CA8"       # Sunset Pink (Active / Git Branch)
+peach    = "#FFB86B"       # Miami Peach (Runtimes / Duration / Modified)
+palm     = "#00E68A"       # Palm Mint (Staged / Success)
+crimson  = "#FF3B6B"       # Coral Heat (Errors / Deleted)
 
 # ==============================================================================
-# OS & USER
+# USER (Shown only on SSH or root)
 # ==============================================================================
 [os]
 disabled = true
-style = "fg:flamingo bold"
-format = "[$symbol]($style) [󱁕 ](fg:dusk) "
-
-[os.symbols]
-Arch = " "
-Macos = " "
 
 [username]
-style_user = "fg:flamingo bold"
+style_user = "fg:pink bold"
 style_root = "fg:crimson bold"
-format = "[$user]($style) [󱁕 ](fg:dusk) "
+format = "[$user]($style) [󱁕 ](fg:purple)"
 show_always = false
 
 # ==============================================================================
@@ -62,62 +58,62 @@ truncation_symbol = "…/"
 read_only = " "
 
 # ==============================================================================
-# GIT (Icons Only)
+# GIT STATUS (Icons Only)
 # ==============================================================================
 [git_branch]
-style = "fg:flamingo bold"
+style = "fg:pink bold"
 format = "[ $branch]($style) "
 
 [git_status]
-style = "fg:cyan bold"
-format = '[\[](fg:dusk)[ $all_status$ahead_behind ]($style)[\]](fg:dusk) '
+style = "fg:vapor bold"
+format = '[\[](fg:purple)[ $all_status$ahead_behind ]($style)[\]](fg:purple) '
 
-modified   = "[ ](fg:sunset bold)"
+modified   = "[ ](fg:peach bold)"
 staged     = "[ ](fg:palm bold)"
 untracked  = "[ ](fg:cyan bold)"
 deleted    = "[ ](fg:crimson bold)"
-renamed    = "[󰑕 ](fg:flamingo bold)"
-stashed    = "[ ](fg:flamingo bold)"
+renamed    = "[󰑕 ](fg:pink bold)"
+stashed    = "[ ](fg:pink bold)"
 conflicted = "[ ](fg:crimson bold)"
 ahead      = "[ ](fg:cyan bold)"
-behind     = "[ ](fg:sunset bold)"
+behind     = "[ ](fg:peach bold)"
 diverged   = "[ ](fg:crimson bold)"
 
 # ==============================================================================
-# LANGUAGES
+# RUNTIMES (Miami Peach)
 # ==============================================================================
 [python]
-style = "fg:cyan bold"
+style = "fg:peach bold"
 format = '[ ${pyenv_prefix}${version}]($style) '
 
 [nodejs]
-style = "fg:cyan bold"
+style = "fg:peach bold"
 format = "[ $version]($style) "
 
 [rust]
-style = "fg:cyan bold"
+style = "fg:peach bold"
 format = "[ $version]($style) "
 
 [lua]
-style = "fg:cyan bold"
+style = "fg:peach bold"
 format = "[ $version]($style) "
 
 # ==============================================================================
-# TOOLS & TIMER
+# TELEMETRY & CLOCK (Right Prompt)
 # ==============================================================================
 [cmd_duration]
-style = "fg:sunset bold"
+style = "fg:peach bold"
 format = "[󰔛 $duration]($style) "
 min_time = 500
 
 [time]
 disabled = false
 time_format = "%H:%M"
-style = "fg:dusk"
+style = "fg:purple"
 format = "[ $time]($style)"
 
 # ==============================================================================
-# FINAL CHARACTER (The Prompt)
+# PROMPT CHARACTER
 # ==============================================================================
 [character]
 success_symbol = "[>_ ](fg:cyan bold)"

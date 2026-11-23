@@ -1,5 +1,5 @@
 # ==============================================================================
-# DUNST CONFIGURATION: VICE
+# DUNST CONFIGURATION: VICE CITY / LEONIDA (ABYSSAL NIGHT)
 # ==============================================================================
 
 [global]
@@ -35,15 +35,15 @@ separator_color = frame
 sort = yes
 idle_threshold = 120
 
-# Matches the Waybar and Kitty border radius
+# Matches the Waybar HUD island border radius
 corner_radius = 8
 
 # --- Typography ---
 font = JetBrainsMono Nerd Font 10
 line_height = 0
 markup = full
-# Bold Flamingo title, standard Vapor Mist body
-format = "<b><span foreground='#ff2a85'>%s</span></b>\n%b"
+# Bold Sunset Pink title, standard Soft Vapor body
+format = "<b><span foreground='#ff5ca8'>%s</span></b>\n%b"
 alignment = left
 vertical_alignment = center
 show_age_threshold = 60
@@ -64,30 +64,31 @@ mouse_right_click = close_all
 # ==============================================================================
 # URGENCY LEVELS & PALETTE
 # ==============================================================================
-# Vice Midnight Base: #130f1d (with ~90% opacity -> #130f1de6)
-# Text: #e8e0f5 (Vapor Mist)
+# Abyssal Night Base: #07091b (with ~92% opacity -> #07091beb)
+# Deep Bay Surface: #0f1436
+# Text: #d5ddf7 (Soft Vapor)
 
 [urgency_low]
-# Ocean Drive Cyan for minor info (e.g., media player tracks)
-background = "#130f1de6"
-foreground = "#e8e0f5"
-frame_color = "#00f0ff"
+# Neon Purple for passive / low-priority notifications
+background = "#07091beb"
+foreground = "#8b96c2"
+frame_color = "#8c6cff"
 highlight = "#00f0ff"
 timeout = 4
 
 [urgency_normal]
-# Flamingo Neon for standard notifications
-background = "#130f1de6"
-foreground = "#e8e0f5"
-frame_color = "#ff2a85"
+# Sunset Pink frame with Vice Cyan progress highlight for standard notifications
+background = "#07091bf2"
+foreground = "#d5ddf7"
+frame_color = "#ff5ca8"
 highlight = "#00f0ff"
 timeout = 6
 
 [urgency_critical]
-# Heatwave Crimson for critical system states (e.g., low battery, errors)
+# Coral Heat frame with Miami Peach highlight on Deep Bay surface
 # Timeout 0 means it will stay on screen until manually clicked
-background = "#130f1df2"
-foreground = "#ffffff"
-frame_color = "#ff1744"
-highlight = "#ff1744"
+background = "#0f1436f7"
+foreground = "#d5ddf7"
+frame_color = "#ff3b6b"
+highlight = "#ffb86b"
 timeout = 0

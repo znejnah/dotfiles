@@ -3,71 +3,72 @@
   "logo": {
     "type": "small",
     "color": {
-      "1": "#ff2a85",
-      "2": "#ff2a85",
+      "1": "#8c6cff",
+      "2": "#8c6cff"
     },
     "padding": {
       "top": 1,
       "left": 1,
-      "right": 3,
-    },
+      "right": 3
+    }
   },
   "display": {
     "separator": " ❯ ",
     "color": {
-      "keys": "#ff2a85",
+      "keys": "#8c6cff",
       "title": "#00f0ff",
-      "separator": "#3b2d54",
-    },
+      "output": "#d5ddf7",
+      "separator": "#ff5ca8"
+    }
   },
   "modules": [
     "title",
     {
       "type": "custom",
-      "format": "──────────────────────────────",
+      "format": "\u001b[38;2;140;108;255m──────────────────────────────\u001b[0m"
     },
     {
       "type": "os",
-      "key": " OS",
+      "key": " OS"
     },
     {
       "type": "kernel",
-      "key": " Kernel",
+      "key": " Kernel"
     },
     {
       "type": "packages",
-      "key": "󰏖 Packages",
-    },
-    {
-      "type": "wm",
-      "key": " WM",
+      "key": "󰏖 Packages"
     },
     {
       "type": "terminal",
-      "key": " Terminal",
+      "key": " Terminal"
+    },
+    {
+      "type": "wm",
+      "key": " WM"
     },
     {
       "type": "cpu",
       "key": " CPU",
-      "format": "{name} ({cores-logical}c)",
+      "format": "{name} ({cores-logical}c)"
     },
     {
       "type": "gpu",
       "key": "󰢮 GPU",
-      "format": "{name}",
+      "format": "{name}"
     },
     {
       "type": "memory",
-      "key": " Memory",
+      "key": " RAM"
     },
     {
       "type": "disk",
       "key": " Disk",
-      "folders": "/",
+      "folders": "/"
     },
     {
       "type": "uptime",
-      "key": " Uptime",
-    },
-  ],
+      "key": " Uptime"
+    }
+  ]
 }

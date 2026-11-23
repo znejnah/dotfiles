@@ -1,6 +1,6 @@
-# =========================================================================
-# BOTTOM CONFIGURATION - VICE
-# =========================================================================
+# ==============================================================================
+# BOTTOM CONFIGURATION — VICE CITY / LEONIDA (ABYSSAL NIGHT)
+# ==============================================================================
 
 [flags]
 rate = "1000ms"
@@ -55,58 +55,58 @@ cache_memory = false
     type = "proc"
     default = true
 
-# =========================================================================
-# LEONIDA VICE PALETTE
-# =========================================================================
+# ==============================================================================
+# LEONIDA VICE PALETTE (ABYSSAL NIGHT & SOFT VAPOR)
+# ==============================================================================
 [styles]
   [styles.cpu]
     all_entry_color = "#00f0ff"
-    avg_entry_color = "#ff2a85"
+    avg_entry_color = "#ff5ca8"
     cpu_core_colors = [
       "#00f0ff",
-      "#00e676",
-      "#ff2a85",
-      "#ff9e00",
-      "#ff1744",
-      "#e8e0f5",
-      "#7b7ef2",
-      "#ffc400"
+      "#00e68a",
+      "#ff5ca8",
+      "#ffb86b",
+      "#8c6cff",
+      "#d5ddf7",
+      "#ad96ff",
+      "#ffd099"
     ]
 
   [styles.memory]
     ram_color = "#00f0ff"
-    cache_color = "#58467a"
-    swap_color = "#ff9e00"
-    arc_color = "#00e676"
+    cache_color = "#54608f"
+    swap_color = "#ffb86b"
+    arc_color = "#00e68a"
     gpu_colors = [
-      "#ff2a85",
-      "#00e676",
+      "#ff5ca8",
+      "#00e68a",
       "#00f0ff",
-      "#ff9e00"
+      "#ffb86b"
     ]
 
   [styles.network]
     rx_color = "#00f0ff"
-    tx_color = "#ff2a85"
-    rx_total_color = "#66f7ff"
-    tx_total_color = "#ff66a8"
+    tx_color = "#ff5ca8"
+    rx_total_color = "#70f7ff"
+    tx_total_color = "#ff85be"
 
   [styles.battery]
-    high_battery_color = "#00e676"
-    medium_battery_color = "#ff9e00"
-    low_battery_color = "#ff1744"
+    high_battery_color = "#00e68a"
+    medium_battery_color = "#ffb86b"
+    low_battery_color = "#ff3b6b"
 
   [styles.tables]
-    headers = { color = "#ff2a85", bold = true }
+    headers = { color = "#ff5ca8", bold = true }
 
   [styles.graphs]
-    graph_color = "#e8e0f5"
-    legend_text = { color = "#e8e0f5" }
+    graph_color = "#8b96c2"
+    legend_text = { color = "#d5ddf7" }
 
   [styles.widgets]
-    border_color = "#3b2d54"
-    selected_border_color = "#ff2a85"
-    widget_title = { color = "#ff2a85", bold = true }
-    text = { color = "#e8e0f5" }
-    selected_text = { color = "#130f1d", bg_color = "#00f0ff", bold = true }
-    disabled_text = { color = "#58467a" }
+    border_color = "#2d2861"
+    selected_border_color = "#ff5ca8"
+    widget_title = { color = "#ff5ca8", bold = true }
+    text = { color = "#d5ddf7" }
+    selected_text = { color = "#07091b", bg_color = "#00f0ff", bold = true }
+    disabled_text = { color = "#54608f" }

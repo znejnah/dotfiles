@@ -1,22 +1,27 @@
 -- hypr/.config/hypr/config/theme.lua
--- Active Theme: Vice
+-- Theme: Vice City / Leonida (Abyssal Night & Soft Vapor)
 
 return {
     -- Hyprland rgba() format
-    accent_primary   = "rgba(ff2a85ee)", -- Flamingo Neon
-    accent_secondary = "rgba(00f0ffee)", -- Ocean Drive Cyan
-    shadow_glow      = "rgba(00f0ff33)", -- Ocean Drive Cyan (subtle glow)
-    border_inactive  = "rgba(3b2d54aa)", -- Dusk Violet
+    accent_primary   = "rgba(ff5ca8ee)", -- Sunset Pink
+    accent_secondary = "rgba(00f0ffee)", -- Vice Cyan
+    accent_gradient  = "rgba(ff5ca8ee) rgba(8c6cffee) rgba(00f0ffee) 45deg",
+    shadow_glow      = "rgba(ff5ca833)", -- Sunset Pink ambient glow
+    border_inactive  = "rgba(8c6cff44)", -- Neon Purple passive frame
 
-    -- Hex formats (#RRGGBB & #RRGGBBAA for CLI tools like slurp)
+    -- Hex formats (#RRGGBB & #RRGGBBAA for CLI tools)
     hex = {
-        bg        = "#130f1d",
-        primary   = "#ff2a85",
-        secondary = "#00f0ff",
+        bg        = "#07091b", -- Abyssal Night
+        surface   = "#0f1436", -- Deep Bay
+        primary   = "#ff5ca8", -- Sunset Pink
+        secondary = "#00f0ff", -- Vice Cyan
+        purple    = "#8c6cff", -- Neon Purple
+        peach     = "#ffb86b", -- Miami Peach
+        text      = "#d5ddf7", -- Soft Vapor
     },
     slurp = {
-        background = "#130f1d66", -- Darkened semi-transparent out selection
-        border     = "#ff2a85ff", -- Bordure Flamingo Neon opaque
-        selection  = "#00f0ff1a", -- Ocean Drive Cyan light veil on selected zone
+        background = "#07091b88", -- Abyssal Night dimmed mask
+        border     = "#ff5ca8ff", -- Sunset Pink crisp border
+        selection  = "#00f0ff1f", -- Vice Cyan HUD selection tint
     },
 }

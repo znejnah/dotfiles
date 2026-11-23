@@ -1,6 +1,6 @@
-/* =============================================================================
- * WAYBAR STYLESHEET: VICE (EXACT MAPPING)
- * ============================================================================= */
+/* ==========================================================================
+   VICE CITY / LEONIDA — MINIMALIST DYNAMIC HUD (ABYSSAL NIGHT)
+   ========================================================================== */
 
 /* Global reset */
 * {
@@ -12,16 +12,15 @@
   min-height: 0;
 }
 
-/* Transparent bar container */
 window#waybar {
   background-color: transparent;
-  color: #e8e0f5;
+  color: #d5ddf7;
 }
 
-/* Floating Vice Midnight Islands (Exact modules list) */
+/* Unified Minimalist Abyssal Night Islands */
 #workspaces,
 #window,
-#clock,
+#custom-clock,
 #network,
 #bluetooth,
 #cpu,
@@ -29,150 +28,152 @@ window#waybar {
 #memory,
 #pulseaudio,
 #tray {
-  background-color: rgba(19, 15, 29, 0.92);
-  border-bottom: 2px solid #00f0ff;
+  background-color: rgba(7, 9, 27, 0.92);
+  border: 1px solid rgba(140, 108, 255, 0.24);
   border-radius: 8px;
   margin: 4px 4px 2px 4px;
   padding: 2px 12px;
+  transition: all 0.3s ease;
 }
 
-/* Workspaces */
+/* ==========================================================================
+   LEFT: WORKSPACES & ACTIVE WINDOW
+   ========================================================================== */
 #workspaces {
-  padding: 2px 4px;
+  padding: 2px 5px;
 }
 
 #workspaces button {
-  color: rgba(0, 240, 255, 0.4);
+  color: #8c6cff;
   background-color: transparent;
-  padding: 0 6px;
-  border-radius: 4px;
+  padding: 0 7px;
+  margin: 1px;
+  border-radius: 5px;
+}
+
+#workspaces button.empty {
+  color: rgba(213, 221, 247, 0.25);
 }
 
 #workspaces button:hover {
   color: #00f0ff;
-  background-color: rgba(0, 240, 255, 0.1);
+  background-color: rgba(0, 240, 255, 0.10);
 }
 
 #workspaces button.active {
-  color: #ff2a85;
-  background-color: rgba(255, 42, 133, 0.14);
+  color: #ff5ca8;
+  background-color: rgba(255, 92, 168, 0.14);
 }
 
 #workspaces button.urgent {
-  color: #ff1744;
-  border-bottom: 2px solid #ff1744;
+  color: #d5ddf7;
+  background-color: #ff3b6b;
 }
 
-/* Active window title */
 #window {
-  color: #ff2a85;
+  color: rgba(213, 221, 247, 0.85);
   font-weight: normal;
 }
 
-/* Time module */
-#clock {
-  color: #ff2a85;
+/* ==========================================================================
+   CENTER: SOLAR CYCLE CLOCK (Dynamic Palette Shift)
+   ========================================================================== */
+#custom-clock {
+  padding: 2px 15px;
 }
 
-/* Core telemetry and status modules */
+/* 06:00 - 10:59 : Morning Ocean Breeze (Vice Cyan) */
+#custom-clock.dawn {
+  color: #00f0ff;
+  border-color: rgba(0, 240, 255, 0.45);
+}
+
+/* 11:00 - 16:59 : Leonida Noon Sun (Miami Peach) */
+#custom-clock.day {
+  color: #ffb86b;
+  border-color: rgba(255, 184, 107, 0.45);
+}
+
+/* 17:00 - 20:59 : Ocean Drive Sunset (Sunset Pink) */
+#custom-clock.sunset {
+  color: #ff5ca8;
+  border-color: rgba(255, 92, 168, 0.55);
+  box-shadow: 0 0 10px rgba(255, 92, 168, 0.18);
+}
+
+/* 21:00 - 05:59 : Midnight Palm (Neon Purple) */
+#custom-clock.night {
+  color: #8c6cff;
+  border-color: rgba(140, 108, 255, 0.45);
+}
+
+/* ==========================================================================
+   RIGHT: CLEAN TELEMETRY & SENSORS
+   ========================================================================== */
 #network,
 #bluetooth,
 #cpu,
-#memory {
-  color: #00f0ff;
+#temperature,
+#memory,
+#pulseaudio {
+  color: #d5ddf7;
 }
 
 #bluetooth.off,
-#bluetooth.disabled {
-  color: #58467a;
+#bluetooth.disabled,
+#pulseaudio.muted {
+  color: rgba(213, 221, 247, 0.35);
 }
 
-/* CPU & Memory dynamic thresholds */
+/* Warning & Critical Alerts Only */
 #cpu.warning,
 #memory.warning {
-  color: #ff9e00;
-  border-bottom-color: #ff9e00;
+  color: #ffb86b;
+  border-color: rgba(255, 184, 107, 0.5);
 }
 
 #cpu.critical,
-#memory.critical {
-  color: #ff1744;
-  border-bottom-color: #ff1744;
-}
-
-#temperature {
-  color: #ff2a85;
-}
-
-#temperature.critical {
-  color: #ff1744;
-  border-bottom-color: #ff1744;
-}
-
+#memory.critical,
+#temperature.critical,
 #network.disconnected {
-  color: #ff1744;
-  border-bottom-color: #ff1744;
+  color: #ff3b6b;
+  border-color: rgba(255, 59, 107, 0.6);
+  background-color: rgba(255, 59, 107, 0.14);
 }
 
-/* Sound module */
-#pulseaudio {
-  color: #ff2a85;
-}
-
-#pulseaudio.muted {
-  color: #58467a;
-  border-bottom-color: #3b2d54;
-}
-
-/* System tray */
+/* ==========================================================================
+   SYSTEM TRAY & TOOLTIPS
+   ========================================================================== */
 #tray {
   padding: 0 10px;
 }
 
 #tray menu {
-  background-color: rgba(19, 15, 29, 0.96);
-  border: 1px solid rgba(0, 240, 255, 0.35);
-  border-bottom: 2px solid #00f0ff;
+  background-color: rgba(7, 9, 27, 0.97);
+  border: 1px solid rgba(140, 108, 255, 0.35);
   border-radius: 8px;
   padding: 6px;
-  color: #e8e0f5;
-  font-family: "JetBrains Mono", "Symbols Nerd Font Mono", monospace;
-  font-size: 13px;
+  color: #d5ddf7;
 }
 
 #tray menu menuitem {
   padding: 6px 12px;
   border-radius: 5px;
-  color: #e8e0f5;
-  background-color: transparent;
+  color: #d5ddf7;
 }
 
 #tray menu menuitem:hover {
-  background-color: rgba(255, 42, 133, 0.16);
-  color: #ff2a85;
+  background-color: rgba(255, 92, 168, 0.16);
+  color: #ff5ca8;
 }
 
-#tray menu menuitem:disabled {
-  color: #58467a;
-}
-
-#tray menu separator {
-  background-color: rgba(0, 240, 255, 0.2);
-  margin: 4px 8px;
-  min-height: 1px;
-}
-
-/* Popup calendrier & tooltips (Vice City) */
 tooltip {
-  background-color: rgba(19, 15, 29, 0.96);
-  border: 1px solid rgba(0, 240, 255, 0.35);
-  border-bottom: 2px solid #00f0ff;
+  background-color: rgba(7, 9, 27, 0.97);
+  border: 1px solid rgba(140, 108, 255, 0.35);
   border-radius: 8px;
 }
 
 tooltip label {
-  color: #e8e0f5;
-  font-family: "JetBrains Mono", "Symbols Nerd Font Mono", monospace;
-  font-size: 13px;
-  padding: 8px 12px;
+  color: #d5ddf7;
+  padding: 6px 10px;
 }
