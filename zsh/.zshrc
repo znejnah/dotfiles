@@ -1,7 +1,12 @@
+# ==============================================================================
+# VICE CITY / LEONIDA — ZSH CONFIGURATION (macOS)
+# ==============================================================================
+
 # ==========================
 # ENVIRONMENT VARIABLES & TERMINAL
 # ==========================
 export COLORTERM="truecolor"
+export BAT_THEME="ansi"
 export PATH="$HOME/.local/bin:$PATH"
 export INFRA_FILE="$HOME/dev/ops/docker-compose.yml"
 
@@ -43,17 +48,17 @@ eval "$(fnm env --use-on-cd --shell zsh)"
 # Search backend
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
 
-# Vice palette + rounded floating layout
+# Vice City / Leonida palette (Abyssal Night bg, Sunset Pink & Vice Cyan accents)
 export FZF_DEFAULT_OPTS=" \
-  --color=bg+:#1b1529,bg:#130f1d,spinner:#00f0ff,hl:#ff2a85 \
-  --color=fg:#e8e0f5,header:#ff2a85,info:#ff2a85,pointer:#00f0ff \
-  --color=marker:#00e676,fg+:#ffffff,prompt:#00f0ff,hl+:#ff2a85 \
-  --color=border:#3b2d54 \
+  --color=bg+:#0f1436,bg:#07091b,spinner:#00f0ff,hl:#ff5ca8 \
+  --color=fg:#d5ddf7,header:#8c6cff,info:#ffb86b,pointer:#ff5ca8 \
+  --color=marker:#00e68a,fg+:#d5ddf7,prompt:#00f0ff,hl+:#ff5ca8 \
+  --color=selected-bg:#1a2254,border:#2d2861,label:#8c6cff \
   --layout=reverse \
   --border=rounded \
   --height=40% \
-  --prompt='❯ ' \
-  --pointer='▶' \
+  --prompt='󰓎 ' \
+  --pointer='❯' \
   --marker='★'"
 
 # fzf keybindings (Ctrl+R for history, Alt+C for directory navigation)
@@ -67,8 +72,8 @@ eval "$(zoxide init zsh --cmd cd)"
 # ==========================
 eval "$(starship init zsh)"
 
-# Autosuggestions styled with Vice muted violet (#685887)
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#685887"
+# Autosuggestions styled with Vice muted indigo (#54608f)
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#54608f"
 [ -f /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 [ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
