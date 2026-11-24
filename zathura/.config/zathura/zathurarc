@@ -1,17 +1,52 @@
-set selection-clipboard clipboard
-set window-title-basename true
-set statusbar-home-tilde true
-set adjust-open "width"
-set font "JetBrains Mono 11"
+# ==============================================================================
+# VICE CITY / LEONIDA — ZATHURA PDF VIEWER (ABYSSAL NIGHT)
+# ==============================================================================
 
-# Royal Sheikah palette
-set default-bg "#1c1c1e"
-set default-fg "#e5e5e7"
-set statusbar-bg "#1c1c1e"
-set statusbar-fg "#d4af37"
-set inputbar-bg "#1c1c1e"
-set inputbar-fg "#00e5ff"
-set highlight-color "#d4af37"
-set highlight-active-color "#00e5ff"
-set completion-highlight-bg "#00e5ff"
-set completion-highlight-fg "#1c1c1e"
+# Window & Interface
+set font                        "JetBrains Mono 11"
+set default-bg                  "#07091b"
+set default-fg                  "#d5ddf7"
+
+# Statusbar & Inputbar
+set statusbar-bg                "#0f1436"
+set statusbar-fg                "#d5ddf7"
+set inputbar-bg                 "#07091b"
+set inputbar-fg                 "#00f0ff"
+
+# Notifications
+set notification-bg             "#0f1436"
+set notification-fg             "#d5ddf7"
+set notification-error-bg       "#ff3b6b"
+set notification-error-fg       "#07091b"
+set notification-warning-bg     "#ffb86b"
+set notification-warning-fg     "#07091b"
+
+# Completion Menu
+set completion-bg               "#07091b"
+set completion-fg               "#d5ddf7"
+set completion-group-bg         "#0f1436"
+set completion-group-fg         "#8c6cff"
+set completion-highlight-bg     "#ff5ca8"
+set completion-highlight-fg     "#07091b"
+
+# Index / Table of Contents
+set index-bg                    "#07091b"
+set index-fg                    "#d5ddf7"
+set index-active-bg             "#ff5ca8"
+set index-active-fg             "#07091b"
+
+# Search Highlights
+set highlight-color             "rgba(255, 92, 168, 0.35)"
+set highlight-active-color      "rgba(0, 240, 255, 0.45)"
+
+# Recolor Mode (Dark Reading Mode — toggle with Ctrl+R)
+set recolor                     "true"
+set recolor-lightcolor          "#07091b"
+set recolor-darkcolor           "#d5ddf7"
+set recolor-keephue             "true"
+
+# Ergonomics & Clipboard
+set selection-clipboard         "clipboard"
+set adjust-open                 "width"
+set statusbar-home-tilde        "true"
+set window-title-basename       "true"

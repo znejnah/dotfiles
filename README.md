@@ -17,10 +17,12 @@ Designed for keyboard-driven development, minimal dependencies, and high refresh
 | **File Manager**    | [Yazi](https://yazi-rs.github.io/) (terminal)                                                                                                                  |
 | **PDF Viewer**      | [Zathura](https://pwmt.org/projects/zathura/) (`zathura-pdf-mupdf`, default via `xdg-open`)                                                                    |
 | **System Monitor**  | [bottom](https://github.com/ClementTsang/bottom) (`btm`)                                                                                                       |
+| **System Info**     | [Fastfetch](https://github.com/fastfetch-cli/fastfetch)                                                                                                        |
 | **App Launcher**    | [Fuzzel](https://codeberg.org/dnkl/fuzzel) (Wayland native, icon-free)                                                                                         |
 | **Screenshots**     | `grim` + `slurp` + [Satty](https://github.com/gabm/Satty)                                                                                                      |
 | **Clipboard**       | [cliphist](https://github.com/sentriz/cliphist) + `wl-clipboard` (via Fuzzel dmenu)                                                                            |
-| **Status Bar**      | [Waybar](https://github.com/Alexays/Waybar)                                                                                                                    |
+| **Status Bar**      | [Waybar](https://github.com/Alexays/Waybar) (with dynamic solar-cycle clock)                                                                                   |
+| **Notifications**   | [Dunst](https://dunst-project.org/) + `libnotify`                                                                                                              |
 | **Audio**           | PipeWire + WirePlumber + [wiremix](https://github.com/tsowell/wiremix) (TUI)                                                                                   |
 | **Bluetooth**       | BlueZ + [bluetui](https://github.com/pythops/bluetui) (TUI)                                                                                                    |
 | **Editor**          | [Zed](https://zed.dev/) (GPU-accelerated via Vulkan)                                                                                                           |
@@ -30,18 +32,20 @@ Designed for keyboard-driven development, minimal dependencies, and high refresh
 
 ---
 
-## Visual Identity: Royal Sheikah
+## Visual Identity: Vice City / Leonida
 
-| Role                       | Name          | Hex Code  |
-| :------------------------- | :------------ | :-------- |
-| **Base / Surfaces**        | Obsidian      | `#1c1c1e` |
-| **Primary Accent / Mode**  | Royal Gold    | `#d4af37` |
-| **Active Tech / Network**  | Sheikah Cyan  | `#00e5ff` |
-| **Success / Battery**      | Ocarina Green | `#22c55e` |
-| **Warning / Intermediate** | Stasis Orange | `#ff7a00` |
-| **Critical / Danger**      | Gloom Red     | `#e11d48` |
-| **Borders / Separators**   | Rock Gray     | `#4e544b` |
-| **Foreground Text**        | Sheikah Sand  | `#c0c6ba` |
+| Role                        | Name          | Hex Code  |
+| :-------------------------- | :------------ | :-------- |
+| **Abyssal Backdrop**        | Abyssal Night | `#07091b` |
+| **Elevated Surfaces**       | Deep Bay      | `#0f1436` |
+| **Primary Focus / Active**  | Sunset Pink   | `#ff5ca8` |
+| **Navigation / Telemetry**  | Vice Cyan     | `#00f0ff` |
+| **Structure / Night Cycle** | Neon Purple   | `#8c6cff` |
+| **Warmth / Noon Cycle**     | Miami Peach   | `#ffb86b` |
+| **Success / Battery**       | Palm Mint     | `#00e68a` |
+| **Critical / Wanted Alert** | Coral Heat    | `#ff3b6b` |
+| **Borders / Dividers**      | Muted Indigo  | `#2d2861` |
+| **Foreground Text**         | Soft Vapor    | `#d5ddf7` |
 
 ---
 
@@ -50,49 +54,53 @@ Designed for keyboard-driven development, minimal dependencies, and high refresh
 **Editor & API Testing Workflow (Zed + CLI Stack)**
 
 - **Deployment:** `stow zed aliases`
-- **Aesthetics:** Custom Royal Sheikah theme (`themes/`), custom keybindings (`keymap.json`), and task runner (`tasks.json`).
+- **Aesthetics:** Custom Vice theme (`themes/vice.json`) built on Abyssal Night (`#07091b`) with blurred window transparency, custom keybindings (`keymap.json`), and task runner (`tasks.json`).
 - **CLI API Stack:** Pure terminal testing via `hurl` (`ht`, `hv`), `websocat` (`ws`), `grpcurl` (`grpc`), and HTTP benchmarking via `oha` (`bench`), integrated directly into Zed tasks (`Ctrl+Alt+R` / `Ctrl+Alt+V`).
 
-**Shell Aliases & System Maintenance**
+**Shell Prompt & Aliases (Starship + Bash/Zsh)**
 
-- **Deployment:** `stow aliases`
-- **Cross-Shell Helpers:** Unified `reload` (Bash & Zsh compatible) and interactive `fzf`-powered `ahelp()` command browser styled in Royal Sheikah colors.
+- **Deployment:** `stow starship bash aliases`
+- **Prompt:** Resize-safe two-line Vice City prompt (`starship.toml`) using native `right_format` for command duration and clock (compatible across Arch Linux and macOS).
+- **Cross-Shell Helpers:** Unified `reload` (Bash & Zsh compatible) and interactive `fzf`-powered `ahelp()` command browser styled in Vice City colors.
 - **Arch Maintenance:** Fast mirror sorting (`mirrors` via `reflector`) and full system + AUR upgrade with automatic cache pruning (`archup` via `yay-bin` + `paccache`).
 
 **App Launcher & dmenu (Fuzzel)**
 
 - **Deployment:** `stow fuzzel`
-- **Aesthetics:** Pure Wayland (`layer=overlay`), icon-free (`icons-enabled=no`) with dynamic height (`minimal-lines=yes`), Obsidian background, Royal Gold border, and Sheikah Cyan selection highlight.
+- **Aesthetics:** Pure Wayland (`layer=overlay`), icon-free (`icons-enabled=no`) with dynamic height (`minimal-lines=yes`), Abyssal Night background, Sunset Pink border, and Vice Cyan selection highlight.
 - **Usage:** Mapped to `SUPER + SPACE` for apps (encapsulating TUI tools in `kitty -e`) and `dmenu` backend for `cliphist`.
 
 **Screenshots & Clipboard Workflow**
 
 - **Deployment:** `stow satty` + `hypr/config/keybinds.lua` & `rules.lua`
-- **Capture Pipeline:** `grim` + `slurp` (styled with Royal Gold border & Sheikah Cyan selection) piped into **Satty** (`SUPER + C` for region, `SUPER + SHIFT + C` for fullscreen, `SUPER + CTRL + C` for direct RAM copy).
-- **Window Rules:** Satty opens as a centered floating window (`75% 75%`) with a custom Royal Sheikah annotation palette.
+- **Capture Pipeline:** `grim` + `slurp` (styled with Sunset Pink border & Vice Cyan selection) piped into **Satty** (`SUPER + C` for region, `SUPER + SHIFT + C` for fullscreen, `SUPER + CTRL + C` for direct RAM copy).
+- **Window Rules:** Satty opens as a centered floating window (`75% 75%`) with a custom Vice City neon annotation palette.
 - **Clipboard History:** Persistent `cliphist` watchers for text and images, queried via `SUPER + SHIFT + V` and pruned via `SUPER + ALT + V` using `fuzzel --dmenu --with-nth=2`.
 
 **Status Bar (Waybar)**
 
 - **Deployment:** `stow waybar`
-- **Aesthetics:** Floating obsidian islands with Sheikah Cyan bottom borders and state glows.
-- **Modules:** Workspaces, active window, clock, network, CPU, CPU temperature (`k10temp` Tctl), RAM, volume, Bluetooth, tray.
+- **Aesthetics:** Minimalist floating Abyssal Night islands (`rgba(7, 9, 27, 0.92)`) with subtle Neon Purple glass borders.
+- **Dynamic Modules:**
+  - **Workspaces:** 4 persistent GTA-style wanted stars (`󰓎` active in Sunset Pink, `` occupied in Neon Purple, dimmed when empty).
+  - **Solar Clock (`custom/clock`):** Automatically shifts accent colors throughout the day (`06:00` Vice Cyan dawn → `11:00` Miami Peach day → `17:00` Sunset Pink evening → `21:00` Neon Purple night), with a monthly calendar tooltip on hover and instant time/date toggle on left-click.
+  - **Telemetry & Sensors:** Network bandwidth, CPU usage, CPU temperature (`k10temp` Tctl), RAM, PipeWire volume, Bluetooth, and system tray.
 
 **File Manager (Yazi) & PDF Viewer (Zathura)**
 
 - **Deployment:** `stow yazi zathura`
-- **Aesthetics:** Native Royal Sheikah `theme.toml` in Yazi and matching statusbar/highlights in `zathurarc`.
+- **Aesthetics:** Native Vice `theme.toml` with pill separators in Yazi and matching dark recolor mode/highlights in `zathurarc`.
 - **Integration:** Zathura is registered as default PDF handler (`xdg-mime`) and triggered via Yazi, `xdg-open`, or the cross-platform `o` shell alias, while hidden from Fuzzel (`NoDisplay=true`).
 
-**System Monitor (bottom)**
+**System Monitor (bottom) & System Info (Fastfetch)**
 
-- **Deployment:** `stow bottom`
-- **Aesthetics:** Pure declarative `bottom.toml` with a custom 3-row Royal Sheikah layout (CPU, RAM/VRAM, Network, Temperatures, Disks, and Vim-navigable Processes).
+- **Deployment:** `stow bottom fastfetch`
+- **Aesthetics:** Pure declarative `bottom.toml` with a custom 3-row Vice layout (CPU, RAM/VRAM, Network, Temperatures, Disks, and Vim-navigable Processes) alongside a bicolore Sunset Pink / Vice Cyan `fastfetch` summary.
 
 **Notification Daemon (Dunst)**
 
 - **Deployment:** `stow dunst`
-- **Aesthetics:** Royal Sheikah palette with dynamic borders based on notification urgency.
+- **Aesthetics:** Abyssal Night surface with urgency-coded frames (Neon Purple for low, Sunset Pink for normal, Coral Heat for critical).
 - **System:** Minimalist D-Bus listener via `libnotify`.
 
 **Audio Server (PipeWire & wiremix)**
@@ -121,35 +129,41 @@ Designed for keyboard-driven development, minimal dependencies, and high refresh
 │   └── .bashrc                      # Bash options, tools init (fzf, zoxide, starship, ble.sh)
 ├── bottom/
 │   └── .config/bottom/
-│       └── bottom.toml              # Declarative Royal Sheikah system monitor
+│       └── bottom.toml              # Declarative Vice system monitor
 ├── docs/
 │   ├── arch_installation_roadmap.md
 │   └── hyprland_cheat_sheet.md
 ├── dunst/
 │   └── .config/dunst/
 │       └── dunstrc                  # Notification alerts configuration
+├── fastfetch/
+│   └── .config/fastfetch/
+│       └── config.jsonc             # Minimalist Vice system fetch configuration
 ├── fuzzel/
 │   └── .config/fuzzel/
-│       └── fuzzel.ini               # Minimalist Royal Sheikah launcher & dmenu config
+│       └── fuzzel.ini               # Minimalist Vice launcher & dmenu config
 ├── hypr/
 │   └── .config/hypr/
 │       ├── hyprland.lua             # Global WM configuration centralized
 │       ├── hyprpaper.conf
-│       ├── config/                  # Config split into sections
+│       ├── config/                  # Config split into sections (theme.lua, keybinds, rules...)
 │       └── wallpapers/
 ├── kitty/
 │   └── .config/kitty/
-│       └── kitty.conf               # Terminal configuration
+│       ├── kitty.conf               # Terminal configuration
+│       └── vice.conf                # Vice City / Leonida color theme
 ├── satty/
 │   └── .config/satty/
-│       └── config.toml              # Screenshot annotation tool & Royal Sheikah palette
+│       └── config.toml              # Screenshot annotation tool & Vice palette
 ├── starship/
 │   └── .config/
-│       └── starship.toml            # Custom prompt theme
+│       └── starship.toml            # Resize-safe Vice prompt theme
 ├── waybar/
 │   └── .config/waybar/
 │       ├── config.jsonc             # Wayland status bar
-│       └── style.css
+│       ├── style.css                # Minimalist dynamic HUD stylesheet
+│       └── scripts/
+│           └── clock-cycle.sh       # Solar-cycle clock & calendar tooltip script
 ├── yazi/
 │   └── .config/yazi/
 │       ├── init.lua
@@ -158,11 +172,12 @@ Designed for keyboard-driven development, minimal dependencies, and high refresh
 │       └── yazi.toml
 ├── zathura/
 │   └── .config/zathura/
-│       └── zathurarc                # Minimalist Royal Sheikah PDF viewer configuration
+│       └── zathurarc                # Minimalist Vice PDF viewer configuration
 └── zed/
     └── .config/zed/
         ├── keymap.json              # Custom editor & task runner keybindings
         ├── settings.json            # LSP configurations, UI, and editor settings
         ├── tasks.json               # CLI task definitions (Hurl, etc.)
-        └── themes/                  # Royal Sheikah Zed theme
+        └── themes/
+            └── vice.json            # Vice Zed theme
 ```

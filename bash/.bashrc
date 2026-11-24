@@ -29,17 +29,18 @@ export PATH
 
 
 # ==============================================================================
-# CLI THEMES (ElectroVoid Palette)
+# CLI THEMES (Vice City / Leonida Palette)
 # ==============================================================================
-export BAT_THEME="base16" # Neutral fallback before creating a custom bat theme
+export BAT_THEME="ansi" # Inherits the 16 ANSI Vice City colors from Kitty
 
-# FZF Royal Sheikah UI (Anthracite bg, Cyan Sheikah accents, Royal Gold selections)
+# FZF Vice City / Leonida UI (Abyssal Night bg, Sunset Pink & Vice Cyan accents)
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
 export FZF_DEFAULT_OPTS=" \
---color=bg:#1c1c1e,bg+:#242426,fg:#c0c6ba,fg+:#e5e5e5,hl:#ff7a00,hl+:#ff7a00 \
---color=prompt:#00e5ff,pointer:#d4af37,marker:#22c55e,border:#4e544b,header:#4e544b \
---prompt='◈ ' --pointer='▲' --marker='⎔' --layout=reverse --border"
-
+  --color=bg+:#0f1436,bg:#07091b,spinner:#00f0ff,hl:#ff5ca8 \
+  --color=fg:#d5ddf7,header:#8c6cff,info:#ffb86b,pointer:#ff5ca8 \
+  --color=marker:#00e68a,fg+:#d5ddf7,prompt:#00f0ff,hl+:#ff5ca8 \
+  --color=selected-bg:#1a2254,border:#2d2861,label:#8c6cff \
+  --border=rounded --prompt='󰓎 ' --pointer='❯' --marker='★'"
 
 # ==============================================================================
 # BASH BEHAVIOR & HISTORY

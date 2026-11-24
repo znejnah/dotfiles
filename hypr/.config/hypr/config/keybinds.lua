@@ -3,6 +3,7 @@
 ---------------------
 
 local progs = require("config.programs")
+local theme = require("config.theme")
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
@@ -47,8 +48,13 @@ end
 hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special("magic"))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
--- Screenshots (grim + slurp + satty with Royal Sheikah selection colors)
-local slurp_cmd = 'slurp -b "#1c1c1e80" -c "#d4af37ff" -s "#00e5ff20" -w 2'
+-- Screenshots (grim + slurp + satty with active theme selection colors)
+local slurp_cmd = string.format(
+    'slurp -b "%s" -c "%s" -s "%s" -w 2',
+    theme.slurp.background,
+    theme.slurp.border,
+    theme.slurp.selection
+)
 
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(
     'grim -g "$(' .. slurp_cmd .. ')" -t ppm - | satty --filename - --output-filename ~/Pictures/Screenshots/satty-$(date +%Y%m%d-%H%M%S).png'

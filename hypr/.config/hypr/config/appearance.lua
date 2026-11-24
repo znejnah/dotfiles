@@ -2,6 +2,8 @@
 ---- LOOK AND FEEL ----
 -----------------------
 
+local theme = require("config.theme")
+
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
 hl.config({
     general = {
@@ -11,10 +13,10 @@ hl.config({
         border_size = 2,
 
         col = {
-            -- Active window: Gradient from Royal Gold to Sheikah Cyan
-            active_border   = { colors = {"rgba(d4af37ff)", "rgba(00e5ffff)"}, angle = 45 },
-            -- Inactive window: Rock Gray (subtle and passive)
-            inactive_border = "rgba(4e544baa)",
+            -- Active window: Gradient from primary to secondary theme accent
+            active_border   = { colors = { theme.accent_primary, theme.accent_secondary }, angle = 45 },
+            -- Inactive window: Subtle passive border
+            inactive_border = theme.border_inactive,
         },
 
         -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
@@ -30,25 +32,28 @@ hl.config({
         rounding       = 10,
         rounding_power = 2,
 
-        -- Change transparency of focused and unfocused windows (Tablet aesthetic)
-        active_opacity   = 0.90,
-        inactive_opacity = 0.75,
+        -- Change transparency of focused and unfocused windows
+        active_opacity   = 1.0,
+        inactive_opacity = 0.92,
 
         shadow = {
             enabled      = true,
             range        = 6,
             render_power = 3,
-            -- Sheikah Energy subtle glow for window shadows
-            color        = "rgba(00e5ff33)",
+            -- Subtle accent glow for window shadows
+            color        = theme.shadow_glow,
         },
 
         blur = {
-            enabled        = true,
-            size           = 6,
-            passes         = 3,
-            vibrancy       = 0.1696,
-            ignore_opacity = false
-        },
+                    enabled           = true,
+                    size              = 5,
+                    passes            = 2,
+                    new_optimizations = true,
+                    vibrancy          = 0.25,
+                    brightness        = 1.05,
+                    contrast          = 1.05,
+                    ignore_opacity    = false,
+                },
     },
 })
 

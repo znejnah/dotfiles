@@ -3,8 +3,8 @@
   "logo": {
     "type": "small",
     "color": {
-      "1": "#00e5ff",
-      "2": "#d4af37"
+      "1": "#8c6cff",
+      "2": "#8c6cff"
     },
     "padding": {
       "top": 1,
@@ -15,16 +15,17 @@
   "display": {
     "separator": " ❯ ",
     "color": {
-      "keys": "#d4af37",
-      "title": "#00e5ff",
-      "separator": "#4e544b"
+      "keys": "#8c6cff",
+      "title": "#00f0ff",
+      "output": "#d5ddf7",
+      "separator": "#ff5ca8"
     }
   },
   "modules": [
     "title",
     {
       "type": "custom",
-      "format": "──────────────────────────────"
+      "format": "\u001b[38;2;140;108;255m──────────────────────────────\u001b[0m"
     },
     {
       "type": "os",
@@ -39,12 +40,12 @@
       "key": "󰏖 Packages"
     },
     {
-      "type": "wm",
-      "key": " WM"
-    },
-    {
       "type": "terminal",
       "key": " Terminal"
+    },
+    {
+      "type": "wm",
+      "key": " WM"
     },
     {
       "type": "cpu",
@@ -58,7 +59,7 @@
     },
     {
       "type": "memory",
-      "key": " Memory"
+      "key": " RAM"
     },
     {
       "type": "disk",

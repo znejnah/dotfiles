@@ -1,24 +1,31 @@
+# ==============================================================================
+# VICE CITY / LEONIDA — SATTY SCREENSHOT ANNOTATION (ABYSSAL NIGHT)
+# ==============================================================================
+
 [general]
-fullscreen = false
+# Start Satty in fullscreen and copy to clipboard on save/Enter
+fullscreen = true
 early-exit = true
-initial-tool = "arrow"
+initial-tool = "brush"
 copy-command = "wl-copy"
-annotation-size-factor = 1
-output-filename = "~/Pictures/Screenshots/satty-%Y%m%d-%H%M%S.png"
+annotation-size-factor = 1.5
 save-after-copy = false
 default-hide-toolbars = false
-focus-toggles-toolbars = true
+primary-highlighter = "block"
 disable-notifications = false
 
 [font]
-family = "JetBrainsMono Nerd Font"
-style = "Regular"
+family = "JetBrains Mono"
+style = "Bold"
 
 [color-palette]
+# Vice City / Leonida neon annotation swatches
 palette = [
-  "#d4af37", # Or Royal
-  "#00e5ff", # Cyan Sheikah
-  "#22c55e", # Vert Ocarina
-  "#ef4444", # Alerte / Rouge
-  "#c0c6ba"  # Sable
+  "#ff5ca8", # Sunset Pink
+  "#00f0ff", # Vice Cyan
+  "#ffb86b", # Miami Peach
+  "#8c6cff", # Neon Purple
+  "#00e68a", # Palm Mint
+  "#ff3b6b", # Coral Heat
+  "#d5ddf7", # Soft Vapor
 ]
