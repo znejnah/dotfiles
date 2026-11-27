@@ -8,27 +8,28 @@ Designed for keyboard-driven development, minimal dependencies, and high refresh
 
 ## System Specs & Stack
 
-| Component           | Tool / Hardware                                                                                                                                                |
-| :------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **OS**              | Arch Linux (Dual-boot with Windows)                                                                                                                            |
-| **WM / Compositor** | [Hyprland](https://hyprland.org/) (configured in Lua)                                                                                                          |
-| **Terminal**        | [Kitty](https://sw.kovidgoyal.net/kitty/)                                                                                                                      |
-| **Shell**           | Bash + [Starship](https://starship.rs/) + [ble.sh](https://github.com/akinomyoga/ble.sh) _(Zsh on macOS)_                                                      |
-| **File Manager**    | [Yazi](https://yazi-rs.github.io/) (terminal)                                                                                                                  |
-| **PDF Viewer**      | [Zathura](https://pwmt.org/projects/zathura/) (`zathura-pdf-mupdf`, default via `xdg-open`)                                                                    |
-| **System Monitor**  | [bottom](https://github.com/ClementTsang/bottom) (`btm`)                                                                                                       |
-| **System Info**     | [Fastfetch](https://github.com/fastfetch-cli/fastfetch)                                                                                                        |
-| **App Launcher**    | [Fuzzel](https://codeberg.org/dnkl/fuzzel) (Wayland native, icon-free)                                                                                         |
-| **Screenshots**     | `grim` + `slurp` + [Satty](https://github.com/gabm/Satty)                                                                                                      |
-| **Clipboard**       | [cliphist](https://github.com/sentriz/cliphist) + `wl-clipboard` (via Fuzzel dmenu)                                                                            |
-| **Status Bar**      | [Waybar](https://github.com/Alexays/Waybar) (with dynamic solar-cycle clock)                                                                                   |
-| **Notifications**   | [Dunst](https://dunst-project.org/) + `libnotify`                                                                                                              |
-| **Audio**           | PipeWire + WirePlumber + [wiremix](https://github.com/tsowell/wiremix) (TUI)                                                                                   |
-| **Bluetooth**       | BlueZ + [bluetui](https://github.com/pythops/bluetui) (TUI)                                                                                                    |
-| **Editor**          | [Zed](https://zed.dev/) (GPU-accelerated via Vulkan)                                                                                                           |
-| **API & Load CLI**  | [Hurl](https://hurl.dev/), [websocat](https://github.com/vi/websocat), [grpcurl](https://github.com/fullstorydev/grpcurl), [oha](https://github.com/hatoo/oha) |
-| **Package Maint.**  | `pacman` + `pacman-contrib` (`paccache`) + `reflector` + `yay-bin`                                                                                             |
-| **Hardware**        | AMD Ryzen 5 7500F, NVIDIA GeForce RTX 5070, 32 GB RAM                                                                                                          |
+| Component              | Tool / Hardware                                                                                                                                                |
+| :--------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **OS**                 | Arch Linux (Dual-boot with Windows)                                                                                                                            |
+| **WM / Compositor**    | [Hyprland](https://hyprland.org/) (configured in Lua)                                                                                                          |
+| **Terminal**           | [Kitty](https://sw.kovidgoyal.net/kitty/)                                                                                                                      |
+| **Shell**              | Bash + [Starship](https://starship.rs/) + [ble.sh](https://github.com/akinomyoga/ble.sh) _(Zsh on macOS)_                                                      |
+| **File Manager**       | [Yazi](https://yazi-rs.github.io/) (terminal)                                                                                                                  |
+| **PDF Viewer**         | [Zathura](https://pwmt.org/projects/zathura/) (`zathura-pdf-mupdf`, default via `xdg-open`)                                                                    |
+| **System Monitor**     | [bottom](https://github.com/ClementTsang/bottom) (`btm`)                                                                                                       |
+| **System Info**        | [Fastfetch](https://github.com/fastfetch-cli/fastfetch)                                                                                                        |
+| **App Launcher**       | [Fuzzel](https://codeberg.org/dnkl/fuzzel) (Wayland native, icon-free)                                                                                         |
+| **Screenshots**        | `grim` + `slurp` + [Satty](https://github.com/gabm/Satty)                                                                                                      |
+| **Clipboard**          | [cliphist](https://github.com/sentriz/cliphist) + `wl-clipboard` (via Fuzzel dmenu)                                                                            |
+| **Status Bar**         | [Waybar](https://github.com/Alexays/Waybar) (with dynamic solar-cycle clock)                                                                                   |
+| **Screen Lock / Idle** | [hyprlock](https://wiki.hypr.land/Hypr-Ecosystem/hyprlock/) + [hypridle](https://wiki.hypr.land/Hypr-Ecosystem/hypridle/)                                      |
+| **Notifications**      | [Dunst](https://dunst-project.org/) + `libnotify`                                                                                                              |
+| **Audio**              | PipeWire + WirePlumber + [wiremix](https://github.com/tsowell/wiremix) (TUI)                                                                                   |
+| **Bluetooth**          | BlueZ + [bluetui](https://github.com/pythops/bluetui) (TUI)                                                                                                    |
+| **Editor**             | [Zed](https://zed.dev/) (GPU-accelerated via Vulkan)                                                                                                           |
+| **API & Load CLI**     | [Hurl](https://hurl.dev/), [websocat](https://github.com/vi/websocat), [grpcurl](https://github.com/fullstorydev/grpcurl), [oha](https://github.com/hatoo/oha) |
+| **Package Maint.**     | `pacman` + `pacman-contrib` (`paccache`) + `reflector` + `yay-bin`                                                                                             |
+| **Hardware**           | AMD Ryzen 5 7500F, NVIDIA GeForce RTX 5070, 32 GB RAM                                                                                                          |
 
 ---
 
@@ -103,6 +104,12 @@ Designed for keyboard-driven development, minimal dependencies, and high refresh
 - **Aesthetics:** Abyssal Night surface with urgency-coded frames (Neon Purple for low, Sunset Pink for normal, Coral Heat for critical).
 - **System:** Minimalist D-Bus listener via `libnotify`.
 
+**Screen Lock & Idle Management (hyprlock + hypridle)**
+
+- **Deployment:** `stow hypr`
+- **Lock Screen (`hyprlock.conf`):** Blurred fixed Vice City wallpaper over Abyssal Night (`#07091b`), Vice Cyan clock, reactive Sunset Pink / Vice Cyan / Coral Heat password ring, and a live Miami Peach Caps Lock indicator (`SUPER + ESCAPE`).
+- **Idle Daemon (`hypridle.conf`):** Automatically locks the session via `loginctl lock-session` after 10 minutes of inactivity and powers down displays (`dpms off`) after 15 minutes without deep-sleep conflicts on NVIDIA RTX 50 hardware.
+
 **Audio Server (PipeWire & wiremix)**
 
 - **Dependencies:** `pipewire`, `wireplumber`, `pipewire-pulse`, `wiremix`.
@@ -144,7 +151,9 @@ Designed for keyboard-driven development, minimal dependencies, and high refresh
 │       └── fuzzel.ini               # Minimalist Vice launcher & dmenu config
 ├── hypr/
 │   └── .config/hypr/
+│       ├── hypridle.conf            # Idle timeouts & DPMS screen power management
 │       ├── hyprland.lua             # Global WM configuration centralized
+│       ├── hyprlock.conf            # GPU-accelerated Vice lock screen
 │       ├── hyprpaper.conf
 │       ├── config/                  # Config split into sections (theme.lua, keybinds, rules...)
 │       └── wallpapers/

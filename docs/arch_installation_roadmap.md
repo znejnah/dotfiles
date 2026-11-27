@@ -1,6 +1,6 @@
 # Roadmap: Arch Linux Installation (Hyprland / Wayland)
 
-This guide outlines the installation of a pure Arch Linux base with a keyboard-driven tiling window manager (**Hyprland**), built around minimal dependencies and the **Royal Sheikah** visual identity for development and daily productivity.
+This guide outlines the installation of a pure Arch Linux base with a keyboard-driven tiling window manager (**Hyprland**), built around minimal dependencies and the **Vice City / Leonida** visual identity for development and daily productivity.
 
 ## 0. System Summary
 
@@ -8,7 +8,7 @@ This guide outlines the installation of a pure Arch Linux base with a keyboard-d
 - **GPU:** NVIDIA RTX 5070 (`nvidia-open` drivers + 32/64-bit Vulkan)
 - **Audio:** PipeWire (`pipewire-pulse`, `pipewire-jack`, `wireplumber`, `wiremix`)
 - **Compositor:** Hyprland (Wayland), configured in Lua (`hyprland.lua`)
-- **Core Stack:** Kitty (Terminal), Fuzzel (Launcher & dmenu), Waybar (Status Bar), Yazi (File Manager), Zathura (PDF Viewer), Satty + Grim + Slurp (Screenshots), Cliphist (Clipboard History), Bluetui (Bluetooth TUI), Hyprpolkitagent (Authentication), Wiremix (Audio TUI), Zed (Editor), Hurl + websocat + grpcurl + oha (API & Load Testing CLI).
+- **Core Stack:** Kitty (Terminal), Fuzzel (Launcher & dmenu), Waybar (Status Bar), Hyprlock + Hypridle (Screen Lock & Idle Management), Yazi (File Manager), Zathura (PDF Viewer), Satty + Grim + Slurp (Screenshots), Cliphist (Clipboard History), Bluetui (Bluetooth TUI), Hyprpolkitagent (Authentication), Wiremix (Audio TUI), Zed (Editor), Hurl + websocat + grpcurl + oha (API & Load Testing CLI).
 
 > **Laptop-Specific Adjustments:**
 >
@@ -155,10 +155,10 @@ This guide outlines the installation of a pure Arch Linux base with a keyboard-d
    fc-cache -fv
    ```
 
-3. **Hyprland Desktop & Wayland Utilities:**
+3. **Hyprland Desktop, Lock & Wayland Utilities:**
 
    ```bash
-   sudo pacman -S hyprland hyprpaper kitty waybar fuzzel hyprpolkitagent xdg-desktop-portal-hyprland xdg-utils dunst libnotify
+   sudo pacman -S hyprland hyprpaper hyprlock hypridle kitty waybar fuzzel hyprpolkitagent xdg-desktop-portal-hyprland xdg-utils dunst libnotify
    ```
 
 4. **Screenshots, Clipboard & Bluetooth (Official Repos Only):**
@@ -205,7 +205,8 @@ This guide outlines the installation of a pure Arch Linux base with a keyboard-d
      fileManager = "kitty -e yazi",
      menu        = "fuzzel",
      bluetooth   = "kitty --class bluetooth-tui -e bluetui",
-     audio       = "kitty --class audio-tui -e wiremix"
+     audio       = "kitty --class audio-tui -e wiremix",
+     lock        = "loginctl lock-session"
      ```
 
    - **NVIDIA Environment (`config/environment.lua`):**
@@ -223,7 +224,9 @@ This guide outlines the installation of a pure Arch Linux base with a keyboard-d
      ```lua
      hl.on("hyprland.start", function()
          hl.exec_cmd("waybar & hyprpaper")
+         hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE")
          hl.exec_cmd("systemctl --user start hyprpolkitagent")
+         hl.exec_cmd("hypridle")
          hl.exec_cmd("wl-paste --type text --watch cliphist store")
          hl.exec_cmd("wl-paste --type image --watch cliphist store")
      end)
@@ -237,9 +240,9 @@ This guide outlines the installation of a pure Arch Linux base with a keyboard-d
 
 ---
 
-## Phase 6: Dotfiles Deployment (Royal Sheikah)
+## Phase 6: Dotfiles Deployment (Vice City / Leonida)
 
-Once inside Hyprland, deploy the **Royal Sheikah** configurations across all modules:
+Once inside Hyprland, deploy the **Vice City / Leonida** configurations across all Linux modules:
 
 1. **Clone the repository:**
 
@@ -255,11 +258,11 @@ Once inside Hyprland, deploy the **Royal Sheikah** configurations across all mod
    echo "NoDisplay=true" >> ~/.local/share/applications/org.pwmt.zathura.desktop
    ```
 
-3. **Symlink all packages with GNU Stow:**
+3. **Symlink all Arch Linux packages with GNU Stow:**
 
    ```bash
    cd ~/dotfiles
-   stow */
+   stow -Rt ~ aliases bash bottom desktop-entries dunst fastfetch fuzzel hypr imv kitty satty starship waybar yazi zathura zed
    ```
 
 ---
