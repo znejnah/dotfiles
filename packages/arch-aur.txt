@@ -1,0 +1,2 @@
+grpcurl-bin
+yay-bin

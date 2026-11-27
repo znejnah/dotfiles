@@ -142,6 +142,20 @@ This guide outlines the installation of a pure Arch Linux base with a keyboard-d
 
 ## Phase 4: Graphical Stack and Minimalist Tooling (From TTY)
 
+### Fast Package Restore (Recommended on Reinstall)
+
+Once `git` and `base-devel` are installed and `~/dotfiles` is cloned, you can skip the manual package lists below and restore the entire native and AUR stack in two commands:
+
+```bash
+# Official repositories
+sudo pacman -S --needed - < ~/dotfiles/packages/arch-native.txt
+
+# AUR packages (requires yay-bin bootstrapped first — see Step 7)
+yay -S --needed - < ~/dotfiles/packages/arch-aur.txt
+```
+
+### Manual Step-by-Step Breakdown
+
 1. **Audio & Build Essentials:**
 
    ```bash
@@ -240,7 +254,7 @@ This guide outlines the installation of a pure Arch Linux base with a keyboard-d
 
 ---
 
-## Phase 6: Dotfiles Deployment (Vice City / Leonida)
+## Phase 6: Dotfiles Deployment & Package Automation (Vice City / Leonida)
 
 Once inside Hyprland, deploy the **Vice City / Leonida** configurations across all Linux modules:
 
@@ -263,6 +277,24 @@ Once inside Hyprland, deploy the **Vice City / Leonida** configurations across a
    ```bash
    cd ~/dotfiles
    stow -Rt ~ aliases bash bottom desktop-entries dunst fastfetch fuzzel hypr imv kitty satty starship waybar yazi zathura zed
+   ```
+
+4. **Enable Automatic Package List Export (`pacman` hook):**
+
+   Create `/etc/pacman.d/hooks/99-export-pkglist.hook` (replace `<username>` with your Arch username) so every `pacman`/`yay` transaction keeps `~/dotfiles/packages/` in sync:
+
+   ```ini
+   [Trigger]
+   Operation = Install
+   Operation = Upgrade
+   Operation = Remove
+   Type = Package
+   Target = *
+
+   [Action]
+   Description = Exporting native and AUR package lists to ~/dotfiles/packages...
+   When = PostTransaction
+   Exec = /usr/bin/runuser -u <username> -- /bin/sh -c '/usr/bin/pacman -Qqen > /home/<username>/dotfiles/packages/arch-native.txt && /usr/bin/pacman -Qqem > /home/<username>/dotfiles/packages/arch-aur.txt'
    ```
 
 ---
